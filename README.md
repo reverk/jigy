@@ -38,8 +38,9 @@ DB_PASSWORD=<YOUR_DATABSE_PASSWORD>
 6. After that, run `php artisan key:generate`
 7. Run `php artisan migrate` to migrate all tables into your database. 
 > Please confirm that your XAMPP's Apache & MySQL is started before migrating
-8. Then run `php artisan serve`
-9. And finally, go to `localhost:8000`
+8. (Optional) Run `php artisan db:seed` to populate data
+9. Then run `php artisan serve`
+10. And finally, go to `localhost:8000`
 
 ## Collaborators 👨🏻‍💻
 - Our Supervisor
