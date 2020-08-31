@@ -10,7 +10,6 @@ $factory->define(Article::class, function (Faker $faker) {
     return [
         'user_id' => factory(App\User::class),
         'category_id' => factory(App\Category::class),
-        // TODO: Add Tag once tag is defined
         'title' => $title,
         'slug' => str_replace(' ', '-', $title),
         'excerpt' => $faker->randomHtml(),

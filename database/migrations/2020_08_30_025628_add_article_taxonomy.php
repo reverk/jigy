@@ -18,8 +18,6 @@ class AddArticleTaxonomy extends Migration
                 ->references('id')
                 ->on('categories')
                 ->onDelete('cascade');
-
-            // TODO: Add tag constraint
         });
     }
 

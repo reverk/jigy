@@ -6,7 +6,10 @@ use App\Tag;
 use Faker\Generator as Faker;
 
 $factory->define(Tag::class, function (Faker $faker) {
+    $tagName = $faker->word;
     return [
-        // TODO: Make tag factory
+        'user_id' => factory(App\User::class),
+        'name' => $tagName,
+        'slug' => $tagName,
     ];
 });

@@ -27,5 +27,8 @@ class Article extends Model
         return $this->belongsTo(Category::class);
     }
 
-    // TODO: Add tag relationship
+    // To tags
+    public function tags() {
+        return $this->belongsToMany(Tag::class);
+    }
 }

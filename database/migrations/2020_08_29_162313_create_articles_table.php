@@ -17,7 +17,6 @@ class CreateArticlesTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('category_id');
-            // TODO: Add tag attribute (not constraints)
             $table->string('title');
             $table->string('slug');
             $table->text('excerpt');
