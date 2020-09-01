@@ -13,7 +13,7 @@ $factory->define(Article::class, function (Faker $faker) {
         'title' => $title,
         'slug' => str_replace(' ', '-', $title),
         'excerpt' => $faker->randomHtml(),
-        'thumbnail_image' => $faker->image('public\storage\images'),
+        'thumbnail_image' => $faker->image('images'),
         'body' => $faker->paragraph,
     ];
 });
