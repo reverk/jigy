@@ -13,5 +13,8 @@
 {{--            @endif--}}
 
 <x-layouts.layout>
-    <x-layouts.navbar/>
+    <p class="container">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto commodi tenetur totam vitae? Ex fugiat
+        fugit illum molestias non pariatur quis. Aspernatur consequatur dolorem eaque error est molestias nemo neque!
+    </p>
 </x-layouts.layout>

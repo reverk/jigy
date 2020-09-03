@@ -48,6 +48,10 @@ DB_PASSWORD=<YOUR_DATABSE_PASSWORD>
 9. Then run `php artisan serve`
 10. And finally, go to `localhost:8000`
 
+## Development (frontend)
+- For convenience, run `php artisan serve`, then `npm run watch` to enable hot/live reloading
+> ℹ You'll need to leave 2 terminals to run simultaneously   
+
 ## Collaborators 👨🏻‍💻
 - Our Supervisor
 - @KungCC

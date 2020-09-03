@@ -3,8 +3,9 @@
 namespace App\View\Components;
 
 use Illuminate\View\Component;
+use Illuminate\View\View;
 
-class navbarItem extends Component
+class navbarItemLink extends Component
 {
     /**
      * The icon type.
@@ -31,8 +32,8 @@ class navbarItem extends Component
      * Create a new component instance.
      *
      * @param $iconName
-     * @param $routeTo
      * @param $name
+     * @param $routeTo
      */
     public function __construct($iconName, $name, $routeTo)
     {
@@ -44,7 +45,7 @@ class navbarItem extends Component
     /**
      * Get the view / contents that represent the component.
      *
-     * @return \Illuminate\View\View|string
+     * @return View|string
      */
     public function render()
     {
