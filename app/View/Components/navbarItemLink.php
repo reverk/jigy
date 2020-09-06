@@ -49,6 +49,6 @@ class navbarItemLink extends Component
      */
     public function render()
     {
-        return view('components.navbar-item');
+        return view('components.layouts.navbar-item-link');
     }
 }

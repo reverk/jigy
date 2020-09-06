@@ -3,6 +3,7 @@
 namespace App\View\Components;
 
 use Illuminate\View\Component;
+use Illuminate\View\View;
 
 class navbar extends Component
 {
@@ -19,10 +20,10 @@ class navbar extends Component
     /**
      * Get the view / contents that represent the component.
      *
-     * @return \Illuminate\View\View|string
+     * @return View|string
      */
     public function render()
     {
-        return view('components.navbar');
+        return view('components.layouts.navbar');
     }
 }
