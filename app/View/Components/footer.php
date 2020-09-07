@@ -14,7 +14,7 @@ class footer extends Component
      */
     public function __construct()
     {
-        // TODO: Add props to pass in (if any)
+        //
     }
 
     /**

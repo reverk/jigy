@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light container">
-    <a class="navbar-brand" href="{{route('home')}}">JiGy</a>
+    <a class="navbar-brand" href="{{route('index')}}">JiGy</a>
 
     <button class="navbar-toggler border-0"
             type="button"
@@ -15,7 +15,7 @@
     <div class="collapse navbar-collapse" id="navbarToggler">
         <div class="navbar-nav ml-auto">
             <x-layouts.navbar-item-link routeTo="index" iconName="home" name="Home"/>
-            <x-layouts.navbar-item-link routeTo="home" iconName="collections" name="Gallery"/>
+            <x-layouts.navbar-item-link routeTo="index" iconName="collections" name="Gallery"/>
             <x-layouts.navbar-item-link routeTo="index" iconName="info" name="About"/>
             <x-layouts.navbar-item-link routeTo="index" iconName="search" name="Search"/>
             @guest
@@ -28,7 +28,7 @@
                 {{--                @endif--}}
             @endguest
             @auth
-                <x-layouts.navbar-item-link routeTo="home" iconName="face" name="Hello, {{Auth::user()->name}}"/>
+                <x-layouts.navbar-item-link routeTo="index" iconName="face" name="Hello, {{Auth::user()->name}}"/>
                 <form action="{{route('logout')}}" method="post">
                     @csrf
                     <button type="submit" class="btn btn-outline-danger d-inline-flex">

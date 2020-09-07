@@ -20,5 +20,6 @@ class DatabaseSeeder extends Seeder
             $art->tags()->attach(array(rand(1, 5)));
         }
 
+        // FIXME: Static images not working... literally
     }
 }
