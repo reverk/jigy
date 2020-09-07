@@ -6,8 +6,8 @@
             <img src="{{$article->thumbnail_image}}" alt="Title Image">
             <p>Body: {{ $article->body }}</p>
             <p>Category: <a href="{{route('category', $article->category->name)}}">{{$article->category->slug}}</a></p>
-            @foreach($article->tags->pluck('slug') as $tag)
-                <p>Tags: <a href="{{route('tag', $tag)}}">{{ $tag }}</a></p>
+            @foreach($article->tags->toArray() as $tag)
+                <p>Tags: <a href="{{route('tag', $tag['slug'])}}">{{ $tag['name'] }}</a></p>
             @endforeach
         </div>
     @endforeach
