@@ -15,6 +15,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{asset('/css/styles.css')}}">
 
     <!-- Material Design icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -22,10 +23,14 @@
 </head>
 <body>
 
+<x-layouts.navbar/>
+
 <main>
-    <x-layouts.navbar/>
-    {{ $slot }}
+    <x-title name="Oh hey"/>
+    {{--    {{ $slot }}--}}
 </main>
+
+<x-layouts.footer/>
 
 </body>
 </html>
