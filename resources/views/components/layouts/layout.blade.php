@@ -26,8 +26,7 @@
 <x-layouts.navbar/>
 
 <main>
-    <x-title name="Oh hey"/>
-    {{--    {{ $slot }}--}}
+    {{ $slot }}
 </main>
 
 <x-layouts.footer/>

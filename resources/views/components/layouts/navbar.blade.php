@@ -19,9 +19,10 @@
             <x-layouts.navbar-item-link routeTo="index" iconName="info" name="About"/>
             <x-layouts.navbar-item-link routeTo="index" iconName="search" name="Search"/>
             @guest
-                <a class="nav-item nav-link d-inline-flex btn btn-outline-info" href="{{route('login')}}">
-                    <i class="material-icons align-self-center">login</i>
-                    <desc class="ml-1 align-self-center">Login</desc>
+                <a class="nav-item nav-link d-inline-flex align-self-center btn btn-outline-info px-3 py-2 py-md-1"
+                   href="{{route('login')}}">
+                    <i class="material-icons">login</i>
+                    <desc class="ml-1">Login</desc>
                 </a>
                 {{--                @if(Route::has('register'))--}}
                 {{--                    <x-layouts.navbar-item routeTo="register" iconName="add_circle" name="register"/>--}}

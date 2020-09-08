@@ -18,8 +18,11 @@ class ArticlesController extends Controller
      */
     public function index()
     {
+        $articles = Article::latest()->paginate(5);
+        $latest = $articles->shift();
         return view('index', [
-            'articles' => Article::latest()->paginate(5),
+            'latest' => $latest,
+            'articles' => $articles,
         ]);
     }
 
