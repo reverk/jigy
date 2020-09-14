@@ -1,10 +1,10 @@
 <div class="container py-3">
     <div class="row flex-lg-row flex-column justify-content-center">
-        <a href="{{route('article', $article->slug)}}" class="col-lg-7">
+        <a href="{{route('article', $article->slug)}}" class="col-lg-6 px-lg-2 p-0">
             <img src="{{$article->thumbnail_image}}" alt="Latest post image" class="latest_image">
         </a>
-        <div class="col-lg-5 d-flex">
-            <section class="pl-lg-3 pl-0 align-self-center">
+        <div class="col-lg-4 d-flex px-lg-2 p-0">
+            <section class="pl-lg-4 pl-0 align-self-center">
                 <div class="d-inline-flex py-3">
                     <a href="{{route('category', $article->category->slug)}}"
                        class="text-decoration-none text-dark pr-2 align-self-center font-weight-bold"

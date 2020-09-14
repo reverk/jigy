@@ -12,25 +12,48 @@
 {{--                </div>--}}
 {{--            @endif--}}
 
+{{--    Something to thinkof in the dashboard --}}
+{{--    <ul class="nav nav-tabs">--}}
+{{--        <li class="active"><a data-toggle="tab" href="#home">Home</a></li>--}}
+{{--        <li><a data-toggle="tab" href="#menu1">Menu 1</a></li>--}}
+{{--        <li><a data-toggle="tab" href="#menu2">Menu 2</a></li>--}}
+{{--    </ul>--}}
+
+{{--        <div class="tab-content">--}}
+{{--            <div id="home" class="tab-pane fade in active">--}}
+{{--                <h3>HOME</h3>--}}
+{{--                <p>Some content.</p>--}}
+{{--            </div>--}}
+{{--            <div id="menu1" class="tab-pane fade">--}}
+{{--                <h3>Menu 1</h3>--}}
+{{--                <p>Some content in menu 1.</p>--}}
+{{--            </div>--}}
+{{--            <div id="menu2" class="tab-pane fade">--}}
+{{--                <h3>Menu 2</h3>--}}
+{{--                <p>Some content in menu 2.</p>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+
 <x-layouts.layout>
     {{--    TODO: Refine UI here --}}
-    {{--    Latest post --}}
     <x-title name="Latest Article"/>
     <x-latest-article :article="$latest"/>
 
     <x-title name="Articles"/>
+    <div class="container">
+        <div class="row">
+            @foreach ($articles as $article)
+                <div class="col-lg py-3">
+                    <x-card :article="$article"/>
+                </div>
+                @if ($loop->iteration % 2 == 0)
+                    <div class="w-100"></div>
+                @endif
+            @endforeach
 
-    @foreach ($articles as $article)
-        {{--        <div class="container">--}}
-        {{--            <a href="{{route('article', $article->slug)}}" class="h1">Post: {{ $article->title }}</a>--}}
-        {{--            <img src="{{$article->thumbnail_image}}" alt="Title Image">--}}
-        {{--            <p>Body: {{ $article->body }}</p>--}}
-        {{--            <p>Category: <a href="{{route('category', $article->category->name)}}">{{$article->category->slug}}</a></p>--}}
-        {{--            @foreach($article->tags->toArray() as $tag)--}}
-        {{--                <p>Tags: <a href="{{route('tag', $tag['slug'])}}">{{ $tag['name'] }}</a></p>--}}
-        {{--            @endforeach--}}
-        {{--        </div>--}}
-    @endforeach
+        </div>
+    </div>
+
 
     <div class="container">
         {{ $articles->links() }}
