@@ -1,11 +1,34 @@
 <x-layouts.layout>
-    <div class="container">
-        <a href="{{route('article', $article->slug)}}" class="h1">Post: {{ $article->title }}</a>
-        <img src="{{$article->thumbnail_image}}" alt="Title Image">
-        <p>Body: {{ $article->body }}</p>
-        <p>Category: <a href="{{route('category', $article->category->name)}}">{{$article->category->slug}}</a></p>
-        @foreach($article->tags->toArray() as $tag)
-            <p>Tags: <a href="{{route('tag', $tag['slug'])}}">{{ $tag['name'] }}</a></p>
-        @endforeach
-    </div>
+    <section class="container pt-5 mt-2 article-width">
+        <h1 class="h1">{{$article->title}}</h1>
+
+        <div class="d-inline-flex py-3">
+            <a href="{{route('category', $article->category->slug)}}"
+               class="text-decoration-none text-dark pr-2 align-self-center font-weight-bold"
+            >
+                {{$article->category->name}}
+            </a>
+            <div class="vertical-line align-self-center mx-2"></div>
+            @foreach($article->tags->toArray() as $tag)
+                <a href="{{route('tag', $tag['slug'])}}"
+                   class="text-decoration-none text-dark px-2 align-self-center font-weight-light">
+                    {{$tag['name']}}
+                </a>
+            @endforeach
+        </div>
+    </section>
+
+    <section class="container-fluid px-0 py-5">
+        <img src="{{$article->thumbnail_image}}" alt="Cover Image"
+             style="display: block;
+             width: 100vw;
+             height: 80vh;
+             object-fit: cover;"
+        >
+    </section>
+
+    <section class="container pb-5 article-width">
+        {{--        TODO: Database related: Seed different data --}}
+        {!! $article->excerpt !!}
+    </section>
 </x-layouts.layout>

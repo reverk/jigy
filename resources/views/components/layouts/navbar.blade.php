@@ -1,5 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light container">
-    <a class="navbar-brand" href="{{route('index')}}">JiGy</a>
+    <a class="navbar-brand navbar-item-font font-weight-light"
+       href="{{route('index')}}">{{ config('app.name', 'Laravel') }}</a>
 
     <button class="navbar-toggler border-0"
             type="button"
@@ -19,10 +20,10 @@
             <x-layouts.navbar-item-link routeTo="index" iconName="info" name="About"/>
             <x-layouts.navbar-item-link routeTo="index" iconName="search" name="Search"/>
             @guest
-                <a class="nav-item nav-link d-inline-flex align-self-center btn btn-outline-info px-3 py-2 py-md-1"
+                <a class="nav-item nav-link d-inline-flex btn btn-outline-info px-3 py-2 py-md-1"
                    href="{{route('login')}}">
                     <i class="material-icons">login</i>
-                    <desc class="ml-1">Login</desc>
+                    <desc class="ml-1 navbar-item-font">Login</desc>
                 </a>
                 {{--                @if(Route::has('register'))--}}
                 {{--                    <x-layouts.navbar-item routeTo="register" iconName="add_circle" name="register"/>--}}

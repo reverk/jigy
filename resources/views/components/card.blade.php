@@ -9,7 +9,7 @@
             >
                 {{$article->category->name}}
             </a>
-            <div class="vertical_line align-self-center mx-2"></div>
+            <div class="vertical-line align-self-center mx-2"></div>
             @foreach($article->tags->toArray() as $tag)
                 <a href="{{route('tag', $tag['slug'])}}"
                    class="text-decoration-none text-dark px-2 align-self-center font-weight-light">

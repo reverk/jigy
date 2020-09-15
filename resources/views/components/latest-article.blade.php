@@ -1,7 +1,7 @@
 <div class="container py-3">
     <div class="row flex-lg-row flex-column justify-content-center">
         <a href="{{route('article', $article->slug)}}" class="col-lg-7">
-            <img src="{{$article->thumbnail_image}}" alt="Latest post image" class="latest_image">
+            <img src="{{$article->thumbnail_image}}" alt="Latest post image" class="latest-image">
         </a>
         <div class="col-lg-5 d-flex">
             <section class="pl-lg-3 pl-0 align-self-center">
@@ -11,7 +11,7 @@
                     >
                         {{$article->category->name}}
                     </a>
-                    <div class="vertical_line align-self-center mx-2"></div>
+                    <div class="vertical-line align-self-center mx-2"></div>
                     @foreach($article->tags->toArray() as $tag)
                         <a href="{{route('tag', $tag['slug'])}}"
                            class="text-decoration-none text-dark px-2 align-self-center font-weight-light">
