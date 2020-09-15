@@ -13,10 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'ArticlesController@index')->name('index');
+Route::get('/articles/{slug}', 'ArticlesController@show')->name('article');
+Route::get('/tag/{tag}', 'TagsController@show')->name('tag');
+Route::get('/category/{category}', 'CategoryController@show')->name('category');
 
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
