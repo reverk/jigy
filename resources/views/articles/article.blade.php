@@ -19,12 +19,7 @@
     </section>
 
     <section class="container-fluid px-0 py-5">
-        <img src="{{$article->thumbnail_image}}" alt="Cover Image"
-             style="display: block;
-             width: 100vw;
-             height: 80vh;
-             object-fit: cover;"
-        >
+        <img src="{{$article->thumbnail_image}}" alt="Cover Image" class="article-cover-image">
     </section>
 
     <section class="container pb-5 article-width">

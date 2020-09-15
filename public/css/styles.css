@@ -63,3 +63,10 @@ body {
 .article-width {
     max-width: 710px;
 }
+
+.article-cover-image {
+    display: block;
+    width: 100%;
+    height: 75vh;
+    object-fit: cover;
+}
