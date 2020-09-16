@@ -13,12 +13,21 @@
         <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="navbarToggler">
+    <div class="collapse navbar-collapse"
+         id="navbarToggler">
         <div class="navbar-nav ml-auto">
-            <x-layouts.navbar-item-link routeTo="index" iconName="home" name="Home"/>
-            <x-layouts.navbar-item-link routeTo="index" iconName="collections" name="Gallery"/>
-            <x-layouts.navbar-item-link routeTo="index" iconName="info" name="About"/>
-            <x-layouts.navbar-item-link routeTo="index" iconName="search" name="Search"/>
+            <x-layouts.navbar-item-link routeTo="index"
+                                        iconName="home"
+                                        name="Home"/>
+            <x-layouts.navbar-item-link routeTo="index"
+                                        iconName="collections"
+                                        name="Gallery"/>
+            <x-layouts.navbar-item-link routeTo="index"
+                                        iconName="info"
+                                        name="About"/>
+            <x-layouts.navbar-item-link routeTo="index"
+                                        iconName="search"
+                                        name="Search"/>
             @guest
                 <a class="nav-item nav-link d-inline-flex btn btn-outline-info px-3 py-2 py-md-1"
                    href="{{route('login')}}">
@@ -30,10 +39,14 @@
                 {{--                @endif--}}
             @endguest
             @auth
-                <x-layouts.navbar-item-link routeTo="index" iconName="face" name="Hello, {{Auth::user()->name}}"/>
-                <form action="{{route('logout')}}" method="post">
+                <x-layouts.navbar-item-link routeTo="index"
+                                            iconName="face"
+                                            name="Hello, {{Auth::user()->name}}"/>
+                <form action="{{route('logout')}}"
+                      method="post">
                     @csrf
-                    <button type="submit" class="btn btn-outline-danger d-inline-flex">
+                    <button type="submit"
+                            class="btn btn-outline-danger d-inline-flex">
                         <i class="material-icons align-self-center mr-2">logout</i>
                         <desc class="align-self-center">Logout</desc>
                     </button>

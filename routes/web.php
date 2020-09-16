@@ -19,3 +19,7 @@ Route::get('/tag/{tag}', 'TagsController@show')->name('tag');
 Route::get('/category/{category}', 'CategoryController@show')->name('category');
 
 Auth::routes();
+
+Route::get('/dashboard', 'DashboardController@index')
+    ->middleware('auth')
+    ->name('dashboard');

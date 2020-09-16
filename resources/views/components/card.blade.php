@@ -1,5 +1,7 @@
 <div class="card border-0 rounded-0">
-    <img src="{{$article->thumbnail_image}}" class="card-img-top rounded-0" alt="Title Image">
+    <img src="{{$article->thumbnail_image}}"
+         class="card-img-top rounded-0"
+         alt="Title Image">
 
 
     <div class="card-body p-0 pb-3">
