@@ -23,7 +23,6 @@
     </section>
 
     <section class="container pb-5 article-width">
-        {{--        TODO: Database related: Seed different data --}}
-        {!! $article->excerpt !!}
+        {!! $article->body !!}
     </section>
 </x-layouts.layout>
