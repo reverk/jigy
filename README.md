@@ -60,9 +60,9 @@ DB_PASSWORD=<YOUR_DATABSE_PASSWORD>
 > ℹ You'll need to leave 2 terminals to run simultaneously   
 
 ## Collaborators 👨🏻‍💻
-- Our Supervisor
-- @KungCC
-- @reverk
+- [@lyaena](https://github.com/lyaena)
+- [@KungCC1109](https://github.com/KungCC1109)
+- [@reverk](https://github.com/reverk)
 - @Anis
 
 ## License
