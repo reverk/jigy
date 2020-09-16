@@ -12,8 +12,8 @@ $factory->define(Article::class, function (Faker $faker) {
         'category_id' => factory(App\Category::class),
         'title' => $title,
         'slug' => str_replace(' ', '-', $title),
-        'excerpt' => $faker->randomHtml(),
+        'excerpt' => $faker->paragraph,
         'thumbnail_image' => asset('static/images/default_thumbpng.png'),
-        'body' => $faker->paragraph,
+        'body' => $faker->randomHtml(),
     ];
 });
