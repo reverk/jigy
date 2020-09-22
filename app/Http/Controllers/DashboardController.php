@@ -2,23 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use App\Tag;
+use App\Article;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\View\View;
 
-class TagsController extends Controller
+class DashboardController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return Response
+     * @return Application|Factory|View
      */
     public function index()
     {
-        //
+        return view('dashboard.index', [
+            'articles' => Article::latest()->get(),
+        ]);
     }
 
     /**
@@ -34,7 +36,7 @@ class TagsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param Request $request
+     * @param \Illuminate\Http\Request $request
      * @return Response
      */
     public function store(Request $request)
@@ -43,18 +45,14 @@ class TagsController extends Controller
     }
 
     /**
-     * Display the article based on tag.
+     * Display the specified resource.
      *
-     * @param int $slug
-     * @return Application|Factory|View
+     * @param int $id
+     * @return Response
      */
-    public function show($slug)
+    public function show($id)
     {
-        $tag = Tag::where('slug', $slug)->firstorFail();
-        return view('tag', [
-            'articles' => $tag->articles->sortBy('created_at'),
-            'name' => $tag->name
-        ]);
+        //
     }
 
     /**
@@ -71,7 +69,7 @@ class TagsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param Request $request
+     * @param \Illuminate\Http\Request $request
      * @param int $id
      * @return Response
      */

@@ -14,8 +14,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'ArticlesController@index')->name('index');
-Route::get('/articles/{slug}', 'ArticlesController@show')->name('article');
+Route::get('/article/{slug}', 'ArticlesController@show')->name('article');
 Route::get('/tag/{tag}', 'TagsController@show')->name('tag');
 Route::get('/category/{category}', 'CategoryController@show')->name('category');
 
 Auth::routes();
+
+Route::get('/dashboard', 'DashboardController@index')
+    ->middleware('auth')
+    ->name('dashboard');

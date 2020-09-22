@@ -1,7 +1,10 @@
 <div class="container py-3">
     <div class="row flex-lg-row flex-column justify-content-center">
-        <a href="{{route('article', $article->slug)}}" class="col-lg-6 px-lg-2 p-0">
-            <img src="{{$article->thumbnail_image}}" alt="Latest post image" class="latest-image">
+        <a href="{{route('article', $article->slug)}}"
+           class="col-lg-6 px-lg-2 p-0">
+            <img src="{{$article->thumbnail_image}}"
+                 alt="Latest post image"
+                 class="latest-image">
         </a>
         <div class="col-lg-4 d-flex px-lg-2 p-0">
             <section class="pl-lg-4 pl-0 align-self-center">
@@ -20,7 +23,8 @@
                     @endforeach
                 </div>
                 <desc class="py-2">
-                    <a href="{{route('article', $article->slug)}}" class="text-decoration-none text-dark">
+                    <a href="{{route('article', $article->slug)}}"
+                       class="text-decoration-none text-dark">
                         <h2 class="h2 font-weight-bold">{{$article->title}}</h2>
                         <p>{{Str::limit($article->excerpt, 100)}}</p>
                     </a>

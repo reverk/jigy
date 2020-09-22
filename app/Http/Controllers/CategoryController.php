@@ -51,7 +51,7 @@ class CategoryController extends Controller
     public function show($slug)
     {
         $category = Category::where('slug', $slug)->firstorFail();
-        return view('articles.category', [
+        return view('category', [
             'articles' => $category->articles,
             'name' => $category->name
         ]);
