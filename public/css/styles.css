@@ -70,3 +70,11 @@ body {
     height: 75vh;
     object-fit: cover;
 }
+
+.error_cover {
+    background-color: #ffffff;
+}
+.error_sad_face {
+    font-family: monospace;
+    font-size: 150px;
+}

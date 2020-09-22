@@ -51,7 +51,7 @@ class TagsController extends Controller
     public function show($slug)
     {
         $tag = Tag::where('slug', $slug)->firstorFail();
-        return view('articles.tag', [
+        return view('tag', [
             'articles' => $tag->articles->sortBy('created_at'),
             'name' => $tag->name
         ]);

@@ -36,8 +36,10 @@
 
 <x-layouts.layout>
     {{--    TODO: Refine UI here --}}
-    <x-title name="Latest Article"/>
-    <x-latest-article :article="$latest"/>
+    @isset($latest)
+        <x-title name="Latest Article"/>
+        <x-latest-article :article="$latest"/>
+    @endisset
 
     <x-title name="Articles"/>
     <div class="container">
@@ -51,15 +53,16 @@
 {{--            <h1>I can manage users!</h1>--}}
 {{--        @endcan--}}
         <div class="row">
-            @foreach ($articles as $article)
+            @forelse ($articles as $article)
                 <div class="col-lg py-3">
                     <x-card :article="$article"/>
                 </div>
                 @if ($loop->iteration % 2 == 0)
                     <div class="w-100"></div>
                 @endif
-            @endforeach
-
+            @empty
+                <x-error_post/>
+            @endforelse
         </div>
     </div>
 

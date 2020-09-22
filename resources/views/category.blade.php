@@ -1,8 +1,10 @@
 <x-layouts.layout>
     <x-title name="Category related to: {{$name}}"/>
-    @foreach ($articles as $article)
+    @forelse ($articles as $article)
         <div class="container">
             <x-related-card :article="$article"/>
         </div>
-    @endforeach
+    @empty
+        <x-error_post/>
+    @endforelse
 </x-layouts.layout>

@@ -16,9 +16,13 @@
                 </a>
             @endforeach
         </div>
+
+        <h6 class="font-weight-light h6 py-2 text-muted">
+            By {{$article->user->name}} at {{date('d-m-Y', strtotime($article->user->created_at))}}
+        </h6>
     </section>
 
-    <section class="container-fluid px-0 py-5">
+    <section class="container-fluid px-0 pt-4 pb-5">
         <img src="{{$article->thumbnail_image}}" alt="Cover Image" class="article-cover-image">
     </section>
 
