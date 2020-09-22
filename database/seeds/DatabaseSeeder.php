@@ -1,9 +1,6 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Spatie\Permission\Models\Permission;
-use Spatie\Permission\Models\Role;
-use Spatie\Permission\PermissionRegistrar;
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,23 +11,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // Clear cached roles & permissions
-        app()[PermissionRegistrar::class]->forgetCachedPermissions();
-
-        // Create permissions
-        Permission::create(['name' => 'manage articles']);
-        Permission::create(['name' => 'manage all articles']);
-        Permission::create(['name' => 'manage users']);
-
-        // Create roles & assign permissions
-        Role::create(['name' => 'writer'])
-            ->givePermissionTo(['manage articles']);
-
-        Role::create(['name' => 'admin'])
-            ->givePermissionTo(['manage articles', 'manage all articles', 'manage users']);
-
-        Role::create(['name' => 'super-admin'])
-            ->givePermissionTo(Permission::all());
+        $this->call(UserRoleSeeder::class);
 
         factory(App\User::class)
             ->create([
@@ -40,8 +21,8 @@ class DatabaseSeeder extends Seeder
                 $user->assignRole('super-admin');
             });
 
-        // Only load fake data in local environment
-        if (env('APP_ENV') == 'local') {
+        // Only load fake data in local or staging environment
+        if (env('APP_ENV') == 'local' || env('APP_ENV') == 'staging') {
             // Fake users
             factory(App\User::class, 5)->create()->each(function ($user) {
                 $user->assignRole('writer');
