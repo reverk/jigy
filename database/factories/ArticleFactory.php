@@ -10,6 +10,7 @@ $factory->define(Article::class, function (Faker $faker) {
     return [
         'user_id' => factory(App\User::class),
         'category_id' => factory(App\Category::class),
+        'is_outside' => $faker->boolean(50),
         'title' => $title,
         'slug' => str_replace(' ', '-', $title),
         'excerpt' => $faker->paragraph,
