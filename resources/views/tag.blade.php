@@ -5,6 +5,6 @@
             <x-related-card :article="$article"/>
         </div>
     @empty
-        <x-error_post/>
+        <x-error-post/>
     @endforelse
 </x-layouts.layout>

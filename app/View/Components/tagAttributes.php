@@ -4,16 +4,19 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class error_post extends Component
+class tagAttributes extends Component
 {
+    public $article;
+
     /**
      * Create a new component instance.
      *
-     * @return void
+     * @param $article
      */
-    public function __construct()
+    public function __construct($article)
     {
         //
+        $this->article = $article;
     }
 
     /**
@@ -23,6 +26,6 @@ class error_post extends Component
      */
     public function render()
     {
-        return view('components.error_post');
+        return view('components.tag-attributes');
     }
 }

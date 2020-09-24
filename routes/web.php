@@ -17,6 +17,7 @@ Route::get('/', 'ArticlesController@index')->name('index');
 Route::get('/article/{slug}', 'ArticlesController@show')->name('article');
 Route::get('/tag/{tag}', 'TagsController@show')->name('tag');
 Route::get('/category/{category}', 'CategoryController@show')->name('category');
+Route::get('/venue/{venue}', 'VenueController@show')->name('venue');
 
 Auth::routes();
 
