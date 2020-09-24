@@ -8,20 +8,7 @@
         </a>
         <div class="col-lg-4 d-flex px-lg-2 p-0">
             <section class="pl-lg-4 pl-0 align-self-center">
-                <div class="d-inline-flex py-3">
-                    <a href="{{route('category', $article->category->slug)}}"
-                       class="text-decoration-none text-dark pr-2 align-self-center font-weight-bold"
-                    >
-                        {{$article->category->name}}
-                    </a>
-                    <div class="vertical-line align-self-center mx-2"></div>
-                    @foreach($article->tags->toArray() as $tag)
-                        <a href="{{route('tag', $tag['slug'])}}"
-                           class="text-decoration-none text-dark px-2 align-self-center font-weight-light">
-                            {{$tag['name']}}
-                        </a>
-                    @endforeach
-                </div>
+                <x-tag-attributes :article="$article"/>
                 <desc class="py-2">
                     <a href="{{route('article', $article->slug)}}"
                        class="text-decoration-none text-dark">

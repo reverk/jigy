@@ -5,20 +5,8 @@
 
 
     <div class="card-body p-0 pb-3">
-        <div class="d-inline-flex py-3">
-            <a href="{{route('category', $article->category->slug)}}"
-               class="text-decoration-none text-dark pr-2 align-self-center font-weight-bold"
-            >
-                {{$article->category->name}}
-            </a>
-            <div class="vertical-line align-self-center mx-2"></div>
-            @foreach($article->tags->toArray() as $tag)
-                <a href="{{route('tag', $tag['slug'])}}"
-                   class="text-decoration-none text-dark px-2 align-self-center font-weight-light">
-                    {{$tag['name']}}
-                </a>
-            @endforeach
-        </div>
+
+        <x-tag-attributes :article="$article"/>
 
         <h4 class="card-title font-weight-bold py-2">
             <a href="{{route('article', $article->slug)}}"

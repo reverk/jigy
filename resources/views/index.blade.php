@@ -43,17 +43,17 @@
 
     <x-title name="Articles"/>
     <div class="container">
-{{--        @canany(['manage articles', 'manage all articles'])--}}
-{{--            <h1>I can edit articles!</h1>--}}
-{{--        @endcanany--}}
-{{--        @can('manage all articles')--}}
-{{--            <h1>I can edit ALL articles!</h1>--}}
-{{--        @endcan--}}
-{{--        @can('manage users')--}}
-{{--            <h1>I can manage users!</h1>--}}
-{{--        @endcan--}}
+        {{--        @canany(['manage articles', 'manage all articles'])--}}
+        {{--            <h1>I can edit articles!</h1>--}}
+        {{--        @endcanany--}}
+        {{--        @can('manage all articles')--}}
+        {{--            <h1>I can edit ALL articles!</h1>--}}
+        {{--        @endcan--}}
+        {{--        @can('manage users')--}}
+        {{--            <h1>I can manage users!</h1>--}}
+        {{--        @endcan--}}
         <div class="row">
-            @forelse ($articles as $article)
+            @forelse($articles as $article)
                 <div class="col-lg py-3">
                     <x-card :article="$article"/>
                 </div>
@@ -61,8 +61,9 @@
                     <div class="w-100"></div>
                 @endif
             @empty
-                <x-error_post/>
+                <x-error-post/>
             @endforelse
+
         </div>
     </div>
 
