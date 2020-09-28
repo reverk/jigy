@@ -1,4 +1,4 @@
-<div class="d-flex justify-content-lg-center container py-3">
+<div class="d-flex justify-content-lg-center container py-3" id="latest-article">
     <div class="flex-column d-inline-block">
         <div class="title-name font-weight-light">
             {{ $name }}

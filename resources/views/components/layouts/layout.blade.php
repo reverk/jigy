@@ -20,7 +20,13 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"
             defer></script>
-
+    <script>
+        {{--Go to latest article--}}
+        function scrollToContent() {
+            let element = document.querySelector("#latest-article");
+            element.scrollIntoView({behavior: "smooth"});
+        }
+    </script>
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}"
           rel="stylesheet">
@@ -40,6 +46,7 @@
 </main>
 
 <x-layouts.footer/>
+
 
 </body>
 </html>

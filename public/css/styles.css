@@ -78,3 +78,31 @@ body {
     font-family: monospace;
     font-size: 150px;
 }
+
+.hero-card {
+    height: 83vh;
+}
+
+.hero-card-text h1 {
+    font-family: Quicksand, serif;
+    font-size: 64px;
+}
+
+.hero-card-text h2 {
+    font-family: Quicksand, serif;
+    font-size: 32px;
+}
+
+.hero-card-image {
+    max-width: 500px;
+}
+
+@media screen and (max-width: 768px) {
+    .hero-card-text h1 {
+        font-size: 32px;
+    }
+
+    .hero-card-text h2 {
+        font-size: 16px;
+    }
+}
