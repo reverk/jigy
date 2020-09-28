@@ -17,7 +17,7 @@ class CreateArticlesTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('category_id');
-            $table->boolean('is_outside');
+            $table->boolean('is_outside')->default(0);
             $table->string('title');
             $table->string('slug');
             $table->text('excerpt');

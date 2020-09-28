@@ -35,7 +35,8 @@
 {{--        </div>--}}
 
 <x-layouts.layout>
-    {{--    TODO: Refine UI here --}}
+    <x-hero-card/>
+
     @isset($latest)
         <x-title name="Latest Article"/>
         <x-latest-article :article="$latest"/>
