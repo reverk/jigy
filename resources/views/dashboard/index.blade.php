@@ -38,7 +38,24 @@ https://blog.medhicham.com/en/blog-en/10-steps-to-get-you-on-image-profile-uploa
     <section class="container">
         <div class="h2 font-weight-bold py-2 mb-3">Articles</div>
         @forelse($articles as $article)
-            <p>Title:{{ $article->title}}</p>
+            <div class="d-flex align-items-center py-2 my-2" style="max-height: 130px">
+                <div style="max-width: 200px">
+                    <img src="{{$article->thumbnail_image}}"
+                         alt="{{$article->thumbnail_image}}"
+                         class="mw-100 mh-100"
+                    >
+                </div>
+                <div class="d-flex flex-column ml-5">
+                    <x-tag-attributes :article="$article"/>
+                    <div class="d-inline-flex align-items-center">
+                        <span class="h2 font-weight-bold">{{Str::limit($article->title, 45)}}</span>
+                        <span class="dot mx-3"></span>
+                        <a href="#" class="text-dark small">Edit</a>
+                        <span class="vertical-line mx-2"></span>
+                        <a href="#" class="text-dark small">Delete</a>
+                    </div>
+                </div>
+            </div>
         @empty
             <x-error-post/>
         @endforelse
