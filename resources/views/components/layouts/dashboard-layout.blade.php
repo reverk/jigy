@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -36,12 +36,16 @@
           rel="stylesheet">
 </head>
 <body>
+
+<x-layouts.dashboard-navbar/>
+
 <main>
-    <x-layouts.dashboard-navbar/>
 
     {{ $slot }}
 
-    <x-layouts.footer/>
 </main>
+
+<x-layouts.footer/>
+
 </body>
 </html>
