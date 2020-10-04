@@ -31,7 +31,7 @@
 </div>
 
 {{-- Lower navbar --}}
-<ul class="nav nav-pills container p-2 my-2">
+<ul class="nav nav-tabs container my-2">
     <li class="nav-item">
         <a class="nav-link {{ Request::routeIs('dashboard') ? 'active' : '' }}"
            href="{{route('dashboard')}}">Dashboard</a>

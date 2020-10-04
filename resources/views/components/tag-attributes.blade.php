@@ -1,4 +1,4 @@
-<div class="d-inline-flex py-3 pt-4">
+<div class="d-inline-flex {{$paddings}}">
     <a href="{{route('venue', isOutside($article->is_outside))}}"
        class="pr-2 text-dark font-weight-bold align-self-center text-decoration-none text-dark">
         {{ isOutside($article->is_outside) }}
