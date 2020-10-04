@@ -7,13 +7,13 @@
             <span class="h2 font-weight-bold">{{auth()->user()->name}}</span>
             <div class="dot mx-3 d-none d-lg-block"></div>
 {{--            TODO: Add edit link--}}
-            <a href="#" class="small text-muted d-none d-lg-block text-dark">Edit</a>
+            <a href="#" class="small d-none d-lg-block">Edit</a>
         </div>
     </div>
     <div class="d-inline-flex align-items-center m-lg-0 mt-5">
 {{--        TODO: Add Create article link --}}
         <a href="#"
-           class="btn">Create Article</a>
+           class="btn primary-gradient">Create Article</a>
         <div class="dropdown">
             <i class="material-icons btn"
                role="button"

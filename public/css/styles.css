@@ -6,6 +6,11 @@ body {
     background-color: white;
 }
 
+.primary-gradient {
+    background-image: linear-gradient(45deg, #00B0FF, #00cafd);
+    color: white;
+}
+
 .navbar-item-font {
     font-family: "Quicksand", sans-serif;
 }
