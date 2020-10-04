@@ -27,15 +27,12 @@ class DatabaseSeeder extends Seeder
             factory(App\User::class, 5)->create()->each(function ($user) {
                 $user->assignRole('writer');
             });
-            factory(App\User::class)
+            $admin = factory(App\User::class)
                 ->create([
                     'name' => 'Admin User',
                     'email' => 'admin@example.com'
-                ])
-                ->each(function ($user) {
-                    $user->assignRole('admin');
-                });
-
+                ]);
+            $admin->assignRole('admin');
             // Fake articles, tags, category
             // Not the most elegant solution, but at least it works
             for ($i = 0; $i <= 5; $i++) {

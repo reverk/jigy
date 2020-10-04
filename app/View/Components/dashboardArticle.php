@@ -4,20 +4,18 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class tagAttributes extends Component
+class dashboardArticle extends Component
 {
     public $article;
-    public $paddings;
 
     /**
      * Create a new component instance.
      *
      * @param $article
-     * @param string $paddings
      */
-    public function __construct($article, $paddings = "py-3 pt-4")
+    public function __construct($article)
     {
-        $this->paddings = $paddings;
+        //
         $this->article = $article;
     }
 
@@ -28,6 +26,6 @@ class tagAttributes extends Component
      */
     public function render()
     {
-        return view('components.tag-attributes');
+        return view('components.dashboard-article');
     }
 }
