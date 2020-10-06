@@ -21,7 +21,7 @@ class CreateArticlesTable extends Migration
             $table->string('title');
             $table->string('slug');
             $table->text('excerpt');
-            $table->text('thumbnail_image');
+            $table->text('thumbnail_image')->default(asset('static/images/default_thumbpng.png'));
             $table->longText('body');
 
             $table->timestamps();

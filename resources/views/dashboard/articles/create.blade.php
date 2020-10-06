@@ -1,6 +1,6 @@
 <x-layouts.dashboard-layout>
     <section class="container">
-        <a href="{{url()->previous()}}"
+        <a href="{{route('dashboard.articles')}}"
            class="d-inline-flex my-lg-5 mt-3 py-1 text-dark">
             <span class="material-icons"
                   style="font-size: 32px">
@@ -58,18 +58,30 @@
 
         <div class="form-group">
             {{ Form::label('tags', 'Tags') }}
-            @foreach($tags as $tag)
-                {{ Form::checkbox('tags[]', $tag->name) }}
+            @forelse($tags as $tag)
+                {{ Form::checkbox('tags[]', $tag->id) }}
                 {{ Form::label($tag->slug, $tag->name) }}
-            @endforeach
+            @empty
+
+            @endforelse
             @error('tags')
             <div class="alert alert-danger">{{ $message }}</div>
             @enderror
         </div>
 
         <div class="form-group">
+            {{ Form::label('qOutside', 'Event held outside?') }}
+
+            {{ Form::radio('isOutside', 'Outside') }}
+            {{ Form::label('Outside', 'Yes') }}
+
+            {{ Form::radio('isOutside', 'Inside', true) }}
+            {{ Form::label('inside', 'No') }}
+        </div>
+
+        <div class="form-group">
             {{ Form::label('thumbnail', 'Thumbnail Image') }}
-            {{ Form::file('image') }}
+            {{ Form::file('thumbnail') }}
             @error('thumbnail')
             <div class="alert alert-danger">{{ $message }}</div>
             @enderror

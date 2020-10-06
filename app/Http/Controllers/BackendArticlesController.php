@@ -9,6 +9,7 @@ use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Str;
 use Illuminate\View\View;
 
 class BackendArticlesController extends Controller
@@ -51,7 +52,7 @@ class BackendArticlesController extends Controller
     public function create()
     {
         return view('dashboard.articles.create', [
-            'categories' => Category::latest()->pluck('slug', 'name'),
+            'categories' => Category::latest()->pluck('name', 'id'),
             'tags' => Tag::latest()->get()
         ]);
     }
@@ -60,22 +61,47 @@ class BackendArticlesController extends Controller
      * Store a newly created resource in storage.
      *
      * @param Request $request
-     * @return void
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
-//        TODO: Finalize file submission
-        $request->validate([
+        request()->validate([
             'title' => 'required|min:10',
-            'excerpt' => '',
+            'excerpt' => 'required',
             'body' => 'required',
             'category' => 'required',
             'tags' => '',
+            'isOutside' => '',
             'thumbnail' => 'image'
         ]);
 
+        $article = new Article([
+            'title' => request('title'),
+            'slug' => Str::slug(request('title'), '-'),
+            'excerpt' => request('excerpt'),
+            'body' => request('body'),
+            'category_id' => request('category'),
+            'isOutside' => isOutside(request('isOutside')),
+        ]);
 
-        return ddd($request->input());
+        // Image upload
+        if (request('thumbnail') != null) {
+            $imageName = time() . '.' . request()->file('thumbnail')->getClientOriginalExtension();
+            request('thumbnail')->move(public_path('storage/images/'), $imageName);
+            $article->thumbnail_image = asset('storage/images/' . $imageName);
+        }
+        $article->user_id = auth()->user()->id; // I've no idea why it can't be used inside constructor
+
+        // Save article
+        $article->save();
+
+        // Add tags
+        if (request('tags') != null) {
+            $article->tags()->attach(request('tags'));
+        }
+
+        request()->session()->flash('alert-success', 'Article added!');
+        return redirect()->route('dashboard');
     }
 
     /**

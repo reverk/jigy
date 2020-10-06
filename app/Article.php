@@ -13,22 +13,25 @@ class Article extends Model
      * @var array
      */
     protected $fillable = [
-        'title', 'slug', 'excerpt', 'thumbnail_image', 'body'
+        'title', 'slug', 'category_id', 'excerpt', 'thumbnail_image', 'body'
     ];
 
     // Relationships
     // To user
-    public function user() {
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 
     // To category
-    public function category() {
+    public function category()
+    {
         return $this->belongsTo(Category::class);
     }
 
     // To tags
-    public function tags() {
+    public function tags()
+    {
         return $this->belongsToMany(Tag::class);
     }
 }

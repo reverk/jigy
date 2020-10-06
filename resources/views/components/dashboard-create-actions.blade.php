@@ -1,5 +1,4 @@
 <div class="d-inline-flex align-items-center {{$margins}}">
-    {{--        TODO: Add Create article link --}}
     <a href="{{route('dashboard.articles.create')}}"
        class="btn primary-gradient">Create Article</a>
     <div class="dropdown">
