@@ -65,6 +65,7 @@ class BackendArticlesController extends Controller
      */
     public function store(Request $request)
     {
+//        TODO: Finalize file submission
         $request->validate([
             'title' => 'required|min:10',
             'excerpt' => '',

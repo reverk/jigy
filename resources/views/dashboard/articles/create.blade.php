@@ -43,7 +43,7 @@
         <div class="form-group">
             {{ Form::label('body', 'Body') }}
             {{ Form::textarea('body', old('body'), ['rows' => 1]) }}
-            @error('excerpt')
+            @error('body')
             <div class="alert alert-danger">{{ $message }}</div>
             @enderror
         </div>
