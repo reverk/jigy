@@ -30,45 +30,51 @@
     </div>
 </div>
 
-{{-- Lower navbar --}}
-<ul class="nav nav-tabs container my-2">
-    <li class="nav-item">
-        <a class="nav-link {{ Request::routeIs('dashboard') ? 'active' : '' }}"
-           href="{{route('dashboard')}}">Dashboard</a>
-    </li>
-    <li class="nav-item">
-        @if (auth()->user()->can('manage all articles'))
-            <a class="nav-link dropdown-toggle {{ Request::routeIs('dashboard.articles') ? 'active' : '' }}"
-               data-toggle="dropdown"
-               href="#"
-               role="button"
-               aria-haspopup="true"
-               aria-expanded="false">Articles</a>
-            <div class="dropdown-menu">
-                <a class="dropdown-item"
-                   href="{{route('dashboard.articles')}}">Your Articles</a>
-                <a class="dropdown-item"
-                   href="{{route('dashboard.articles.all')}}">All Articles</a>
-            </div>
-        @else
-            <a class="nav-link"
-               href="{{route('dashboard.articles')}}">Articles</a>
-        @endif
-    </li>
-    @can('manage taxonomies')
+{{--Only hide if it's creating something--}}
+@if(!Request::routeIs('dashboard.articles.create'))
+
+    {{-- Lower navbar --}}
+    <ul class="nav nav-tabs container my-2">
+        <li class="nav-item">
+            <a class="nav-link {{ Request::routeIs('dashboard') ? 'active' : '' }}"
+               href="{{route('dashboard')}}">Dashboard</a>
+        </li>
+        <li class="nav-item">
+            @if (auth()->user()->can('manage all articles'))
+                <a class="nav-link dropdown-toggle {{ Request::routeIs('dashboard.articles') || Request::routeIs('dashboard.articles.all') ? 'active' : '' }}"
+                   data-toggle="dropdown"
+                   href="#"
+                   role="button"
+                   aria-haspopup="true"
+                   aria-expanded="false">Articles</a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item"
+                       href="{{route('dashboard.articles')}}">Your Articles</a>
+                    <a class="dropdown-item"
+                       href="{{route('dashboard.articles.all')}}">All Articles</a>
+                </div>
+            @else
+                <a class="nav-link"
+                   href="{{route('dashboard.articles')}}">Articles</a>
+            @endif
+        </li>
+        @can('manage taxonomies')
+            <li class="nav-item">
+                <a class="nav-link"
+                   href="#">Tags & Categories</a>
+            </li>
+        @endcan
+        @can('manage users')
+            <li class="nav-item">
+                <a class="nav-link"
+                   href="#">Users</a>
+            </li>
+        @endcan
         <li class="nav-item">
             <a class="nav-link"
-               href="#">Tags & Categories</a>
+               href="#">Settings</a>
         </li>
-    @endcan
-    @can('manage users')
-        <li class="nav-item">
-            <a class="nav-link"
-               href="#">Users</a>
-        </li>
-    @endcan
-    <li class="nav-item">
-        <a class="nav-link"
-           href="#">Settings</a>
-    </li>
-</ul>
+    </ul>
+
+@endif
+

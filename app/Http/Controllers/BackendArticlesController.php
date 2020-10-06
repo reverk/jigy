@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Article;
+use App\Category;
+use App\Tag;
 use App\User;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\View\View;
-use phpDocumentor\Reflection\Types\AbstractList;
 
 class BackendArticlesController extends Controller
 {
@@ -46,22 +47,35 @@ class BackendArticlesController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return Response
+     * @return Application|Factory|Response|View
      */
     public function create()
     {
-        //
+        return view('dashboard.articles.create', [
+            'categories' => Category::latest()->pluck('slug', 'name'),
+            'tags' => Tag::latest()->get()
+        ]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @return Response
+     * @param Request $request
+     * @return void
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required|min:10',
+            'excerpt' => '',
+            'body' => 'required',
+            'category' => 'required',
+            'tags' => '',
+            'thumbnail' => 'image'
+        ]);
+
+
+        return ddd($request->input());
     }
 
     /**
@@ -89,7 +103,7 @@ class BackendArticlesController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param Request $request
      * @param \App\Article $article
      * @return Response
      */
