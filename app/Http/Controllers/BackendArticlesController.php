@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Article;
 use App\Category;
 use App\Tag;
-use App\User;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\Request;

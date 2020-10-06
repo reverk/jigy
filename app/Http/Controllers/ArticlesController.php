@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use App\Article;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
-use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\View\View;
 
 class ArticlesController extends Controller

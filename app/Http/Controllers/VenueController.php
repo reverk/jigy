@@ -7,7 +7,6 @@ use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
-use phpDocumentor\Reflection\Types\AbstractList;
 
 class VenueController extends Controller
 {
