@@ -38,7 +38,7 @@
     </li>
     <li class="nav-item">
         @if (auth()->user()->can('manage all articles'))
-            <a class="nav-link dropdown-toggle"
+            <a class="nav-link dropdown-toggle {{ Request::routeIs('dashboard.articles') ? 'active' : '' }}"
                data-toggle="dropdown"
                href="#"
                role="button"
@@ -46,13 +46,13 @@
                aria-expanded="false">Articles</a>
             <div class="dropdown-menu">
                 <a class="dropdown-item"
-                   href="#">Your Articles</a>
+                   href="{{route('dashboard.articles')}}">Your Articles</a>
                 <a class="dropdown-item"
-                   href="#">All Articles</a>
+                   href="{{route('dashboard.articles.all')}}">All Articles</a>
             </div>
         @else
             <a class="nav-link"
-               href="#">Articles</a>
+               href="{{route('dashboard.articles')}}">Articles</a>
         @endif
     </li>
     @can('manage taxonomies')
