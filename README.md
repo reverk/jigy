@@ -30,10 +30,6 @@ A blog build with Laravel, featuring a filtered search
 ```
 ...
 
-APP_URL=http://localhost:<PORT> 
-
-...
-
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
@@ -42,18 +38,18 @@ DB_USERNAME=<YOUR_DATABASE_USERNAME>
 DB_PASSWORD=<YOUR_DATABSE_PASSWORD>
 
 ...
-```
-> 📝: If images is not displaying, rename this to the port you're using. Otherwise, leave it as it is.
-> Ex. `php artisan serve` uses `localhost:8000` or `npm run watch` uses `localhost:3000`
 
+FILESYSTEM_DRIVER=public
+```
 > 📝: By default, XAMPP's default username & password is `root` and `(empty/no password)`
 
 6. After that, run `php artisan key:generate`
-7. Run `php artisan migrate` to migrate all tables into your database. 
+7. Run `php artisan storage:link` to create a link between storage and the public disk. This is used for uploading images & profile image.
+8. Run `php artisan migrate` to migrate all tables into your database. 
 > Please confirm that your XAMPP's Apache & MySQL is started before migrating
-8. (Optional) Run `php artisan db:seed` to populate data.
-9. Then run `php artisan serve`
-10. And finally, go to `localhost:8000`
+9. (Optional) Run `php artisan db:seed` to populate data.
+10. Then run `php artisan serve`
+11. And finally, go to `localhost:8000`
 
 ## Development (frontend)
 - For convenience, run `php artisan serve`, then `npm run watch` to enable hot/live reloading.

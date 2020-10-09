@@ -16,6 +16,10 @@ class Article extends Model
         'title', 'slug', 'category_id', 'excerpt', 'thumbnail_image', 'body'
     ];
 
+    public function getThumbnailImageAttribute($value) {
+        return asset($value);
+    }
+
     // Relationships
     // To user
     public function user()

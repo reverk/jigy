@@ -86,11 +86,9 @@ class BackendArticlesController extends Controller
 
         // Image upload
         if (request('thumbnail') != null) {
-            $imageName = time() . '.' . request()->file('thumbnail')->getClientOriginalExtension();
-            request('thumbnail')->move(public_path('storage/images/'), $imageName);
-            $article->thumbnail_image = asset('storage/images/' . $imageName);
+            $article->thumbnail_image = 'storage/' . request('thumbnail')->store('thumbnail');
         }
-        $article->user_id = auth()->user()->id; // I've no idea why it can't be used inside constructor
+        $article->user_id = auth()->user()->id; // I've no idea why it can't be used inside Article class
 
         // Save article
         $article->save();
@@ -101,7 +99,7 @@ class BackendArticlesController extends Controller
         }
 
         request()->session()->flash('alert-success', 'Article added!');
-        return redirect()->route('dashboard');
+        return redirect()->route('dashboard.articles');
     }
 
     /**
@@ -118,12 +116,16 @@ class BackendArticlesController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param \App\Article $article
-     * @return Response
+     * @param $slug
+     * @return Application|Factory|Response|View
      */
-    public function edit(Article $article)
+    public function edit($slug)
     {
-        //
+        return view('dashboard.articles.create', [
+            'article' => Article::where('slug', $slug)->firstorFail(),
+            'categories' => Category::latest()->pluck('name', 'id'),
+            'tags' => Tag::latest()->get()
+        ]);
     }
 
     /**
