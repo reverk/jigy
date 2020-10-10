@@ -50,7 +50,7 @@
 
         <div class="form-group">
             {{ Form::label('body', 'Body') }}
-            {{ Form::textarea('body', old('body'), ['rows' => 1]) }}
+            {{ Form::textarea('body', old('body'), ['class' => 'body']) }}
             @error('body')
             <div class="alert alert-danger">{{ $message }}</div>
             @enderror
