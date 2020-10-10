@@ -40,6 +40,8 @@ DB_PASSWORD=<YOUR_DATABSE_PASSWORD>
 ...
 
 FILESYSTEM_DRIVER=public
+
+...
 ```
 > 📝: By default, XAMPP's default username & password is `root` and `(empty/no password)`
 

@@ -14,14 +14,22 @@
 
     <section class="container">
         <div class="h2 font-weight-bold">
-            Create an Article
+            {{$name}}
         </div>
 
-        {!! Form::open([
-              'files' => true,
-              'url' => route('dashboard.articles.store')
-            ])
-        !!}
+        @if(isset($article))
+            {!! Form::model($article, [
+                  'route' => ['dashboard.articles.update', $article->slug],
+                  'method' => 'patch',
+                  'files' => true
+            ]) !!}
+        @else
+            {!! Form::open([
+                  'files' => true,
+                  'route' => ['dashboard.articles.store']
+                ])
+            !!}
+        @endif
         @csrf
 
         <div class="form-group">
@@ -59,7 +67,7 @@
         <div class="form-group">
             {{ Form::label('tags', 'Tags') }}
             @forelse($tags as $tag)
-                {{ Form::checkbox('tags[]', $tag->id) }}
+                {{ Form::checkbox('tags[]', $tag->id, old('tags')) }}
                 {{ Form::label($tag->slug, $tag->name) }}
             @empty
 
@@ -72,22 +80,28 @@
         <div class="form-group">
             {{ Form::label('qOutside', 'Event held outside?') }}
 
-            {{ Form::radio('isOutside', 'Outside') }}
+            {{ Form::radio('isOutside', 'Outside', isset($article->is_outside) ? $article->is_outside : '') }}
             {{ Form::label('Outside', 'Yes') }}
 
-            {{ Form::radio('isOutside', 'Inside', true) }}
+            {{ Form::radio('isOutside', 'Inside', isset($article->is_outside) ? !$article->is_outside : true) }}
             {{ Form::label('inside', 'No') }}
         </div>
 
         <div class="form-group">
             {{ Form::label('thumbnail', 'Thumbnail Image') }}
             {{ Form::file('thumbnail') }}
+            @isset($article->thumbnail_image)
+                <img src="{{$article->thumbnail_image}}"
+                     alt="{{$article->thumbnail_image}}"
+                     class="40"
+                >
+            @endisset
             @error('thumbnail')
             <div class="alert alert-danger">{{ $message }}</div>
             @enderror
         </div>
 
-        {{ Form::submit('Create Article') }}
+        {{ Form::submit($action) }}
 
 
         {!! Form::close() !!}

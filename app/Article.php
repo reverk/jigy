@@ -2,10 +2,26 @@
 
 namespace App;
 
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 
 class Article extends Model
 {
+    use Sluggable;
+
+    /**
+     * Return the sluggable configuration array for this model.
+     *
+     * @return array
+     */
+    public function sluggable()
+    {
+        return [
+            'slug' => [
+                'source' => 'title'
+            ]
+        ];
+    }
 
     /**
      * The attributes that are mass assignable.
@@ -16,7 +32,8 @@ class Article extends Model
         'title', 'slug', 'category_id', 'excerpt', 'thumbnail_image', 'body'
     ];
 
-    public function getThumbnailImageAttribute($value) {
+    public function getThumbnailImageAttribute($value)
+    {
         return asset($value);
     }
 

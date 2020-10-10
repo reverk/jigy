@@ -31,7 +31,7 @@
 </div>
 
 {{--Only hide if it's creating something--}}
-@if(!Request::routeIs('dashboard.articles.create'))
+@if(!Request::routeIs('dashboard.articles.create') || !Request::routeIs('dashboard.articles.edit'))
 
     {{-- Lower navbar --}}
     <ul class="nav nav-tabs container my-2">

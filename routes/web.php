@@ -35,13 +35,16 @@ Route::middleware('auth')->group(function () {
     // Create
     Route::get('/dashboard/articles/create', 'BackendArticlesController@create')
         ->name('dashboard.articles.create');
-    // Store
+    // Store (save & post article)
     Route::post('/dashboard/articles', 'BackendArticlesController@store')
         ->name('dashboard.articles.store');
     // Edit
-    Route::get('/dashboard/articles/{slug}/edit', 'BackendArticlesController@edit')
+    Route::get('/dashboard/articles/edit/{slug}', 'BackendArticlesController@edit')
         ->name('dashboard.articles.edit');
+    // Update (make changes)
+    Route::patch('dashboard/articles/{slug}', 'BackendArticlesController@update')
+        ->name('dashboard.articles.update');
     // Delete
-    Route::delete('/dashboard/articles/{slug}', 'BackendArticlesController@delete')
+    Route::delete('/dashboard/articles/{slug}', 'BackendArticlesController@destroy')
         ->name('dashboard.articles.delete');
 });

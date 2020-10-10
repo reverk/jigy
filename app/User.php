@@ -2,7 +2,6 @@
 
 namespace App;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
@@ -19,6 +18,11 @@ class User extends Authenticatable
     protected $fillable = [
         'name', 'email', 'password',
     ];
+
+    public function getAvatarAttribute($value)
+    {
+        return asset($value);
+    }
 
     /**
      * The attributes that should be hidden for arrays.

@@ -7,9 +7,10 @@ use App\Category;
 use App\Tag;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 
 class BackendArticlesController extends Controller
@@ -51,7 +52,9 @@ class BackendArticlesController extends Controller
      */
     public function create()
     {
-        return view('dashboard.articles.create', [
+        return view('dashboard.articles.form', [
+            'name' => 'Create an article',
+            'action' => 'Create article',
             'categories' => Category::latest()->pluck('name', 'id'),
             'tags' => Tag::latest()->get()
         ]);
@@ -61,7 +64,7 @@ class BackendArticlesController extends Controller
      * Store a newly created resource in storage.
      *
      * @param Request $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function store(Request $request)
     {
@@ -77,16 +80,17 @@ class BackendArticlesController extends Controller
 
         $article = new Article([
             'title' => request('title'),
-            'slug' => Str::slug(request('title'), '-'),
             'excerpt' => request('excerpt'),
             'body' => request('body'),
             'category_id' => request('category'),
-            'isOutside' => isOutside(request('isOutside')),
+            'isOutside' => convert_isOutside(request('isOutside')),
         ]);
 
         // Image upload
         if (request('thumbnail') != null) {
             $article->thumbnail_image = 'storage/' . request('thumbnail')->store('thumbnail');
+        } else {
+            $article->thumbnail_image = 'static/images/default_thumbpng.png';
         }
         $article->user_id = auth()->user()->id; // I've no idea why it can't be used inside Article class
 
@@ -121,8 +125,11 @@ class BackendArticlesController extends Controller
      */
     public function edit($slug)
     {
-        return view('dashboard.articles.create', [
-            'article' => Article::where('slug', $slug)->firstorFail(),
+        $article = Article::where('slug', $slug)->firstorFail();
+        return view('dashboard.articles.form', [
+            'name' => 'Editing ' . '"' . $article->title . '"',
+            'action' => 'Update Article',
+            'article' => $article,
             'categories' => Category::latest()->pluck('name', 'id'),
             'tags' => Tag::latest()->get()
         ]);
@@ -131,23 +138,59 @@ class BackendArticlesController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param Request $request
-     * @param \App\Article $article
-     * @return Response
+     * @param $slug
+     * @return RedirectResponse
      */
-    public function update(Request $request, Article $article)
+    public function update($slug)
     {
-        //
+        request()->validate([
+            'title' => 'required|min:10',
+            'excerpt' => 'required',
+            'body' => 'required',
+            'category' => 'required',
+            'tags' => '',
+            'isOutside' => '',
+            'thumbnail' => 'image'
+        ]);
+
+        $article = Article::where('slug', $slug)->firstorFail();
+
+        // Update image
+        if (request('thumbnail') != null) {
+            $path = str_replace('storage/', '', $article->getraworiginal('thumbnail_image'));
+            if (Storage::disk('public')->exists($path)) { // If file exists
+                Storage::disk('public')->delete($path);
+                $article->thumbnail_image = 'storage/' . \request('thumbnail')->store('thumbnail');
+            }
+        }
+        // Update tags
+        if (request('tags') != null) {
+            $article->tags()->sync(request('tags'));
+        }
+
+        $article->update(request()->all());
+
+        request()->session()->flash('alert-success', 'Article updated!');
+        return redirect()->route('dashboard.articles');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param \App\Article $article
-     * @return Response
+     * @param $slug
+     * @return RedirectResponse
      */
-    public function destroy(Article $article)
+    public function destroy($slug)
     {
-        //
+        $article = Article::where('slug', $slug)->firstorFail();
+
+        $path = str_replace('storage/', '', $article->getraworiginal('thumbnail_image'));
+        if (Storage::disk('public')->exists($path)) { // If file exists
+            Storage::disk('public')->delete($path);
+        }
+        $article->delete();
+
+        request()->session()->flash('alert-success', 'Article deleted!');
+        return redirect()->route('dashboard.articles');
     }
 }
