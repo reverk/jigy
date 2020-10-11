@@ -1,29 +1,32 @@
 <x-layouts.layout>
-    <div class="container border mt-5 p-4 col-md-6">
-        <div class="pb-5 text-center">
-            <h1>Login</h1>
-        </div>
-{{--    form--}}
-        <form>
-{{--        username--}}
-            <div class="form-group mt-3">
-                <label for="username">Username or Email:</label>
-                <input type="username" class="form-control" id="username" placeholder="Enter username or email">
+    <div class="container d-flex justify-content-center align-items-center"
+        style="height: 80vh; max-width: 1000px">
+        <div class="border mt-5 p-4 col-md-6 d-inline">
+            <div class="pb-5 text-center">
+                <h1>Login</h1>
             </div>
-{{--            password--}}
-            <div class="form-group">
-                <label for="pass">Password:</label>
-                <input type="pass" class="form-control" id="pass" placeholder="Enter Password">
-                <a href="#"><small class="form-text text-muted">Forgot Password?</small></a>
-            </div>
-{{--            btn--}}
-            <div class="container mt-5">
-                <div class="d-flex flex-row-reverse">
-                    <button type="submit" class="p-2 ml-2 btn btn-primary">Login</button>
-                    <a class="btn btn-secondary p-2" href="#" role="button">Register</a>
+            {{--    form--}}
+            <form>
+                {{--        username--}}
+                <div class="form-group mt-3">
+                    <label for="username">Username or Email:</label>
+                    <input type="username" class="form-control" id="username" placeholder="Enter username or email">
                 </div>
-            </div>
-        </form>
+                {{--            password--}}
+                <div class="form-group">
+                    <label for="pass">Password:</label>
+                    <input type="pass" class="form-control" id="pass" placeholder="Enter Password">
+                    <a href="#"><small class="form-text text-muted">Forgot Password?</small></a>
+                </div>
+                {{--            btn--}}
+                <div class="container mt-5">
+                    <div class="d-flex flex-row-reverse">
+                        <button type="submit" class="p-2 ml-2 btn btn-primary">Login</button>
+                        <a class="btn btn-secondary p-2" href="#" role="button">Register</a>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
         {{--  <div class="row justify-content-center">
             <div class="col-md-5">
