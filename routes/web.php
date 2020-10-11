@@ -48,3 +48,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/dashboard/articles/{slug}', 'BackendArticlesController@destroy')
         ->name('dashboard.articles.delete');
 });
+
+Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
+    \UniSharp\LaravelFilemanager\Lfm::routes();
+});
