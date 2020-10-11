@@ -12,7 +12,7 @@
             </div>
 {{--            password--}}
             <div class="form-group">
-                <label for="pass">Password</label>
+                <label for="pass">Password:</label>
                 <input type="pass" class="form-control" id="pass" placeholder="Enter Password">
                 <a href="#"><small class="form-text text-muted">Forgot Password?</small></a>
             </div>
