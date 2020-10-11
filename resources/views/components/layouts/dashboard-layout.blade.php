@@ -22,6 +22,10 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"
             defer></script>
+    @if (Request::routeIs('dashboard.articles.create') || Request::routeIs('dashboard.articles.edit'))
+        <script src="{{asset('node_modules/tinymce/tinymce.min.js')}}"></script>
+        <script src="{{asset('js/tinymce_config.js')}}"></script>
+    @endif
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}"

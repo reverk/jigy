@@ -9,6 +9,7 @@
     "license": "MIT",
     "require": {
         "php": "^7.2.5",
+        "cviebrock/eloquent-sluggable": "7.0.1",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^2.0",
         "fzaninotto/faker": "^1.9",
@@ -16,7 +17,9 @@
         "laravel/framework": "^7.24",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.2",
-        "spatie/laravel-permission": "^3.16"
+        "laravelcollective/html": "^6.2",
+        "spatie/laravel-permission": "^3.16",
+        "unisharp/laravel-filemanager": "^2.1"
     },
     "require-dev": {
         "facade/ignition": "^2.0",
