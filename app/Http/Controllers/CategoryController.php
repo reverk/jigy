@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Category;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\View\View;
@@ -24,22 +25,36 @@ class CategoryController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return Response
+     * @return Application|Factory|Response|View
      */
     public function create()
     {
-        //
+        return view('dashboard.taxonomy.category.form', [
+            'name' => 'Create Tag',
+            'action' => 'Create tag',
+        ]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param Request $request
-     * @return Response
+     * @return RedirectResponse
      */
-    public function store(Request $request)
+    public function store()
     {
-        //
+        request()->validate([
+            'name' => 'required|unique:categories,name'
+        ]);
+
+        $tag = new Category([
+            'name' => request('name')
+        ]);
+        $tag->user_id = auth()->user()->id;
+
+        $tag->save();
+
+        request()->session()->flash('alert-success', 'Category added!');
+        return redirect()->route('dashboard.taxonomy');
     }
 
     /**
@@ -61,33 +76,53 @@ class CategoryController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param int $id
-     * @return Response
+     * @return Application|Factory|Response|View
      */
-    public function edit($id)
+    public function edit($slug)
     {
-        //
+        $category = Category::where('slug', $slug)->firstorFail();
+        return view('dashboard.taxonomy.category.form', [
+            'name' => 'Editing ' . '"' . $category->name . '"',
+            'action' => 'Update category',
+            'category' => $category,
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param Request $request
-     * @param int $id
-     * @return Response
+     * @param $slug
+     * @return RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update($slug)
     {
-        //
+        request()->validate([
+            'name' => 'required|unique:tags,name',
+        ]);
+
+        $category = Category::where('slug', $slug)->firstorFail();
+
+        $category->slug = null; // Reset slug name
+
+        $category->update(request()->all());
+
+        request()->session()->flash('alert-success', 'Category updated!');
+        return redirect()->route('dashboard.taxonomy');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param int $id
-     * @return Response
+     * @param $slug
+     * @return RedirectResponse
      */
-    public function destroy($id)
+    public function destroy($slug)
     {
-        //
+        $category = Category::where('slug', $slug)->firstorFail();
+
+        $category->delete();
+
+        request()->session()->flash('alert-success', 'Category deleted!');
+        return redirect()->route('dashboard.taxonomy');
     }
 }

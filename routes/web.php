@@ -47,6 +47,47 @@ Route::middleware('auth')->group(function () {
     // Delete
     Route::delete('/dashboard/articles/{slug}', 'BackendArticlesController@destroy')
         ->name('dashboard.articles.delete');
+
+    // Grouped routes: Users that are allowed to manage taxonomies
+    Route::group(['middleware' => ['can:manage taxonomies']], function () {
+        // Tags & Categories view
+        Route::get('/dashboard/taxonomy', 'BackendTaxonomyController@index')
+            ->name('dashboard.taxonomy');
+
+        // Tag(s)
+        // Create
+        Route::get('dashboard/tag/create', 'TagsController@create')
+            ->name('dashboard.tag.create');
+        // Store (save tag)
+        Route::post('dashboard/tag/', 'TagsController@store')
+            ->name('dashboard.tag.store');
+        // Edit
+        Route::get('dashboard/tag/edit/{slug}', 'TagsController@edit')
+            ->name('dashboard.tag.edit');
+        // Update (make changes)
+        Route::patch('dashboard/tag/{slug}', 'TagsController@update')
+            ->name('dashboard.tag.update');
+        // Delete
+        Route::delete('dashboard/tag/{slug}', 'TagsController@destroy')
+            ->name('dashboard.tag.delete');
+
+        // Category(-ies)
+        // Create
+        Route::get('dashboard/category/create', 'CategoryController@create')
+            ->name('dashboard.category.create');
+        // Store (save category)
+        Route::post('dashboard/category/', 'CategoryController@store')
+            ->name('dashboard.category.store');
+        // Edit
+        Route::get('dashboard/category/edit/{slug}', 'CategoryController@edit')
+            ->name('dashboard.category.edit');
+        // Update (make changes)
+        Route::patch('dashboard/category/{slug}', 'CategoryController@update')
+            ->name('dashboard.category.update');
+        // Delete
+        Route::delete('dashboard/category/{slug}', 'CategoryController@destroy')
+            ->name('dashboard.category.delete');
+    });
 });
 
 Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {

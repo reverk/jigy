@@ -168,6 +168,8 @@ class BackendArticlesController extends Controller
             $article->tags()->sync(request('tags'));
         }
 
+        $article->slug = null; // Reset slug name
+
         $article->update(request()->all());
 
         request()->session()->flash('alert-success', 'Article updated!');

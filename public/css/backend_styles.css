@@ -9,6 +9,14 @@
     max-width: 200px;
 }
 
+.list-group{
+    max-height: 1000px;
+    margin-bottom: 10px;
+    overflow:scroll;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
 @media screen and (max-width: 768px) {
     .dashboard-image {
         max-width: none;

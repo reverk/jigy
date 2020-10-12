@@ -113,7 +113,9 @@
             @enderror
         </div>
 
-        {{ Form::submit($action, ['class' => 'btn primary-gradient mt-3']) }}
+        <div class="d-flex justify-content-end">
+            {{ Form::submit($action, ['class' => 'btn primary-gradient mt-3']) }}
+        </div>
 
         {!! Form::close() !!}
     </section>
