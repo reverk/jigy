@@ -82,8 +82,9 @@ class TagsController extends Controller
     public function edit($slug)
     {
         $tag = Tag::where('slug', $slug)->firstorFail();
+        $title = $tag->name;
         return view('dashboard.taxonomy.tag.form', [
-            'name' => 'Editing ' . '"' . $tag->name . '"',
+            'name' => "Editing \"${title}\"",
             'action' => 'Update tag',
             'tag' => $tag,
         ]);

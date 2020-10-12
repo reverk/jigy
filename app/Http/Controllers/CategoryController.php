@@ -81,8 +81,9 @@ class CategoryController extends Controller
     public function edit($slug)
     {
         $category = Category::where('slug', $slug)->firstorFail();
+        $title = $category->name;
         return view('dashboard.taxonomy.category.form', [
-            'name' => 'Editing ' . '"' . $category->name . '"',
+            'name' => "Editing \"${title}\"",
             'action' => 'Update category',
             'category' => $category,
         ]);
