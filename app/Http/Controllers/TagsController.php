@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Tag;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\View\View;
@@ -24,22 +26,36 @@ class TagsController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return Response
+     * @return Application|Factory|Response|View|Void
      */
     public function create()
     {
-        //
+        return view('dashboard.taxonomy.tag.form', [
+            'name' => 'Create Tag',
+            'action' => 'Create tag',
+        ]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param Request $request
-     * @return Response
+     * @return RedirectResponse
      */
-    public function store(Request $request)
+    public function store()
     {
-        //
+        request()->validate([
+            'name' => 'required|unique:tags,name'
+        ]);
+
+        $tag = new Tag([
+            'name' => request('name')
+        ]);
+        $tag->user_id = auth()->user()->id;
+
+        $tag->save();
+
+        request()->session()->flash('alert-success', 'Tag added!');
+        return redirect()->route('dashboard.taxonomy');
     }
 
     /**
@@ -61,33 +77,54 @@ class TagsController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param int $id
-     * @return Response
+     * @return Application|Factory|Response|View
      */
-    public function edit($id)
+    public function edit($slug)
     {
-        //
+        $tag = Tag::where('slug', $slug)->firstorFail();
+        $title = $tag->name;
+        return view('dashboard.taxonomy.tag.form', [
+            'name' => "Editing \"${title}\"",
+            'action' => 'Update tag',
+            'tag' => $tag,
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param Request $request
-     * @param int $id
-     * @return Response
+     * @param $slug
+     * @return RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update($slug)
     {
-        //
+        request()->validate([
+            'name' => 'required|unique:tags,name',
+        ]);
+
+        $tag = Tag::where('slug', $slug)->firstorFail();
+
+        $tag->slug = null; // Reset slug name
+
+        $tag->update(request()->all());
+
+        request()->session()->flash('alert-success', 'Tag updated!');
+        return redirect()->route('dashboard.taxonomy');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param int $id
-     * @return Response
+     * @param $slug
+     * @return RedirectResponse
      */
-    public function destroy($id)
+    public function destroy($slug)
     {
-        //
+        $tag = Tag::where('slug', $slug)->firstorFail();
+
+        $tag->delete();
+
+        request()->session()->flash('alert-success', 'Tag deleted!');
+        return redirect()->route('dashboard.taxonomy');
     }
 }

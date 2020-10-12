@@ -126,8 +126,9 @@ class BackendArticlesController extends Controller
     public function edit($slug)
     {
         $article = Article::where('slug', $slug)->firstorFail();
+        $title = $article->title;
         return view('dashboard.articles.form', [
-            'name' => 'Editing ' . '"' . $article->title . '"',
+            'name' => "Editing \"${title}\"",
             'action' => 'Update Article',
             'article' => $article,
             'categories' => Category::latest()->pluck('name', 'id'),
@@ -167,6 +168,8 @@ class BackendArticlesController extends Controller
         if (request('tags') != null) {
             $article->tags()->sync(request('tags'));
         }
+
+        $article->slug = null; // Reset slug name
 
         $article->update(request()->all());
 

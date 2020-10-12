@@ -61,7 +61,7 @@
         @can('manage taxonomies')
             <li class="nav-item">
                 <a class="nav-link"
-                   href="#">Tags & Categories</a>
+                   href="{{route('dashboard.taxonomy')}}">Tags & Categories</a>
             </li>
         @endcan
         @can('manage users')

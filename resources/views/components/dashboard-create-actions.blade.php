@@ -13,9 +13,9 @@
             {{--                TODO: Add tag, category & settings link--}}
             @can('manage taxonomies')
                 <a class="dropdown-item"
-                   href="{{route('dashboard')}}">Create tag</a>
+                   href="{{route('dashboard.tag.create')}}">Create tag</a>
                 <a class="dropdown-item"
-                   href="{{route('dashboard')}}">Create category</a>
+                   href="{{route('dashboard.category.create')}}">Create category</a>
                 <div class="dropdown-divider"></div>
             @endcan
             <a class="dropdown-item"
