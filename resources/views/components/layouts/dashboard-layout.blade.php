@@ -26,6 +26,13 @@
         <script src="{{asset('node_modules/tinymce/tinymce.min.js')}}"></script>
         <script src="{{asset('js/tinymce_config.js')}}"></script>
     @endif
+    <script>
+        let file = addEventListener('change',function(e){
+            var fileName = document.getElementById("customFile").files[0].name;
+            var nextSibling = e.target.nextElementSibling
+            nextSibling.innerText = fileName
+        })
+    </script>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}"
@@ -44,7 +51,6 @@
 <x-layouts.dashboard-navbar/>
 
 <main>
-
     {{ $slot }}
 
 </main>

@@ -10,7 +10,6 @@
         </i>
         <div class="dropdown-menu dropdown-menu-right"
              aria-labelledby="dropdownMenuButton">
-            {{--                TODO: Add tag, category & settings link--}}
             @can('manage taxonomies')
                 <a class="dropdown-item"
                    href="{{route('dashboard.tag.create')}}">Create tag</a>
@@ -19,7 +18,7 @@
                 <div class="dropdown-divider"></div>
             @endcan
             <a class="dropdown-item"
-               href="#">Settings</a>
+               href="{{route('dashboard.profile')}}">Settings</a>
             <div class="dropdown-divider"></div>
             <form action="{{route('logout')}}"
                   method="post"

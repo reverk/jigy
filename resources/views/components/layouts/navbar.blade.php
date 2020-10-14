@@ -1,3 +1,4 @@
+<x-flash-message :msg="$msg ?? ''" />
 <nav class="navbar navbar-expand-lg navbar-light container">
     <a class="navbar-brand navbar-item-font font-weight-light"
        href="{{route('index')}}">{{ config('app.name', 'Laravel') }}</a>
