@@ -23,8 +23,20 @@ Auth::routes();
 
 // Grouped routes: Auth Backend
 Route::middleware('auth')->group(function () {
+    // Main Page
     Route::get('/dashboard', 'DashboardController@index')
         ->name('dashboard');
+
+    // Profile
+    // Display
+    Route::get('/dashboard/profile', 'ProfileController@index')
+        ->name('dashboard.profile');
+    // Update
+    Route::patch('dashboard/profile/{id}', 'ProfileController@update')
+        ->name('dashboard.profile.update');
+    // Delete
+    Route::delete('dashboard/profile/{id}', 'ProfileController@destroy')
+        ->name('dashboard.profile.delete');
 
     // Articles
     // Display
@@ -90,6 +102,7 @@ Route::middleware('auth')->group(function () {
     });
 });
 
+// File manager
 Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
     \UniSharp\LaravelFilemanager\Lfm::routes();
 });

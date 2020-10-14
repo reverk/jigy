@@ -1,4 +1,4 @@
-{{--TODO: Add links when route is available--}}
+<x-flash-message :msg="$msg ?? ''" />
 {{-- Upper navbar --}}
 <div class="container d-flex justify-content-between align-items-center p-2 my-3">
     <div class="h5 ml-2 mb-0">{{env('APP_NAME', 'Laravel')}}</div>
@@ -14,7 +14,7 @@
             <a class="dropdown-item"
                href="{{route('dashboard')}}">Dashboard</a>
             <a class="dropdown-item"
-               href="#">Settings</a>
+               href="{{route('dashboard.profile')}}">Settings</a>
             <div class="dropdown-divider"></div>
             <form action="{{route('logout')}}"
                   method="post"
@@ -31,7 +31,11 @@
 </div>
 
 {{--Only hide if it's creating something--}}
-@if(!Request::routeIs('dashboard.articles.create') || !Request::routeIs('dashboard.articles.edit'))
+@if(
+    !Request::routeIs('dashboard.articles.create') || !Request::routeIs('dashboard.articles.edit') ||
+    !Request::routeIs('dashboard.tag.create') || !Request::routeIs('dashboard.tag.edit') ||
+    !Request::routeIs('dashboard.category.create') || !Request::routeIs('dashboard.category.edit')
+)
 
     {{-- Lower navbar --}}
     <ul class="nav nav-tabs container my-2">
@@ -59,7 +63,7 @@
             @endif
         </li>
         @can('manage taxonomies')
-            <li class="nav-item">
+            <li class="nav-item {{ Request::routeIs('dashboard.taxonomy') ? 'active' : '' }}">
                 <a class="nav-link"
                    href="{{route('dashboard.taxonomy')}}">Tags & Categories</a>
             </li>
@@ -71,8 +75,8 @@
             </li>
         @endcan
         <li class="nav-item">
-            <a class="nav-link"
-               href="#">Settings</a>
+            <a class="nav-link {{ Request::routeIs('dashboard.profile') ? 'active' : '' }}"
+               href="{{route('dashboard.profile')}}">Settings</a>
         </li>
     </ul>
 

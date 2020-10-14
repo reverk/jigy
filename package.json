@@ -26,6 +26,6 @@
     },
     "dependencies": {
         "jquery": "^3.5.1",
-        "tinymce": "^4.9.8"
+        "tinymce": "^4.9.11"
     }
 }
