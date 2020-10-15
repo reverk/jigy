@@ -1,8 +1,10 @@
 <section class="container d-flex justify-content-between align-items-center flex-lg-row flex-column p-2 my-5">
     <div class="d-inline-flex align-items-center">
-        <img src="{{auth()->user()->avatar}}"
-             alt="Profile image"
-             width=100px>
+        <div style="width: 100px; min-width: 32px">
+            <img src="{{auth()->user()->avatar}}"
+                 alt="Avatar"
+                 class="mw-100 mh-100 rounded-circle">
+        </div>
         <div class="d-inline-flex align-items-center ml-4">
             <span class="h2 font-weight-bold">{{auth()->user()->name}}</span>
             <div class="dot mx-3 d-none d-lg-block"></div>

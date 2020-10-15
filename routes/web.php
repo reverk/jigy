@@ -1,6 +1,8 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use UniSharp\LaravelFilemanager\Lfm;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,7 +21,7 @@ Route::get('/tag/{tag}', 'TagsController@show')->name('tag');
 Route::get('/category/{category}', 'CategoryController@show')->name('category');
 Route::get('/venue/{venue}', 'VenueController@show')->name('venue');
 
-Auth::routes();
+Auth::routes(['register' => false]);
 
 // Grouped routes: Auth Backend
 Route::middleware('auth')->group(function () {
@@ -126,5 +128,5 @@ Route::middleware('auth')->group(function () {
 
 // File manager
 Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
-    \UniSharp\LaravelFilemanager\Lfm::routes();
+    Lfm::routes();
 });

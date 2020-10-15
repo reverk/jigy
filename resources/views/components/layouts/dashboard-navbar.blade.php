@@ -1,4 +1,4 @@
-<x-flash-message :msg="$msg ?? ''" />
+<x-flash-message :msg="$msg ?? ''"/>
 {{-- Upper navbar --}}
 <div class="container d-flex justify-content-between align-items-center p-2 my-3">
     <div class="h5 ml-2 mb-0">{{env('APP_NAME', 'Laravel')}}</div>
@@ -8,7 +8,8 @@
              type="button"
              data-toggle="dropdown"
              alt="Profile image"
-             width=28px>
+             width=28px
+             class="rounded-circle">
         <div class="dropdown-menu dropdown-menu-right"
              aria-labelledby="dropdownMenuButton">
             <a class="dropdown-item"
@@ -59,13 +60,13 @@
                        href="{{route('dashboard.articles.all')}}">All Articles</a>
                 </div>
             @else
-                <a class="nav-link"
+                <a class="nav-link {{ Request::routeIs('dashboard.articles') ? 'active' : '' }}"
                    href="{{route('dashboard.articles')}}">Articles</a>
             @endif
         </li>
         @can('manage taxonomies')
-            <li class="nav-item {{ Request::routeIs('dashboard.taxonomy') ? 'active' : '' }}">
-                <a class="nav-link"
+            <li class="nav-item">
+                <a class="nav-link {{ Request::routeIs('dashboard.taxonomy') ? 'active' : '' }}"
                    href="{{route('dashboard.taxonomy')}}">Tags & Categories</a>
             </li>
         @endcan
