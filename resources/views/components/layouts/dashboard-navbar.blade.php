@@ -32,9 +32,10 @@
 
 {{--Only hide if it's creating something--}}
 @if(
-    !Request::routeIs('dashboard.articles.create') || !Request::routeIs('dashboard.articles.edit') ||
-    !Request::routeIs('dashboard.tag.create') || !Request::routeIs('dashboard.tag.edit') ||
-    !Request::routeIs('dashboard.category.create') || !Request::routeIs('dashboard.category.edit')
+    !(Request::routeIs('dashboard.articles.create') || Request::routeIs('dashboard.articles.edit') ||
+    Request::routeIs('dashboard.tag.create') || Request::routeIs('dashboard.tag.edit') ||
+    Request::routeIs('dashboard.category.create') || Request::routeIs('dashboard.category.edit') ||
+    Request::routeIs('dashboard.users.create') || Request::routeIs('dashboard.users.edit'))
 )
 
     {{-- Lower navbar --}}
@@ -70,8 +71,8 @@
         @endcan
         @can('manage users')
             <li class="nav-item">
-                <a class="nav-link"
-                   href="#">Users</a>
+                <a class="nav-link {{ Request::routeIs('dashboard.users') ? 'active' : '' }}"
+                   href="{{route('dashboard.users')}}">Users</a>
             </li>
         @endcan
         <li class="nav-item">

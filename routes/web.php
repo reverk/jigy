@@ -100,6 +100,28 @@ Route::middleware('auth')->group(function () {
         Route::delete('dashboard/category/{slug}', 'CategoryController@destroy')
             ->name('dashboard.category.delete');
     });
+
+    // Grouped routes: Users that are allowed to manage users
+    Route::group(['middleware' => ['can:manage users']], function () {
+        // User list view
+        Route::get('/dashboard/users', 'UsersController@index')
+            ->name('dashboard.users');
+        // Create/Register a user
+        Route::get('/dashboard/users/create', 'UsersController@create')
+            ->name('dashboard.users.create');
+        // Store/save
+        Route::post('/dashboard/users/create', 'UsersController@store')
+            ->name('dashboard.users.store');
+        // Edit
+        Route::get('dashboard/users/edit/{id}', 'UsersController@edit')
+            ->name('dashboard.users.edit');
+        // Update (save changes)
+        Route::patch('dashboard/users/edit/{id}', 'UsersController@update')
+            ->name('dashboard.users.update');
+        // Delete user
+        Route::delete('dashboard/users/{id}', 'UsersController@destroy')
+            ->name('dashboard.users.delete');
+    });
 });
 
 // File manager
