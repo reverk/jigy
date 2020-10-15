@@ -22,12 +22,26 @@ A blog build with Laravel, featuring a filtered search
 - IDE or Code Editor -- we recommend [PhpStorm](https://www.jetbrains.com/phpstorm/)
 
 ### **Instructions 📜**
-1. Clone the code with Git by typing `git clone https://github.com/reverk/jigy.git` in your terminal or download zip, then extract the file.
-2. Go into the directory `C:\Users\<your_PC_name>\jigy` by typing `cd jigy`
-3. Type `composer install` to install PHP dependencies.
-4. Once finished, type `npm i` to install NPM dependencies.
+1. Clone the code with Git by typing:
+```git clone https://github.com/reverk/jigy.git```
+2. Go into the directory:
+```
+cd jigy
+```
+3. Install composer dependencies:
+```
+composer install
+```
+4. Install NPM dependencies & run
+```
+npm i && npm run dev
+```
 5. Make a copy of `.env.example` and rename it to `.env` and change to the following snippet:
 ```
+...
+
+APP_URL=<YOUR_URL>
+
 ...
 
 DB_CONNECTION=mysql
@@ -45,13 +59,33 @@ FILESYSTEM_DRIVER=public
 ```
 > 📝: By default, XAMPP's default username & password is `root` and `(empty/no password)`
 
-6. After that, run `php artisan key:generate`
-7. Run `php artisan storage:link` to create a link between storage and the public disk. This is used for uploading images & profile image.
-8. Run `php artisan migrate` to migrate all tables into your database. 
+> 📝: APP_URL is `http://localhost:8000` by default, but if you want hot reloading, use `http://localhost:3000`
+
+6. Generate key by:
+```
+php artisan key:generate
+```
+7. Create a symbolic link (used for images): 
+```
+php artisan storage:link
+```
+8. Migrate database:
+```
+php artisan migrate
+```
 > Please confirm that your XAMPP's Apache & MySQL is started before migrating
-9. (Optional) Run `php artisan db:seed` to populate data.
-10. Then run `php artisan serve`
-11. And finally, go to `localhost:8000`
+9. (Optional) To populate data:
+```
+php artisan db:seed
+```
+10. Serve/Host JiGy:
+```
+php artisan serve
+```
+11. Go to a web browser and go to:
+```
+localhost:8000 // Or localhost:3000 if you have hot/live reloading.
+```
 
 ## Development (frontend)
 - For convenience, run `php artisan serve`, then `npm run watch` to enable hot/live reloading.
