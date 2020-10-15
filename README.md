@@ -22,8 +22,13 @@ A blog build with Laravel, featuring a filtered search
 - IDE or Code Editor -- we recommend [PhpStorm](https://www.jetbrains.com/phpstorm/)
 
 ### **Instructions 📜**
+#### Quick Start Guide
+See [here]().
+#### Detailed installation
 1. Clone the code with Git by typing:
-```git clone https://github.com/reverk/jigy.git```
+```
+git clone https://github.com/reverk/jigy.git
+```
 2. Go into the directory:
 ```
 cd jigy
