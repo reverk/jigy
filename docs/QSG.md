@@ -4,7 +4,7 @@
 git clone https://github.com/reverk/jigy.git & cd jigy
 ```
 
-2. Configure .env by copying .env.example:
+2. Configure `.env` by copying `.env.example`:
 ```
 APP_URL=https://localhost:3000
 
@@ -28,5 +28,5 @@ composer install & npm i & npm run dev & php artisan key:generate & php artisan 
 > - Generate key
 > - Create a storage link
 > - Seeds database with fake data
-> - Starts serve (go to localhost:3000).
+> - Starts serve (go to localhost:8000).
 

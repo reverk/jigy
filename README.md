@@ -23,7 +23,7 @@ A blog build with Laravel, featuring a filtered search
 
 ### **Instructions 📜**
 #### Quick Start Guide
-See [here]().
+See [here](https://github.com/reverk/jigy/blob/feature/users/docs/QSG.md).
 #### Detailed installation
 1. Clone the code with Git by typing:
 ```
