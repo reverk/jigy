@@ -95,8 +95,10 @@
                     <div class="text-danger mt-2">{{ $message }}</div>
                     @enderror
                 </div>
-                <img src="{{asset(auth()->user()->avatar)}}"
-                     alt="Avatar" width="96">
+                <div style="width: 96px">
+                    <img src="{{auth()->user()->avatar}}"
+                    alt="Avatar" class="mw-100 mh-100 rounded-circle">
+                </div>
             </header>
             <footer class="d-flex justify-content-between align-items-center rounded-bottom border p-2 px-3"
                  style="background: #F3F3F3;">

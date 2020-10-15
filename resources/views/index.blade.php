@@ -41,9 +41,5 @@
     <div class="container">
         {{ $articles->links() }}
     </div>
-
-    @auth
-        <p class="container">You're logged in!</p>
-    @endauth
 </x-layouts.layout>
 

@@ -22,15 +22,14 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"
             defer></script>
+    <script src="{{ asset('node_modules/jquery/dist/jquery.min.js') }}"></script>
     @if (Request::routeIs('dashboard.articles.create') || Request::routeIs('dashboard.articles.edit'))
         <script src="{{asset('node_modules/tinymce/tinymce.min.js')}}"></script>
         <script src="{{asset('js/tinymce_config.js')}}"></script>
     @endif
     <script>
-        let file = addEventListener('change',function(e){
-            var fileName = document.getElementById("customFile").files[0].name;
-            var nextSibling = e.target.nextElementSibling
-            nextSibling.innerText = fileName
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
         })
     </script>
 
