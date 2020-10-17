@@ -21,7 +21,7 @@ Route::get('/tag/{tag}', 'TagsController@show')->name('tag');
 Route::get('/category/{category}', 'CategoryController@show')->name('category');
 Route::get('/venue/{venue}', 'VenueController@show')->name('venue');
 
-Auth::routes(['register' => false]);
+Auth::routes(['verify' => true, 'register' => false]);
 
 // Grouped routes: Auth Backend
 Route::middleware('auth')->group(function () {
