@@ -1,7 +1,7 @@
 <div class="d-inline-flex {{$paddings}}">
     <a href="{{route('venue', Helper::convert_isOutside($article->is_outside))}}"
        class="pr-2 text-dark font-weight-bold align-self-center text-dark">
-        {{ Helper::convert_isOutside($article->is_outside) }}
+        {!! Helper::convert_isOutside($article->is_outside) !!}
     </a>
     @isset($article->category->name)
         <div class="vertical-line align-self-center mx-2"></div>
