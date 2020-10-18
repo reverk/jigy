@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Article;
 use App\Category;
+use App\Helpers\Helper;
 use App\Tag;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -83,7 +84,7 @@ class BackendArticlesController extends Controller
             'excerpt' => request('excerpt'),
             'body' => request('body'),
             'category_id' => request('category'),
-            'isOutside' => convert_isOutside(request('isOutside')),
+            'isOutside' => Helper::convert_isOutside(request('isOutside')),
         ]);
 
         // Image upload
