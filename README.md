@@ -9,15 +9,15 @@
 A blog build with Laravel, featuring a filtered search
 
 ## Features to work on ✨
-- ⚒ Build a blog that's able to do CRUD operations
-- ❌ Able to manage users from the backend
-- ❌ Filtered search
+- ✅ Build a blog that's able to do CRUD operations
+- ✅ Able to manage users from the backend
+- ⚒ Filtered search
 
 ## Installation
 ### **Required tools 🛠**
 - [Composer](https://getcomposer.org/) with [Laravel](https://laravel.com/)
 - [NPM](https://www.npmjs.com/get-npm)
-- [XAMPP](https://www.apachefriends.org/index.html) - for MySQL database
+- [XAMPP](https://www.apachefriends.org/index.html) - for MySQL database, any other databases supported by laravel works too.
 - [Git](https://git-scm.com/)
 - IDE or Code Editor -- we recommend [PhpStorm](https://www.jetbrains.com/phpstorm/)
 
@@ -55,6 +55,18 @@ DB_PORT=3306
 DB_DATABASE=<YOUR_DATABASE_NAME>
 DB_USERNAME=<YOUR_DATABASE_USERNAME>
 DB_PASSWORD=<YOUR_DATABSE_PASSWORD>
+
+...
+
+# If you want to test if emails work, follow this config
+MAIL_MAILER=smtp
+MAIL_HOST=smtp.mailtrap.io
+MAIL_PORT=2525
+MAIL_USERNAME=<MAIL_USERNAME>
+MAIL_PASSWORD=<MAIL_PASSWORD>
+MAIL_ENCRYPTION=<MAIL_ENCRYPTION>
+MAIL_FROM_ADDRESS=staging@jigy.com
+MAIL_FROM_NAME="${APP_NAME}"
 
 ...
 

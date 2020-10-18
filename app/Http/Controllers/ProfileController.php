@@ -42,9 +42,14 @@ class ProfileController extends Controller
         $user = User::findOrFail($id);
         $user->update(request()->all());
 
+        if (request('email') != null) {
+            $user->email = request('email');
+            $user->email_verified_at = null;
+            $user->sendEmailVerificationNotification();
+        }
+
         if (request('password') != null) {
             $user->password = Hash::make(request('password'));
-            $user->save();
         }
 
         if (request('avatar') != null) {
@@ -53,8 +58,9 @@ class ProfileController extends Controller
                 Storage::disk('public')->delete($path);
             }
             $user->avatar = 'storage/' . request('avatar')->store('avatar');
-            $user->save();
         }
+
+        $user->save();
 
         request()->session()->flash('alert-success', 'Profile updated!');
         return redirect()->route('dashboard.profile');
