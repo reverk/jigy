@@ -6,7 +6,7 @@
 
     <div class="card-body p-0 pb-3">
 
-        <x-tag-attributes :article="$article"/>
+        <x-tag-attributes :article="$article" paddings="py-3 pt-4"/>
 
         <h4 class="card-title font-weight-bold py-2">
             <a href="{{route('article', $article->slug)}}"

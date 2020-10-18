@@ -8,7 +8,7 @@
         </a>
         <div class="col-lg-4 d-flex px-lg-2 p-0">
             <section class="pl-lg-4 pl-0 align-self-center">
-                <x-tag-attributes :article="$article"/>
+                <x-tag-attributes :article="$article" paddings="py-3 pt-4"/>
                 <desc class="py-2">
                     <a href="{{route('article', $article->slug)}}"
                        class="text-decoration-none text-dark">
