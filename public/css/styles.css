@@ -79,13 +79,33 @@ body {
 .error_cover {
     background-color: #ffffff;
 }
+
 .error_sad_face {
     font-family: monospace;
     font-size: 150px;
 }
 
+.hero-card-navbar {
+    background: linear-gradient(180deg, #FFFFFF -41.65%, rgba(255, 255, 255, 0) 100%, rgba(255, 255, 255, 0) 100%);
+}
+
 .hero-card {
-    height: 83vh;
+    height: 100vh;
+}
+
+.hero-image {
+    z-index: -1;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 100%;
+    min-height: 100%;
+    height: auto;
+    width: auto;
+
+    -webkit-filter: blur(5px);
+    filter: blur(5px) saturate(125%);
 }
 
 .hero-card-text h1 {
@@ -96,10 +116,6 @@ body {
 .hero-card-text h2 {
     font-family: Quicksand, serif;
     font-size: 32px;
-}
-
-.hero-card-image {
-    max-width: 500px;
 }
 
 @media screen and (max-width: 768px) {

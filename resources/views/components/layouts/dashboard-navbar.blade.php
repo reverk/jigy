@@ -1,4 +1,3 @@
-<x-flash-message :msg="$msg ?? ''"/>
 {{-- Upper navbar --}}
 <div class="container d-flex justify-content-between align-items-center p-2 my-3">
     <div class="h5 ml-2 mb-0">{{env('APP_NAME', 'Laravel')}}</div>
