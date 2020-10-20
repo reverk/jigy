@@ -1,6 +1,12 @@
 {{-- Upper navbar --}}
 <div class="container d-flex justify-content-between align-items-center p-2 my-3">
-    <div class="h5 ml-2 mb-0">{{env('APP_NAME', 'Laravel')}}</div>
+    <a class="ml-2 mb-0"
+       href="{{route('index')}}">
+        <img src="{{asset('static/images/logo.png')}}"
+             alt=""
+             class="navbar-brand"
+             width="28px">
+    </a>
     <div class="mr-2 dropdown">
         <img src="{{auth()->user()->avatar}}"
              role="button"

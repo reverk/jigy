@@ -11,6 +11,9 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
+    <!-- Laravel PWA -->
+    @laravelPWA
+
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"
             defer></script>

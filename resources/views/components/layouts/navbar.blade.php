@@ -5,7 +5,7 @@
         <img src="{{asset('static/images/logo.png')}}"
              alt=""
              class="navbar-brand"
-             width="32px">
+             width="28px">
     </a>
 
     <button class="navbar-toggler border-0"
