@@ -1,11 +1,11 @@
 {{-- Upper navbar --}}
 <div class="container d-flex justify-content-between align-items-center p-2 my-3">
     <a class="ml-2 mb-0"
-       href="{{route('index')}}">
-        <img src="{{asset('static/images/logo.png')}}"
-             alt=""
-             class="navbar-brand"
-             width="28px">
+       href="{{route('index')}}"
+       style="width: 45px">
+        <img src="{{asset('static/images/logo.svg')}}"
+             alt="Logo"
+             class="mw-100 mh-100">
     </a>
     <div class="mr-2 dropdown">
         <img src="{{auth()->user()->avatar}}"

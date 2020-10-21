@@ -1,11 +1,11 @@
 <nav class="navbar navbar-expand-lg navbar-light container">
 
     <a class="navbar-brand"
-       href="{{route('index')}}">
-        <img src="{{asset('static/images/logo.png')}}"
-             alt=""
-             class="navbar-brand"
-             width="28px">
+       href="{{route('index')}}"
+       style="width: 45px">
+        <img src="{{asset('static/images/logo.svg')}}"
+             alt="Logo"
+             class="mw-100 mh-100">
     </a>
 
     <button class="navbar-toggler border-0"
