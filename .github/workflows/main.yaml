@@ -7,7 +7,7 @@ on:
       - 'staging'
 
 jobs:
-  build-app:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Shutdown Ubuntu SQL
