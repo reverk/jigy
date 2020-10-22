@@ -22,7 +22,7 @@
                 <div class="container mt-5">
                     <div class="d-flex flex-row-reverse">
                         <button type="submit" class="p-2 ml-2 btn btn-primary">Login</button>
-                        <a class="btn btn-secondary p-2" href="#" role="button">Register</a>
+                        <a class="btn btn-secondary p-2" href="{{route('register')}}" role="button">Register</a>
                     </div>
                 </div>
             </form>
