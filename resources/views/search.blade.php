@@ -29,7 +29,7 @@
             <x-title name="Tags"/>
             </div>
 {{--            tag--}}
-            <div class="container-fluid alert-secondary p-3">
+        <div class="container-fluid alert-secondary p-3">
             @forelse($tags as $tag)
                 <x-tags name="{{$tag->name}}" />
                 <x-tags name="{{$tag->slug}}" />
