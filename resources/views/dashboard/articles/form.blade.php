@@ -101,9 +101,9 @@
                            class="form-check-input"
                            value="1"
                            @if(isset($article))
-                           @if($article->getRawOriginal('is_outside') == 1)
-                               checked
-                           @endif
+                               @if($article->getRawOriginal('is_outside') == 1)
+                                   checked
+                               @endif
                            @endif
                    >
                    <label for="isOutside" class="form-check-label">Yes</label>
