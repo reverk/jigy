@@ -82,7 +82,8 @@ class RouteTest extends TestCase
             '/tag/' . $this->tag->slug,
             '/category/' . $this->category->slug,
             '/article/' . $this->article->slug,
-            '/venue/' . $this->article->is_outside
+            '/venue/' . $this->article->is_outside,
+            '/password/reset',
         ];
 
         foreach ($urls as $url) {
@@ -91,7 +92,7 @@ class RouteTest extends TestCase
     }
 
     /**
-     * Test any publicly accessible routes.
+     * Test any authenticated routes.
      *
      * @return void
      */
