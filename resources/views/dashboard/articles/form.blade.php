@@ -87,12 +87,35 @@
                 {{ Form::label('qOutside', 'Event held outside?') }}
                 <br>
                 <div class="form-check form-check-inline">
-                    {{ Form::radio('isOutside', 'Outside', isset($article->is_outside) ? $article->is_outside : '', ['class' => 'form-check-input']) }}
-                    {{ Form::label('Outside', 'Yes', ['class' => 'form-check-label']) }}
+                    <input type="radio"
+                           id="isOutside"
+                           name="isOutside"
+                           class="form-check-input"
+                           value="1"
+                           @if(isset($article))
+                           @if($article->getRawOriginal('is_outside') == 1)
+                               checked
+                           @endif
+                           @endif
+                   >
+                   <label for="isOutside" class="form-check-label">Yes</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    {{ Form::radio('isOutside', 'Inside', isset($article->is_outside) ? !$article->is_outside : true, ['class' => 'form-check-input']) }}
-                    {{ Form::label('inside', 'No', ['class' => 'form-check-label']) }}
+                    <input type="radio"
+                           id="isOutside"
+                           name="isOutside"
+                           class="form-check-input"
+                           value="0"
+                           @if(isset($article))
+                               @if($article->getRawOriginal('is_outside') == 0)
+                               checked
+                               @endif
+                           @else
+                           checked
+                            @endif
+                    >
+                    <label for="isOutside"
+                           class="form-check-label">No</label>
                 </div>
             </div>
         </div>
