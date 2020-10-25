@@ -36,7 +36,8 @@
             @empty
                 <p>There's nothing here!</p>
             @endforelse
-            </div>
+{{--            </div>--}}
+
         </div>
     </div>
 </x-layouts.layout>
