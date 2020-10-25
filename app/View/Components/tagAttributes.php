@@ -13,9 +13,9 @@ class tagAttributes extends Component
      * Create a new component instance.
      *
      * @param $article
-     * @param string $paddings
+     * @param $paddings
      */
-    public function __construct($article, $paddings = "py-3 pt-4")
+    public function __construct($article, $paddings)
     {
         $this->paddings = $paddings;
         $this->article = $article;

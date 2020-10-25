@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Article;
+use App\Helpers\Helper;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
-use phpDocumentor\Reflection\Types\AbstractList;
 
 class VenueController extends Controller
 {
@@ -50,8 +50,8 @@ class VenueController extends Controller
      */
     public function show($venue)
     {
-        $articles = Article::where('is_outside', isOutside($venue))->get();
-        $name = isOutside($articles->pluck('is_outside')->first());
+        $articles = Article::where('is_outside', Helper::convert_isOutside($venue))->get();
+        $name = Helper::convert_isOutside($articles->pluck('is_outside')->first());
         return view('venue', [
             'articles' => $articles,
             'name' => $name,

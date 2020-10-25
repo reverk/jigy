@@ -1,4 +1,4 @@
-{{--TODO: Add links when route is available--}}
+<x-flash-message :msg="$msg ?? ''"/>
 {{-- Upper navbar --}}
 <div class="container d-flex justify-content-between align-items-center p-2 my-3">
     <div class="h5 ml-2 mb-0">{{env('APP_NAME', 'Laravel')}}</div>
@@ -8,13 +8,14 @@
              type="button"
              data-toggle="dropdown"
              alt="Profile image"
-             width=28px>
+             width=28px
+             class="rounded-circle">
         <div class="dropdown-menu dropdown-menu-right"
              aria-labelledby="dropdownMenuButton">
             <a class="dropdown-item"
                href="{{route('dashboard')}}">Dashboard</a>
             <a class="dropdown-item"
-               href="#">Settings</a>
+               href="{{route('dashboard.profile')}}">Settings</a>
             <div class="dropdown-divider"></div>
             <form action="{{route('logout')}}"
                   method="post"
@@ -30,45 +31,56 @@
     </div>
 </div>
 
-{{-- Lower navbar --}}
-<ul class="nav nav-tabs container my-2">
-    <li class="nav-item">
-        <a class="nav-link {{ Request::routeIs('dashboard') ? 'active' : '' }}"
-           href="{{route('dashboard')}}">Dashboard</a>
-    </li>
-    <li class="nav-item">
-        @if (auth()->user()->can('manage all articles'))
-            <a class="nav-link dropdown-toggle"
-               data-toggle="dropdown"
-               href="#"
-               role="button"
-               aria-haspopup="true"
-               aria-expanded="false">Articles</a>
-            <div class="dropdown-menu">
-                <a class="dropdown-item"
-                   href="#">Your Articles</a>
-                <a class="dropdown-item"
-                   href="#">All Articles</a>
-            </div>
-        @else
-            <a class="nav-link"
-               href="#">Articles</a>
-        @endif
-    </li>
-    @can('manage taxonomies')
+{{--Only hide if it's creating something--}}
+@if(
+    !(Request::routeIs('dashboard.articles.create') || Request::routeIs('dashboard.articles.edit') ||
+    Request::routeIs('dashboard.tag.create') || Request::routeIs('dashboard.tag.edit') ||
+    Request::routeIs('dashboard.category.create') || Request::routeIs('dashboard.category.edit') ||
+    Request::routeIs('dashboard.users.create') || Request::routeIs('dashboard.users.edit'))
+)
+
+    {{-- Lower navbar --}}
+    <ul class="nav nav-tabs container my-2">
         <li class="nav-item">
-            <a class="nav-link"
-               href="#">Tags & Categories</a>
+            <a class="nav-link {{ Request::routeIs('dashboard') ? 'active' : '' }}"
+               href="{{route('dashboard')}}">Dashboard</a>
         </li>
-    @endcan
-    @can('manage users')
         <li class="nav-item">
-            <a class="nav-link"
-               href="#">Users</a>
+            @if (auth()->user()->can('manage all articles'))
+                <a class="nav-link dropdown-toggle {{ Request::routeIs('dashboard.articles') || Request::routeIs('dashboard.articles.all') ? 'active' : '' }}"
+                   data-toggle="dropdown"
+                   href="#"
+                   role="button"
+                   aria-haspopup="true"
+                   aria-expanded="false">Articles</a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item"
+                       href="{{route('dashboard.articles')}}">Your Articles</a>
+                    <a class="dropdown-item"
+                       href="{{route('dashboard.articles.all')}}">All Articles</a>
+                </div>
+            @else
+                <a class="nav-link {{ Request::routeIs('dashboard.articles') ? 'active' : '' }}"
+                   href="{{route('dashboard.articles')}}">Articles</a>
+            @endif
         </li>
-    @endcan
-    <li class="nav-item">
-        <a class="nav-link"
-           href="#">Settings</a>
-    </li>
-</ul>
+        @can('manage taxonomies')
+            <li class="nav-item">
+                <a class="nav-link {{ Request::routeIs('dashboard.taxonomy') ? 'active' : '' }}"
+                   href="{{route('dashboard.taxonomy')}}">Tags & Categories</a>
+            </li>
+        @endcan
+        @can('manage users')
+            <li class="nav-item">
+                <a class="nav-link {{ Request::routeIs('dashboard.users') ? 'active' : '' }}"
+                   href="{{route('dashboard.users')}}">Users</a>
+            </li>
+        @endcan
+        <li class="nav-item">
+            <a class="nav-link {{ Request::routeIs('dashboard.profile') ? 'active' : '' }}"
+               href="{{route('dashboard.profile')}}">Settings</a>
+        </li>
+    </ul>
+
+@endif
+

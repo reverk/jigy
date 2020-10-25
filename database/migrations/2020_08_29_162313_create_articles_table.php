@@ -19,7 +19,7 @@ class CreateArticlesTable extends Migration
             $table->unsignedBigInteger('category_id');
             $table->boolean('is_outside')->default(0);
             $table->string('title');
-            $table->string('slug');
+            $table->string('slug')->unique();
             $table->text('excerpt');
             $table->text('thumbnail_image');
             $table->longText('body');

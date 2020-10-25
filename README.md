@@ -9,28 +9,43 @@
 A blog build with Laravel, featuring a filtered search
 
 ## Features to work on ✨
-- ⚒ Build a blog that's able to do CRUD operations
-- ❌ Able to manage users from the backend
-- ❌ Filtered search
+- ✅ Build a blog that's able to do CRUD operations
+- ✅ Able to manage users from the backend
+- ⚒ Filtered search
 
 ## Installation
 ### **Required tools 🛠**
 - [Composer](https://getcomposer.org/) with [Laravel](https://laravel.com/)
 - [NPM](https://www.npmjs.com/get-npm)
-- [XAMPP](https://www.apachefriends.org/index.html) - for MySQL database
+- [XAMPP](https://www.apachefriends.org/index.html) - for MySQL database, any other databases supported by laravel works too.
 - [Git](https://git-scm.com/)
 - IDE or Code Editor -- we recommend [PhpStorm](https://www.jetbrains.com/phpstorm/)
 
 ### **Instructions 📜**
-1. Clone the code with Git by typing `git clone https://github.com/reverk/jigy.git` in your terminal or download zip, then extract the file.
-2. Go into the directory `C:\Users\<your_PC_name>\jigy` by typing `cd jigy`
-3. Type `composer install` to install PHP dependencies.
-4. Once finished, type `npm i` to install NPM dependencies.
+#### Quick Start Guide
+See [here](https://github.com/reverk/jigy/blob/master/docs/QSG.md).
+#### Detailed installation
+1. Clone the code with Git by typing:
+```
+git clone https://github.com/reverk/jigy.git
+```
+2. Go into the directory:
+```
+cd jigy
+```
+3. Install composer dependencies:
+```
+composer install
+```
+4. Install NPM dependencies & run
+```
+npm i && npm run dev
+```
 5. Make a copy of `.env.example` and rename it to `.env` and change to the following snippet:
 ```
 ...
 
-APP_URL=http://localhost:<PORT> 
+APP_URL=<YOUR_URL>
 
 ...
 
@@ -42,18 +57,52 @@ DB_USERNAME=<YOUR_DATABASE_USERNAME>
 DB_PASSWORD=<YOUR_DATABSE_PASSWORD>
 
 ...
-```
-> 📝: If images is not displaying, rename this to the port you're using. Otherwise, leave it as it is.
-> Ex. `php artisan serve` uses `localhost:8000` or `npm run watch` uses `localhost:3000`
 
+# If you want to test if emails work, follow this config
+MAIL_MAILER=smtp
+MAIL_HOST=smtp.mailtrap.io
+MAIL_PORT=2525
+MAIL_USERNAME=<MAIL_USERNAME>
+MAIL_PASSWORD=<MAIL_PASSWORD>
+MAIL_ENCRYPTION=<MAIL_ENCRYPTION>
+MAIL_FROM_ADDRESS=staging@jigy.com
+MAIL_FROM_NAME="${APP_NAME}"
+
+...
+
+FILESYSTEM_DRIVER=public
+
+...
+```
 > 📝: By default, XAMPP's default username & password is `root` and `(empty/no password)`
 
-6. After that, run `php artisan key:generate`
-7. Run `php artisan migrate` to migrate all tables into your database. 
+> 📝: APP_URL is `http://localhost:8000` by default, but if you want hot reloading, use `http://localhost:3000`
+
+6. Generate key by:
+```
+php artisan key:generate
+```
+7. Create a symbolic link (used for images): 
+```
+php artisan storage:link
+```
+8. Migrate database:
+```
+php artisan migrate
+```
 > Please confirm that your XAMPP's Apache & MySQL is started before migrating
-8. (Optional) Run `php artisan db:seed` to populate data.
-9. Then run `php artisan serve`
-10. And finally, go to `localhost:8000`
+9. (Optional) To populate data:
+```
+php artisan db:seed
+```
+10. Serve/Host JiGy:
+```
+php artisan serve
+```
+11. Go to a web browser and go to:
+```
+localhost:8000 // Or localhost:3000 if you have hot/live reloading.
+```
 
 ## Development (frontend)
 - For convenience, run `php artisan serve`, then `npm run watch` to enable hot/live reloading.
