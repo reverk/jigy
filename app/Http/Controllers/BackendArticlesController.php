@@ -84,7 +84,7 @@ class BackendArticlesController extends Controller
             'excerpt' => request('excerpt'),
             'body' => request('body'),
             'category_id' => request('category'),
-            'isOutside' => Helper::convert_isOutside(request('isOutside')),
+            'is_outside' => request('isOutside'),
         ]);
 
         // Image upload
