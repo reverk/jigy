@@ -1,29 +1,23 @@
-<button type="button" class="btn p-3 custom m-3">
-    {{ $name }}
-</button>
-{{--<style>
+<style>
     div label input {
         margin-right:100px;
     }
 
     #ck-button {
         margin:4px;
-        background-color:#EFEFEF;
-        border-radius:4px;
-        border:1px solid #D0D0D0;
         overflow:auto;
         float:left;
     }
 
-    #ck-button label {
-        width:4.0em;
-    }
-
     #ck-button label span {
         text-align:center;
-        padding:3px 0px;
         display:block;
-        border-radius:4px;
+        border-radius: 100px;
+        font-size: 16px;
+        font-weight: lighter;
+        background: #C3FFF8;
+        box-shadow: 1px 3px 5px grey;
+        padding: 10px;
     }
 
     #ck-button label input {
@@ -32,21 +26,19 @@
     }
 
     #ck-button input:hover + span {
-        background-color:#efE0E0;
+        background-color: #d2f1f1;
     }
 
     #ck-button input:checked + span {
-        background-color:#911;
-        color:#fff;
+        background-color:#B9ECE6;
     }
 
     #ck-button input:checked:hover + span {
-        background-color:#c11;
-        color:#fff;
+        background-color: #d2f1f1;
     }
 </style>
-<div id="ck-button">
-    <label>
-        <input type="checkbox" value="1"><span>{{$name}}</span>
+<div id="ck-button" class="p-2 mx-2">
+    <label class="">
+        <input type="checkbox" value="1" class="" hidden><span>{{$name}}</span>
     </label>
-</div>--}}
+</div>
