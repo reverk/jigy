@@ -43,21 +43,29 @@
             <div class="col-4">
                 {{ Form::label('thumbnail', 'Thumbnail Image') }}
                 <div class="custom-file">
-                    {{ Form::file('thumbnail', ['class' => 'custom-file-input', 'id' => 'customFile']) }}
+                    {{ Form::file('thumbnail', ['class' => 'custom-file-input', 'id' => 'myInput']) }}
                     <label class="custom-file-label"
                            for="customFile">Choose file</label>
                 </div>
-                @isset($article->thumbnail_image)
-                    <img src="{{$article->thumbnail_image}}"
-                         alt="{{$article->thumbnail_image}}"
-                         class="40"
-                    >
-                @endisset
+
                 @error('thumbnail')
                 <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
             </div>
         </div>
+
+        @isset($article->thumbnail_image)
+            <div class="form-group my-3">
+                <p>Current Thumbnail</p>
+                <div>
+                    <img src="{{$article->thumbnail_image}}"
+                         alt="{{$article->thumbnail_image}}"
+                         class="mw-100 mh-100"
+                    >
+                </div>
+            </div>
+        @endisset
+
 
         <div class="form-group my-3">
             {{ Form::label('excerpt', 'Excerpt') }}

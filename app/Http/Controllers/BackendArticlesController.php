@@ -162,8 +162,8 @@ class BackendArticlesController extends Controller
             $path = str_replace('storage/', '', $article->getraworiginal('thumbnail_image'));
             if (Storage::disk('public')->exists($path)) { // If file exists
                 Storage::disk('public')->delete($path);
-                $article->thumbnail_image = 'storage/' . \request('thumbnail')->store('thumbnail');
             }
+            $article->thumbnail_image = 'storage/' . \request('thumbnail')->store('thumbnail');
         }
         // Update tags
         if (request('tags') != null) {
