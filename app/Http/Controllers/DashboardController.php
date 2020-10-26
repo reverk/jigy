@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
+use App\Article;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\Request;
@@ -19,7 +19,7 @@ class DashboardController extends Controller
     public function index()
     {
         return view('dashboard.index', [
-            'articles' => User::find(auth()->id())->articles->take(5),
+            'articles' => Article::where('user_id', auth()->user()->id)->latest()->take(5)->get(),
         ]);
     }
 

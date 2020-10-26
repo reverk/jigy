@@ -17,9 +17,21 @@
     <script src="{{ asset('js/app.js') }}"
             defer></script>
     <script src="{{ asset('node_modules/jquery/dist/jquery.min.js') }}"></script>
-    @if (Request::routeIs('dashboard.articles.create') || Request::routeIs('dashboard.articles.edit'))
-        <script src="{{asset('node_modules/tinymce/tinymce.min.js')}}"></script>
-        <script src="{{asset('js/tinymce_config.js')}}"></script>
+    {{--    Might need a better solution to this --}}
+    @if(Request::routeIs('dashboard.articles.create') || Request::routeIs('dashboard.articles.edit') || Request::routeIs('dashboard.profile'))
+        @if (Request::routeIs('dashboard.articles.create') || Request::routeIs('dashboard.articles.edit'))
+            <script src="{{asset('node_modules/tinymce/tinymce.min.js')}}"></script>
+            <script src="{{asset('js/tinymce_config.js')}}"></script>
+        @endif
+        <script>
+            document.addEventListener("DOMContentLoaded", function (event) {
+                document.querySelector('.custom-file-input').addEventListener('change', function (e) {
+                    var fileName = document.getElementById("myInput").files[0].name
+                    var nextSibling = e.target.nextElementSibling
+                    nextSibling.innerText = fileName
+                })
+            });
+        </script>
     @endif
     <script>
         $(function () {
@@ -45,7 +57,7 @@
         rel="stylesheet">
 </head>
 <body>
-<x-flash-message :msg="$msg ?? ''" />
+<x-flash-message :msg="$msg ?? ''"/>
 
 <x-layouts.dashboard-navbar/>
 
