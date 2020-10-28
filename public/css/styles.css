@@ -114,6 +114,23 @@ body {
     font-size: 32px;
 }
 
+.grid-item a {
+    /* Position relative applied by bootstrap */
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    visibility:hidden;
+    opacity: 0;
+    background: linear-gradient(180deg, #E6F4F1 -92.89%, rgba(230, 244, 241, 0) -92.87%, rgba(230, 244, 241, 0) -9.5%, #E6F4F1 100%);
+    transition: opacity .4s, visibility .4s;
+}
+
+.grid-item:hover a {
+    visibility: visible;
+    opacity: 1;
+}
+
 @media screen and (max-width: 768px) {
     .hero-card-text h1 {
         font-size: 32px;

@@ -61,7 +61,7 @@
 
 <x-layouts.dashboard-navbar/>
 
-<main>
+<main class="min-vh-100">
     {{ $slot }}
 </main>
 

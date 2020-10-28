@@ -16,6 +16,7 @@ use UniSharp\LaravelFilemanager\Lfm;
 */
 
 Route::get('/', 'ArticlesController@index')->name('index');
+Route::get('/gallery', 'GalleryController@index')->name('gallery');
 Route::get('/article/{slug}', 'ArticlesController@show')->name('article');
 Route::get('/tag/{tag}', 'TagsController@show')->name('tag');
 Route::get('/category/{category}', 'CategoryController@show')->name('category');
