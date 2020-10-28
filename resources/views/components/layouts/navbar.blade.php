@@ -25,7 +25,7 @@
             <x-layouts.navbar-item-link routeTo="index"
                                         iconName="home"
                                         name="Home"/>
-            <x-layouts.navbar-item-link routeTo="index"
+            <x-layouts.navbar-item-link routeTo="gallery"
                                         iconName="collections"
                                         name="Gallery"/>
             <x-layouts.navbar-item-link routeTo="index"

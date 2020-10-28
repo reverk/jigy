@@ -79,6 +79,7 @@ class RouteTest extends TestCase
         $urls = [
             '/',
             '/login',
+            '/gallery',
             '/tag/' . $this->tag->slug,
             '/category/' . $this->category->slug,
             '/article/' . $this->article->slug,

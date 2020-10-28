@@ -11,7 +11,7 @@
                 <ul class="col list-unstyled mb-0 mr-lg-2 px-3">
                     {{--                    TODO: Replace links with the apporiate links --}}
                     <li class="py-3 mb-0 h5"><a href="{{route('index')}}">Home</a></li>
-                    <li class="py-3 mb-0 h5"><a href="{{route('index')}}">Gallery</a></li>
+                    <li class="py-3 mb-0 h5"><a href="{{route('gallery')}}">Gallery</a></li>
                 </ul>
                 <ul class="col list-unstyled mb-0 px-3">
                     <li class="py-3 mb-0 h5"><a href="{{route('index')}}">Search</a></li>
