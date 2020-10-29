@@ -21,7 +21,7 @@
             <form action="{{URL::to('/search')}}" method="GET" role="search">
                 {{csrf_field()}}
                 <div class="input-group mb-5 border border-secondary radius m-3 col-lg-11">
-                    <input type="text" class="form-control m-2 border-0" name="search" placeholder="Look for..."
+                    <input type="text" class="form-control m-2 border-0" name="search" id="search" placeholder="Look for..."
                            aria-label="Look for...">
                     <div class="input-group-append">
                         <button class="btn m-2" type="submit" id="button-addon2"><span

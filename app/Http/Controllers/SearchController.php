@@ -32,6 +32,9 @@ class SearchController extends Controller
         ]);
     }
 
+    public function filter(){
+
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -56,14 +59,11 @@ class SearchController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param int $slug
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function show($slug)
+    public function show($id)
     {
-        return view('article', [
-            'article' => Article::where('slug', $slug)->firstorFail()
-        ]);
 
     }
 
