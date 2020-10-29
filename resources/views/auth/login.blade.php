@@ -17,7 +17,7 @@
                 {{--            password--}}
                 <div class="form-group">
                     <label for="pass">Password:</label>
-                    <input type="pass" class="form-control" id="pass" placeholder="Enter Password">
+                    <input type="password" class="form-control" id="password" placeholder="Enter Password">
                     <a href="{{route('password.request')}}"><small class="form-text text-muted">Forgot Password?</small></a>
                 </div>
                 {{--            btn--}}

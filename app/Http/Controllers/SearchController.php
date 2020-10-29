@@ -6,6 +6,8 @@ use App\Article;
 use App\Category;
 use App\Helpers\Helper;
 use App\Tag;
+use Illuminate\Http\Request;
+use App\Http\Controllers\User;
 
 
 class SearchController extends Controller
@@ -15,8 +17,15 @@ class SearchController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        /*$articles = $request->input('articles');
+
+        $users = User::with('services', function($query) use ($articles) {
+            $query->where('articles', 'LIKE', '%' . $articles . '%');
+        })->get();
+
+        return view('search', compact('users'));*/
         return view('search', [
             'tags' => Tag::all(),
             'categories' => Category::all(),

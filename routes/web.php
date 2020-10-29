@@ -2,7 +2,9 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Symfony\Component\Console\Input\Input;
 use UniSharp\LaravelFilemanager\Lfm;
+use App\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,7 +22,8 @@ Route::get('/article/{slug}', 'ArticlesController@show')->name('article');
 Route::get('/tag/{tag}', 'TagsController@show')->name('tag');
 Route::get('/category/{category}', 'CategoryController@show')->name('category');
 Route::get('/venue/{venue}', 'VenueController@show')->name('venue');
-route::get('/search', 'SearchController@index')->name('search');
+Route::get('/search', 'SearchController@index')->name('search');
+
 
 Auth::routes(['verify' => true, 'register' => false]);
 
