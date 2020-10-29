@@ -37,8 +37,8 @@
                 {{--            tag--}}
                 <div class="mb-5 p-3 d-flex flex-wrap justify-content-center">
                     @forelse($tags as $tag)
-                        <x-tags name="{{$tag->name}}"/>
-                        <x-tags name="{{$tag->slug}}"/>
+                        <x-tags placeholder="{{$tag->name}}"/>
+                        <x-tags placeholder="{{$tag->slug}}"/>
                     @empty
                         <p>There's nothing here!</p>
                     @endforelse
@@ -48,18 +48,23 @@
                     <x-title name="Date Range"/>
                 </div>
                 {{--            date picker--}}
-                <div class="row">
+                <div class="row mb-5">
                     <div class="col-sm-4">
-                        <x-datepicker name="From..."/>
+                        <x-datepicker placeholder="From..."/>
                     </div>
                     <div class="col">
                         <hr class="line">
                     </div>
                     <div class="col-sm-4">
-                        <x-datepicker name="To..."/>
+                        <x-datepicker placeholder="To..."/>
                     </div>
                 </div>
             </form>
+            {{--show result--}}
+            <div class="mb-5">
+                <x-title name="Results"/>
+            </div>
+
         </div>
     </div>
 </x-layouts.layout>
