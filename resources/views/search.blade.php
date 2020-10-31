@@ -18,7 +18,7 @@
                 <x-title name="Search"/>
             </div>
             {{--seach bar--}}
-            <form action="{{URL::to('/search')}}" method="GET" role="search">
+            <form action="{{--{{URL::to('/search')}}--}}" method="GET" {{--role="search"--}}>
                 {{csrf_field()}}
                 <div class="input-group mb-5 border border-secondary radius m-3 col-lg-11">
                     <input type="text" class="form-control m-2 border-0" name="search" id="search" placeholder="Look for..."
@@ -37,8 +37,8 @@
                 {{--            tag--}}
                 <div class="mb-5 p-3 d-flex flex-wrap justify-content-center">
                     @forelse($tags as $tag)
-                        <x-tags placeholder="{{$tag->name}}"/>
-                        <x-tags placeholder="{{$tag->slug}}"/>
+                        <x-tags placeholder="{{$tag->name}}" name="{{$tag->name}}"/>
+                        <x-tags placeholder="{{$tag->slug}}" name="{{$tag->slug}}"/>
                     @empty
                         <p>There's nothing here!</p>
                     @endforelse
@@ -50,13 +50,13 @@
                 {{--            date picker--}}
                 <div class="row mb-5">
                     <div class="col-sm-4">
-                        <x-datepicker placeholder="From..."/>
+                        <x-datepicker placeholder="From..." name="date" id="date"/>
                     </div>
                     <div class="col">
                         <hr class="line">
                     </div>
                     <div class="col-sm-4">
-                        <x-datepicker placeholder="To..."/>
+                        <x-datepicker placeholder="To..." name="date2" id="date2"/>
                     </div>
                 </div>
             </form>
@@ -64,7 +64,14 @@
             <div class="mb-5">
                 <x-title name="Results"/>
             </div>
-
+            <div class="mb-5">
+                @forelse($articles as $article)
+                    <x-related-card :article="$article"/>
+                    <x-related-card :article="$article"/>
+                @empty
+                    <p>Please search</p>
+                @endforelse
+            </div>
         </div>
     </div>
 </x-layouts.layout>

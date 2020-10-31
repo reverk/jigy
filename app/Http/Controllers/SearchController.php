@@ -19,22 +19,47 @@ class SearchController extends Controller
      */
     public function index(Request $request)
     {
-        /*$articles = $request->input('articles');
+        $search = $request->input('search');
 
-        $users = User::with('services', function($query) use ($articles) {
-            $query->where('articles', 'LIKE', '%' . $articles . '%');
-        })->get();
-
-        return view('search', compact('users'));*/
+        $articles = Article::where('title', 'like', '%' . $search . '%')->get();
+        /*ddd($articles);*/
         return view('search', [
             'tags' => Tag::all(),
+            'articles' => $articles,
             'categories' => Category::all(),
-        ]);
+        ] );
     }
 
-    public function filter(){
+    /**
+     * Filter Search Result
+     *
+     * @return \Illuminate\Http\Response
+     */
 
-    }
+    /*public function filter(){
+        /*$search = Input::get('search');
+        $date = Input::get('date');
+        $tags = Input::get('tags');
+        */
+
+        /*if($search = Input::get('search')){
+            if($date = Input::get('date')){
+                if($tags = Input::get('tags')){
+                    #
+                }else{
+                    #
+                }
+            }if($tags = Input::get('tags')){
+                if($date = Input::get('date')){
+                    #
+                }
+            } else{
+                return view('article', [
+                    'article' => Article::where('search', $search)->firstorFail()
+                ]);
+            }
+        }
+    }*/
     /**
      * Show the form for creating a new resource.
      *

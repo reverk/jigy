@@ -7,7 +7,7 @@
     <div class="input-group-prepend p-2 ">
         <span class="material-icons">calendar_today</span>
     </div>
-    <input class="datepicker p-2 border-0 " data-date-format="mm/dd/yyyy" placeholder="{{$placeholder}}" name="date" id="date">
+    <input class="datepicker p-2 border-0 " data-date-format="mm/dd/yyyy" placeholder="{{$placeholder}}" >
 </div>
 <script>
     $('.datepicker').datepicker({

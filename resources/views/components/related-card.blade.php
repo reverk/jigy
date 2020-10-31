@@ -3,7 +3,7 @@
         <a href="{{route('article', $article->slug)}}"
            class="col-lg-6 px-lg-2 p-0">
             <img src="{{$article->thumbnail_image}}"
-                 alt="Latest post image"
+                 alt="Result Post image"
                  class="latest-image">
         </a>
         <div class="col-lg-4 d-flex px-lg-2 p-0">
