@@ -11,20 +11,28 @@
                 {{--        email--}}
                 <div class="form-group mt-3">
                     <label for="email">Email:</label>
-                    <input type="email" class="form-control" id="email" placeholder="Enter email">
+                    <input type="email" class="form-control" name="email" id="email" placeholder="Enter email">
+                    @error('email')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 {{--            password--}}
                 <div class="form-group">
                     <label for="pass">Password:</label>
-                    <input type="password" class="form-control" id="password" placeholder="Enter Password">
+                    <input type="password" class="form-control" name="password" id="password" placeholder="Enter Password">
                     <a href="{{route('password.request')}}"><small class="form-text text-muted">Forgot Password?</small></a>
+                    @error('password')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                 </div>
                 {{--            btn--}}
                 <div class="container mt-5">
                     <div class="d-flex flex-row-reverse">
                         <button type="submit" class="p-2 ml-2 btn btn-primary">Login</button>
-                        <a class="btn btn-secondary p-2" href="{{route('register')}}" role="button">Register</a>
+                        @if(Route::has('register'))
+                            <a class="btn btn-secondary p-2" href="{{route('register')}}" role="button">Register</a>
+                        @endif
                     </div>
                 </div>
             </form>
