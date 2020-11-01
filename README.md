@@ -8,6 +8,19 @@
 
 A blog build with Laravel, featuring a filtered search
 
+## Table of Contents
+- [JTMK i-Gallery (JiGy) 📑](#jtmk-i-gallery--jigy----)
+  * [Features to work on ✨](#features-to-work-on--)
+  * [Installation](#installation)
+    + [Required tools 🛠](#--required-tools-----)
+    + [Instructions 📜](#--instructions-----)
+      - [Quick Start Guide](#quick-start-guide)
+      - [Detailed installation](#detailed-installation)
+  * [Development](#development)
+  * [FAQ](#faq)
+  * [Collaborators 👨🏻‍💻](#collaborators--------)
+  * [License](#license)
+
 ## Features to work on ✨
 - ✅ Build a blog that's able to do CRUD operations
 - ✅ Able to manage users from the backend
@@ -20,6 +33,9 @@ A blog build with Laravel, featuring a filtered search
 - [XAMPP](https://www.apachefriends.org/index.html) - for MySQL database, any other databases supported by laravel works too.
 - [Git](https://git-scm.com/)
 - IDE or Code Editor -- we recommend [PhpStorm](https://www.jetbrains.com/phpstorm/)
+- Email testing: [Mailtrap account](https://mailtrap.io/)
+- Search: [Algolia account](https://www.algolia.com/)
+
 
 ### **Instructions 📜**
 #### Quick Start Guide
@@ -72,6 +88,10 @@ MAIL_FROM_NAME="${APP_NAME}"
 
 FILESYSTEM_DRIVER=public
 
+# For serach function
+ALGOLIA_APP_ID=<YOUR_APP_ID>
+ALGOLIA_SECRET=<YOUR_ADMIN_API_KEY>
+
 ...
 ```
 > 📝: By default, XAMPP's default username & password is `root` and `(empty/no password)`
@@ -91,22 +111,46 @@ php artisan storage:link
 php artisan migrate
 ```
 > Please confirm that your XAMPP's Apache & MySQL is started before migrating
-9. (Optional) To populate data:
+9. (Optional) To populate fake data:
 ```
 php artisan db:seed
 ```
-10. Serve/Host JiGy:
+10. Index Algolia search & their configs:
+```
+php artisan scout:sync
+```
+11. Serve/Host JiGy:
 ```
 php artisan serve
 ```
-11. Go to a web browser and go to:
+12. Go to a web browser and go to:
 ```
 localhost:8000 // Or localhost:3000 if you have hot/live reloading.
 ```
 
-## Development (frontend)
-- For convenience, run `php artisan serve`, then `npm run watch` to enable hot/live reloading.
+## Development
+- Sometimes, you may need to enable hot reloading to make things easier. To enable hot/live reloading:
+```
+php artisan serve
+```
+Then open another terminal and type:
+```
+npm run watch
+```
 > ℹ You'll need to leave 2 terminals to run simultaneously   
+
+## FAQ
+**Q: Where can I find and apply Mailtrap details?**
+
+A: Assuming you've registered your account, you can find it on `Inboxs > <Your project name> > SMTP Settings tab`. 
+Then at `Intergrations` section, select `Laravel`. 
+It'll provide you the appropriate credentials to fill it into `.env`.
+
+**Q: Where can I find Algolia App ID and Algolia Secret Key?**
+
+A: Again, assuming you've registered your account, go to `Dashboard > API Keys > Your API Keys tab`.
+
+Then, copy `Application ID` and `Admin API Key` to `ALGOLIA_APP_ID=<PASTE HERE>` and `ALGOLIA_SECRET=<PASTE HERE>` in `.env` respectively.
 
 ## Collaborators 👨🏻‍💻
 - [@lyaena](https://github.com/lyaena)
