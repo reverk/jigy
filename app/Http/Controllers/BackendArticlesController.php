@@ -56,7 +56,7 @@ class BackendArticlesController extends Controller
         return view('dashboard.articles.form', [
             'name' => 'Create an article',
             'action' => 'Create article',
-            'categories' => Category::latest()->pluck('name', 'id'),
+            'categories' => Category::latest()->get(),
             'tags' => Tag::latest()->get()
         ]);
     }
@@ -132,7 +132,7 @@ class BackendArticlesController extends Controller
             'name' => "Editing \"${title}\"",
             'action' => 'Update Article',
             'article' => $article,
-            'categories' => Category::latest()->pluck('name', 'id'),
+            'categories' => Category::latest()->get(),
             'tags' => Tag::latest()->get()
         ]);
     }

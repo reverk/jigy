@@ -86,7 +86,24 @@
         <div class="form-row my-3">
             <div class="col">
                 {{ Form::label('category', 'Category') }}
-                {{ Form::select('category', $categories, null, ['class' => 'custom-select'])}}
+                <select name="category"
+                        class="custom-select"
+                        id="category">
+                    {{-- The below code is... meh - but it works --}}
+                    @foreach ($categories as $category)
+                        @if(old('category') == $category->id) {{-- If there's old data from validation errors --}}
+                            <option value="{{$category->id}}" selected>{{$category->name}}</option>
+                        @elseif(isset($article)) {{-- Or if there's data from editing an article --}}
+                            @if($article->category_id == $category->id)
+                                <option value="{{$category->id}}" selected>{{$category->name}}</option>
+                            @endif
+                        @elseif($loop->index == 0) {{-- Or if it's the first one --}}
+                            <option value="{{$category->id}}" selected>{{$category->name}}</option>
+                        @else {{-- Otherwise just leave unselected --}}
+                            <option value="{{$category->id}}">{{$category->name}}</option>
+                        @endif
+                    @endforeach
+                </select>
                 @error('category')
                 <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
