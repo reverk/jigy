@@ -18,8 +18,8 @@
                 <x-title name="Search"/>
             </div>
             {{--seach bar--}}
-            <form action="{{--{{URL::to('/search')}}--}}" method="GET" {{--role="search"--}}>
-                {{csrf_field()}}
+            <form action="{{route('search')}}" method="GET" {{--role="search"--}}>
+                @csrf
                 <div class="input-group mb-5 border border-secondary radius m-3 col-lg-11">
                     <input type="text" class="form-control m-2 border-0" name="search" id="search" placeholder="Look for..."
                            aria-label="Look for...">
@@ -38,7 +38,7 @@
                 <div class="mb-5 p-3 d-flex flex-wrap justify-content-center">
                     @forelse($tags as $tag)
                         <x-tags placeholder="{{$tag->name}}" name="{{$tag->name}}"/>
-                        <x-tags placeholder="{{$tag->slug}}" name="{{$tag->slug}}"/>
+{{--                        <x-tags placeholder="{{$tag->slug}}" name="{{$tag->slug}}"/>--}}
                     @empty
                         <p>There's nothing here!</p>
                     @endforelse
@@ -65,12 +65,15 @@
                 <x-title name="Results"/>
             </div>
             <div class="mb-5">
-                @forelse($articles as $article)
-                    <x-related-card :article="$article"/>
-                    <x-related-card :article="$article"/>
-                @empty
+                @if(isset($articles))
+                    @forelse($articles as $article)
+                        <x-related-card :article="$article"/>
+                    @empty
+                        <p>No results found</p>
+                    @endforelse
+                @else
                     <p>Please search</p>
-                @endforelse
+                @endif
             </div>
         </div>
     </div>
