@@ -97,7 +97,7 @@
                 <div class="form-check form-check-inline">
                     <input type="radio"
                            id="isOutside"
-                           name="isOutside"
+                           name="is_outside"
                            class="form-check-input"
                            value="1"
                            @if(isset($article))
@@ -111,7 +111,7 @@
                 <div class="form-check form-check-inline">
                     <input type="radio"
                            id="isOutside"
-                           name="isOutside"
+                           name="is_outside"
                            class="form-check-input"
                            value="0"
                            @if(isset($article))

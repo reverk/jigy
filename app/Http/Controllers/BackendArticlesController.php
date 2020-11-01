@@ -150,8 +150,6 @@ class BackendArticlesController extends Controller
             'excerpt' => 'required',
             'body' => 'required',
             'category' => 'required',
-            'tags' => '',
-            'isOutside' => '',
             'thumbnail' => 'image'
         ]);
 
