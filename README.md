@@ -9,16 +9,16 @@
 A blog build with Laravel, featuring a filtered search
 
 ## Table of Contents
-- [JTMK i-Gallery (JiGy) 📑](#jtmk-i-gallery--jigy----)
-  * [Features to work on ✨](#features-to-work-on--)
+- [JTMK i-Gallery (JiGy) 📑](#jtmk-i-gallery-jigy-)
+  * [Features to work on ✨](#features-to-work-on-)
   * [Installation](#installation)
-    + [Required tools 🛠](#--required-tools-----)
-    + [Instructions 📜](#--instructions-----)
+    + [Required tools 🛠](#required-tools-)
+    + [Instructions 📜](#instructions-)
       - [Quick Start Guide](#quick-start-guide)
       - [Detailed installation](#detailed-installation)
   * [Development](#development)
   * [FAQ](#faq)
-  * [Collaborators 👨🏻‍💻](#collaborators--------)
+  * [Collaborators 👨🏻‍💻](#collaborators-)
   * [License](#license)
 
 ## Features to work on ✨
