@@ -63,7 +63,7 @@ class RouteTest extends TestCase
             'excerpt' => 'Sample test text',
             'body' => 'Lorem Ipsum',
             'category_id' => $this->category->id,
-            'thumbnail_image' => 'static/images/default_thumbpng.png'
+            'thumbnail_image' => 'static/images/default_thumbpng.jpg'
         ]);
     }
 

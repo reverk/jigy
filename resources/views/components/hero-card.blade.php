@@ -1,7 +1,5 @@
-<section class="d-flex justify-content-between flex-column hero-card overflow-hidden position-relative">
-    <img src="{{asset('static/images/hero_img.jpg')}}"
-         class="hero-image"
-         alt="Hero image">
+<section class="d-flex justify-content-between flex-column hero-card overflow-hidden position-relative hero-image"
+         style="background-image: url({{asset('static/images/hero_img.jpg')}})">
     @if(Request::routeIs('index'))
         <div class="hero-card-navbar">
             <x-layouts.navbar/>

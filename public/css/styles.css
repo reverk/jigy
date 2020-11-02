@@ -12,7 +12,7 @@ body {
 }
 
 .navbar-item-font {
-    font-family: "Quicksand", sans-serif;
+    font-family: "Open Sans", sans-serif;
 }
 
 .navbar-underline {
@@ -90,18 +90,9 @@ body {
 }
 
 .hero-image {
-    z-index: -1;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    min-width: 100%;
-    min-height: 100%;
-    height: auto;
-    width: auto;
-
-    -webkit-filter: blur(5px);
-    filter: blur(5px) saturate(125%);
+    background-repeat:no-repeat;
+    background-position: center center;
+    background-size: cover;
 }
 
 .hero-card-text h1 {

@@ -91,7 +91,7 @@ class BackendArticlesController extends Controller
         if (request('thumbnail') != null) {
             $article->thumbnail_image = 'storage/' . request('thumbnail')->store('thumbnail');
         } else {
-            $article->thumbnail_image = 'static/images/default_thumbpng.png';
+            $article->thumbnail_image = 'static/images/default_thumbpng.jpg';
         }
         $article->user_id = auth()->user()->id; // I've no idea why it can't be used inside Article class
 
