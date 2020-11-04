@@ -14,7 +14,7 @@
         <section class="mb-3">
             <header class="d-flex flex-column rounded-top border border-bottom-0 p-3 py-4">
                 <h3 class="font-weight-bold">Your name</h3>
-                <p class="my-2 mt-3">This is your name that will be displayed throughout {{env('APP_NAME', 'Laravel')}}
+                <p class="my-2 mt-3">This is your name that will be displayed throughout {{config('app.name', 'Laravel')}}
                     .</p>
                 {{Form::text('name', old('name'), ['class' => 'form-control', 'placeholder' => auth()->user()->name, 'style' => 'max-width: 300px;'])}}
                 @error('name')
@@ -37,7 +37,7 @@
         <section class="mb-3">
             <header class="d-flex flex-column rounded-top border border-bottom-0 p-3 py-4">
                 <h3 class="font-weight-bold">Your email</h3>
-                <p class="my-2 mt-3">This is your address that will be used to login {{env('APP_NAME', 'Laravel')}}.</p>
+                <p class="my-2 mt-3">This is your address that will be used to login {{config('app.name', 'Laravel')}}.</p>
                 {{Form::text('email', old('email'), ['class' => 'form-control', 'placeholder' => auth()->user()->email, 'style' => 'max-width: 300px;'])}}
                 @error('email')
                 <div class="text-danger mt-2">{{ $message }}</div>
@@ -59,7 +59,7 @@
         <section class="mb-3">
             <header class="d-flex flex-column rounded-top border border-bottom-0 p-3 py-4">
                 <h3 class="font-weight-bold">Your password</h3>
-                <p class="my-2 mt-3">This is your password that will be used to login {{env('APP_NAME', 'Laravel')}}
+                <p class="my-2 mt-3">This is your password that will be used to login {{config('app.name', 'Laravel')}}
                     .</p>
                 {{Form::password('password', ['class' => 'form-control', 'placeholder' => '********', 'style' => 'max-width: 300px;'])}}
                 {{Form::password('password_confirmation', ['class' => 'form-control mt-2', 'placeholder' => '********', 'style' => 'max-width: 300px;'])}}
@@ -120,7 +120,7 @@
         <section class="mb-3">
             <header class="d-flex flex-column rounded-top border border-danger border-bottom-0 p-3 py-4">
                 <h3 class="font-weight-bold">Delete your account</h3>
-                <p class="mt-3 mb-0">This action will delete your account in {{env('APP_NAME', 'Laravel')}} including
+                <p class="mt-3 mb-0">This action will delete your account in {{config('app.name', 'Laravel')}} including
                     all your articles.</p>
             </header>
             <footer class="d-flex justify-content-end align-items-center rounded-bottom border border-danger p-2 px-3"

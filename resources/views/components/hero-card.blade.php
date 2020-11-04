@@ -6,7 +6,7 @@
         </div>
     @endif
     <desc class="text-center hero-card-text">
-        <h1 class="font-weight-light text-white">{{env('APP_NAME', 'Laravel')}}</h1>
+        <h1 class="font-weight-light text-white">{{config('app.name', 'Laravel')}}</h1>
         <h2 class="font-weight-light text-white">Where activities held are told.</h2>
     </desc>
     <button onclick="scrollToContent();"
