@@ -160,3 +160,4 @@ Then, copy `Application ID` and `Admin API Key` to `ALGOLIA_APP_ID=<PASTE HERE>`
 
 ## License
 MIT
+
