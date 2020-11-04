@@ -75,7 +75,7 @@ class BackendArticlesController extends Controller
             'body' => 'required',
             'category' => 'required',
             'tags' => '',
-            'isOutside' => '',
+            'is_outside' => '',
             'thumbnail' => 'image'
         ]);
 
@@ -84,7 +84,7 @@ class BackendArticlesController extends Controller
             'excerpt' => request('excerpt'),
             'body' => request('body'),
             'category_id' => request('category'),
-            'is_outside' => request('isOutside'),
+            'is_outside' => request('is_outside'),
         ]);
 
         // Image upload
