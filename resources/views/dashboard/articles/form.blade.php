@@ -43,21 +43,29 @@
             <div class="col-4">
                 {{ Form::label('thumbnail', 'Thumbnail Image') }}
                 <div class="custom-file">
-                    {{ Form::file('thumbnail', ['class' => 'custom-file-input', 'id' => 'customFile']) }}
+                    {{ Form::file('thumbnail', ['class' => 'custom-file-input', 'id' => 'myInput']) }}
                     <label class="custom-file-label"
                            for="customFile">Choose file</label>
                 </div>
-                @isset($article->thumbnail_image)
-                    <img src="{{$article->thumbnail_image}}"
-                         alt="{{$article->thumbnail_image}}"
-                         class="40"
-                    >
-                @endisset
+
                 @error('thumbnail')
                 <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
             </div>
         </div>
+
+        @isset($article->thumbnail_image)
+            <div class="form-group my-3">
+                <p>Current Thumbnail</p>
+                <div>
+                    <img src="{{$article->thumbnail_image}}"
+                         alt="{{$article->thumbnail_image}}"
+                         class="mw-100 mh-100"
+                    >
+                </div>
+            </div>
+        @endisset
+
 
         <div class="form-group my-3">
             {{ Form::label('excerpt', 'Excerpt') }}
@@ -78,7 +86,24 @@
         <div class="form-row my-3">
             <div class="col">
                 {{ Form::label('category', 'Category') }}
-                {{ Form::select('category', $categories, null, ['class' => 'custom-select'])}}
+                <select name="category"
+                        class="custom-select"
+                        id="category">
+                    {{-- The below code is... meh - but it works --}}
+                    @foreach ($categories as $category)
+                        @if(old('category') == $category->id) {{-- If there's old data from validation errors --}}
+                            <option value="{{$category->id}}" selected>{{$category->name}}</option>
+                        @elseif(isset($article)) {{-- Or if there's data from editing an article --}}
+                            @if($article->category_id == $category->id)
+                                <option value="{{$category->id}}" selected>{{$category->name}}</option>
+                            @endif
+                        @elseif($loop->index == 0) {{-- Or if it's the first one --}}
+                            <option value="{{$category->id}}" selected>{{$category->name}}</option>
+                        @else {{-- Otherwise just leave unselected --}}
+                            <option value="{{$category->id}}">{{$category->name}}</option>
+                        @endif
+                    @endforeach
+                </select>
                 @error('category')
                 <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
@@ -87,12 +112,35 @@
                 {{ Form::label('qOutside', 'Event held outside?') }}
                 <br>
                 <div class="form-check form-check-inline">
-                    {{ Form::radio('isOutside', 'Outside', isset($article->is_outside) ? $article->is_outside : '', ['class' => 'form-check-input']) }}
-                    {{ Form::label('Outside', 'Yes', ['class' => 'form-check-label']) }}
+                    <input type="radio"
+                           id="isOutside"
+                           name="is_outside"
+                           class="form-check-input"
+                           value="1"
+                           @if(isset($article))
+                               @if($article->getRawOriginal('is_outside') == 1)
+                                   checked
+                               @endif
+                           @endif
+                   >
+                   <label for="isOutside" class="form-check-label">Yes</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    {{ Form::radio('isOutside', 'Inside', isset($article->is_outside) ? !$article->is_outside : true, ['class' => 'form-check-input']) }}
-                    {{ Form::label('inside', 'No', ['class' => 'form-check-label']) }}
+                    <input type="radio"
+                           id="isOutside"
+                           name="is_outside"
+                           class="form-check-input"
+                           value="0"
+                           @if(isset($article))
+                               @if($article->getRawOriginal('is_outside') == 0)
+                               checked
+                               @endif
+                           @else
+                           checked
+                            @endif
+                    >
+                    <label for="isOutside"
+                           class="form-check-label">No</label>
                 </div>
             </div>
         </div>

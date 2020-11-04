@@ -14,27 +14,24 @@
     <title>{{ config('app.name', 'Laravel') }} Backend</title>
 
     <!-- Scripts -->
-    @if(env('APP_ENV') == 'production' || env('APP_ENV') == 'staging')
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-                integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-                crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
-                integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
-                crossorigin="anonymous"></script>
-    @else
-        <script src="{{ asset('js/app.js') }}"
-                defer></script>
-    @endif
+    <script src="{{ asset('js/app.js') }}"
+            defer></script>
     <script src="{{ asset('node_modules/jquery/dist/jquery.min.js') }}"></script>
-    @if (Request::routeIs('dashboard.articles.create') || Request::routeIs('dashboard.articles.edit'))
-        @if(env('APP_ENV') == 'production' || env('APP_ENV') == 'staging')
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/4.9.11/tinymce.min.js"
-                    integrity="sha512-3tlegnpoIDTv9JHc9yJO8wnkrIkq7WO7QJLi5YfaeTmZHvfrb1twMwqT4C0K8BLBbaiR6MOo77pLXO1/PztcLg=="
-                    crossorigin="anonymous"></script>
-        @else
+    {{--    Might need a better solution to this --}}
+    @if(Request::routeIs('dashboard.articles.create') || Request::routeIs('dashboard.articles.edit') || Request::routeIs('dashboard.profile'))
+        @if (Request::routeIs('dashboard.articles.create') || Request::routeIs('dashboard.articles.edit'))
             <script src="{{asset('node_modules/tinymce/tinymce.min.js')}}"></script>
+            <script src="{{asset('js/tinymce_config.js')}}"></script>
         @endif
-        <script src="{{asset('js/tinymce_config.js')}}"></script>
+        <script>
+            document.addEventListener("DOMContentLoaded", function (event) {
+                document.querySelector('.custom-file-input').addEventListener('change', function (e) {
+                    var fileName = document.getElementById("myInput").files[0].name
+                    var nextSibling = e.target.nextElementSibling
+                    nextSibling.innerText = fileName
+                })
+            });
+        </script>
     @endif
     <script>
         $(function () {
@@ -43,15 +40,8 @@
     </script>
 
     <!-- Styles -->
-    @if(env('APP_ENV') == 'production' || env('APP_ENV') == 'staging')
-        <link rel="stylesheet"
-              href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
-              integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
-              crossorigin="anonymous">
-    @else
-        <link href="{{ asset('css/app.css') }}"
-              rel="stylesheet">
-    @endif
+    <link href="{{ asset('css/app.css') }}"
+          rel="stylesheet">
     <link rel="stylesheet"
           href="{{asset('css/styles.css')}}">
     <link rel="stylesheet"
@@ -67,12 +57,12 @@
         rel="stylesheet">
 </head>
 <body>
+<x-flash-message :msg="$msg ?? ''"/>
 
 <x-layouts.dashboard-navbar/>
 
-<main>
+<main class="min-vh-100">
     {{ $slot }}
-
 </main>
 
 <x-layouts.footer/>

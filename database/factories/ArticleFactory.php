@@ -15,7 +15,7 @@ $factory->define(Article::class, function (Faker $faker) {
         'title' => $title,
         'slug' => Str::slug($title, '-'),
         'excerpt' => $faker->paragraph,
-        'thumbnail_image' => 'static/images/default_thumbpng.png',
+        'thumbnail_image' => 'static/images/default_thumbpng.jpg',
         'body' => $faker->randomHtml(),
     ];
 });

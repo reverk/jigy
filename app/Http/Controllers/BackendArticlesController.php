@@ -56,7 +56,7 @@ class BackendArticlesController extends Controller
         return view('dashboard.articles.form', [
             'name' => 'Create an article',
             'action' => 'Create article',
-            'categories' => Category::latest()->pluck('name', 'id'),
+            'categories' => Category::latest()->get(),
             'tags' => Tag::latest()->get()
         ]);
     }
@@ -75,7 +75,7 @@ class BackendArticlesController extends Controller
             'body' => 'required',
             'category' => 'required',
             'tags' => '',
-            'isOutside' => '',
+            'is_outside' => '',
             'thumbnail' => 'image'
         ]);
 
@@ -84,14 +84,14 @@ class BackendArticlesController extends Controller
             'excerpt' => request('excerpt'),
             'body' => request('body'),
             'category_id' => request('category'),
-            'isOutside' => Helper::convert_isOutside(request('isOutside')),
+            'is_outside' => request('is_outside'),
         ]);
 
         // Image upload
         if (request('thumbnail') != null) {
             $article->thumbnail_image = 'storage/' . request('thumbnail')->store('thumbnail');
         } else {
-            $article->thumbnail_image = 'static/images/default_thumbpng.png';
+            $article->thumbnail_image = 'static/images/default_thumbpng.jpg';
         }
         $article->user_id = auth()->user()->id; // I've no idea why it can't be used inside Article class
 
@@ -132,7 +132,7 @@ class BackendArticlesController extends Controller
             'name' => "Editing \"${title}\"",
             'action' => 'Update Article',
             'article' => $article,
-            'categories' => Category::latest()->pluck('name', 'id'),
+            'categories' => Category::latest()->get(),
             'tags' => Tag::latest()->get()
         ]);
     }
@@ -150,8 +150,6 @@ class BackendArticlesController extends Controller
             'excerpt' => 'required',
             'body' => 'required',
             'category' => 'required',
-            'tags' => '',
-            'isOutside' => '',
             'thumbnail' => 'image'
         ]);
 
@@ -162,8 +160,8 @@ class BackendArticlesController extends Controller
             $path = str_replace('storage/', '', $article->getraworiginal('thumbnail_image'));
             if (Storage::disk('public')->exists($path)) { // If file exists
                 Storage::disk('public')->delete($path);
-                $article->thumbnail_image = 'storage/' . \request('thumbnail')->store('thumbnail');
             }
+            $article->thumbnail_image = 'storage/' . \request('thumbnail')->store('thumbnail');
         }
         // Update tags
         if (request('tags') != null) {

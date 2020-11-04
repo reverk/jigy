@@ -1,5 +1,3 @@
-{{--TODO: Add profile image
-https://blog.medhicham.com/en/blog-en/10-steps-to-get-you-on-image-profile-upload-for-laravel-5--}}
 <x-layouts.dashboard-layout>
 
     <x-dashboard-profile/>
@@ -7,11 +5,13 @@ https://blog.medhicham.com/en/blog-en/10-steps-to-get-you-on-image-profile-uploa
     <section class="container">
         <div class="h2 font-weight-bold py-2 mb-3">Articles</div>
 
-        @forelse($articles as $article)
-            <x-dashboard-article :article="$article"/>
-        @empty
-            <x-error-post/>
-        @endforelse
+        <div class="list-group-flush">
+            @forelse($articles as $article)
+                <x-dashboard-article :article="$article"/>
+            @empty
+                <x-error-post/>
+            @endforelse
+        </div>
 
         <div class="d-flex justify-content-end">
             <a href="{{route('dashboard.articles')}}"
