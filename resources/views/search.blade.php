@@ -18,7 +18,7 @@
                 <x-title name="Search"/>
             </div>
             {{--seach bar--}}
-            <form action="{{route('search')}}" method="GET" {{--role="search"--}}>
+            <form action="{{route('search')}}" method="GET">
                 @csrf
                 <div class="input-group mb-5 border border-secondary radius m-3 col-lg-11">
                     <input type="text" class="form-control m-2 border-0" name="search" id="search" placeholder="Look for..."
@@ -37,12 +37,25 @@
                 {{--            tag--}}
                 <div class="mb-5 p-3 d-flex flex-wrap justify-content-center">
                     @forelse($tags as $tag)
-                        <x-tags placeholder="{{$tag->name}}" name="{{$tag->name}}"/>
-{{--                        <x-tags placeholder="{{$tag->slug}}" name="{{$tag->slug}}"/>--}}
+                        <x-tags placeholder="{{$tag->name}}" name="{{$tag->id}} "/>
                     @empty
                         <p>There's nothing here!</p>
                     @endforelse
                 </div>
+
+{{--                category--}}
+                <div class="mb-5">
+                    <x-title name="Category"/>
+                </div>
+                {{--   category tag--}}
+                <div class="mb-5 p-3 d-flex flex-wrap justify-content-center">
+                    @forelse($categories as $category)
+                        <x-category-tag placeholder="{{$category->name}}" name="{{$category->id}}"/>
+                    @empty
+                        <p>There's nothing here!</p>
+                    @endforelse
+                </div>
+
                 {{--            date range--}}
                 <div class="mb-5">
                     <x-title name="Date Range"/>
@@ -50,7 +63,7 @@
                 {{--            date picker--}}
                 <div class="row mb-5">
                     <div class="col-sm-4">
-                        <x-datepicker placeholder="From..." name="date" id="date"/>
+                        <x-datepicker placeholder="From..." name="date1" id="date1"/>
                     </div>
                     <div class="col">
                         <hr class="line">
