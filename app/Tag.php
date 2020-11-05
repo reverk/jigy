@@ -4,10 +4,13 @@ namespace App;
 
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Scout\Searchable;
 
 class Tag extends Model
 {
-    use Sluggable;
+    use Sluggable, Searchable;
+
+    protected $touches = ['articles'];
 
     /**
      * Return the sluggable configuration array for this model.
@@ -21,6 +24,16 @@ class Tag extends Model
                 'source' => 'name'
             ]
         ];
+    }
+
+    /**
+     * Get the index name for the model.
+     *
+     * @return string
+     */
+    public function searchableAs()
+    {
+        return 'tag_index';
     }
 
     /**
