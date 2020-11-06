@@ -1,7 +1,12 @@
-<x-flash-message :msg="$msg ?? ''" />
 <nav class="navbar navbar-expand-lg navbar-light container">
-    <a class="navbar-brand navbar-item-font font-weight-light"
-       href="{{route('index')}}">{{ config('app.name', 'Laravel') }}</a>
+
+    <a class="navbar-brand"
+       href="{{route('index')}}"
+       style="width: 45px">
+        <img src="{{asset('static/images/logo.svg')}}"
+             alt="Logo"
+             class="mw-100 mh-100">
+    </a>
 
     <button class="navbar-toggler border-0"
             type="button"
@@ -20,7 +25,7 @@
             <x-layouts.navbar-item-link routeTo="index"
                                         iconName="home"
                                         name="Home"/>
-            <x-layouts.navbar-item-link routeTo="index"
+            <x-layouts.navbar-item-link routeTo="gallery"
                                         iconName="collections"
                                         name="Gallery"/>
             <x-layouts.navbar-item-link routeTo="index"
@@ -30,28 +35,40 @@
                                         iconName="search"
                                         name="Search"/>
             @guest
-                <a class="nav-item nav-link d-inline-flex btn btn-outline-info px-3 py-2 py-md-1"
+                <a class="nav-item d-inline-flex btn primary-gradient px-3 py-2 py-md-1"
                    href="{{route('login')}}">
                     <i class="material-icons">login</i>
                     <desc class="ml-1 navbar-item-font">Login</desc>
                 </a>
-                {{--                @if(Route::has('register'))--}}
-                {{--                    <x-layouts.navbar-item routeTo="register" iconName="add_circle" name="register"/>--}}
-                {{--                @endif--}}
             @endguest
             @auth
-                <x-layouts.navbar-item-link routeTo="index"
-                                            iconName="face"
-                                            name="Hello, {{Auth::user()->name}}"/>
-                <form action="{{route('logout')}}"
-                      method="post">
-                    @csrf
-                    <button type="submit"
-                            class="btn btn-outline-danger d-inline-flex">
-                        <i class="material-icons align-self-center mr-2">logout</i>
-                        <desc class="align-self-center">Logout</desc>
-                    </button>
-                </form>
+                <div class="nav-item dropdown px-2 py-2 py-md-1">
+                    <img src="{{auth()->user()->avatar}}"
+                         role="button"
+                         type="button"
+                         data-toggle="dropdown"
+                         alt="Profile image"
+                         width=28px
+                         class="rounded-circle">
+                    <div class="dropdown-menu dropdown-menu-right"
+                         aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item"
+                           href="{{route('dashboard')}}">Dashboard</a>
+                        <a class="dropdown-item"
+                           href="{{route('dashboard.profile')}}">Settings</a>
+                        <div class="dropdown-divider"></div>
+                        <form action="{{route('logout')}}"
+                              method="post"
+                        >
+                            @csrf
+                            <button type="submit"
+                                    class="dropdown-item d-inline-flex">
+                                <i class="material-icons align-self-center mr-2 d-lg-none d-block">logout</i>
+                                <desc class="align-self-center text-danger">Logout</desc>
+                            </button>
+                        </form>
+                    </div>
+                </div>
             @endauth
         </div>
     </div>

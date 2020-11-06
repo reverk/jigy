@@ -51,10 +51,9 @@ class VenueController extends Controller
     public function show($venue)
     {
         $articles = Article::where('is_outside', Helper::convert_isOutside($venue))->get();
-        $name = Helper::convert_isOutside($articles->pluck('is_outside')->first());
         return view('venue', [
             'articles' => $articles,
-            'name' => $name,
+            'name' => $articles->pluck('is_outside')->first(),
         ]);
     }
 

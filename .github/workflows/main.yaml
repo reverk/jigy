@@ -15,7 +15,7 @@ jobs:
       mysql:
         image: mysql:5.7
         env:
-          MYSQL_ROOT_PASSWORD: password
+          MYSQL_ALLOW_EMPTY_PASSWORD: yes
           MYSQL_DATABASE: test
         ports:
           - 33306:3306
@@ -26,7 +26,7 @@ jobs:
 
       - name: Install composer dependencies
         run: |
-          composer install --optimize-autoloader --no-dev
+          composer install
 
       - name: Install NPM dependencies
         run: |
@@ -38,3 +38,7 @@ jobs:
           cp .env.ci .env
           php artisan key:generate
           php artisan migrate:fresh
+
+      - name: Test Laravel Application
+        run: |
+          php artisan test
