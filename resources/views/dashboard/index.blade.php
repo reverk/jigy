@@ -3,8 +3,15 @@
     <x-dashboard-profile/>
 
     <section class="container">
-        <div class="h2 font-weight-bold py-2 mb-3">Articles</div>
+        <div class="h2 font-weight-bold py-2 mb-3">Stats</div>
+        <div class="d-flex flex-lg-row flex-column mb-2">
+            <x-stat-card name="Number of articles posted" :value="$stats['articles_posted']" />
+            <x-stat-card name="Number of articles posted in the past month" :value="$stats['past_month']" />
+            <x-stat-card name="Most used tag" :value="$stats['most_tag']" />
+            <x-stat-card name="Most used categories" :value="$stats['most_category']" />
+        </div>
 
+        <div class="h2 font-weight-bold py-2 mb-3">Articles</div>
         <div class="list-group-flush">
             @forelse($articles as $article)
                 <x-dashboard-article :article="$article"/>
