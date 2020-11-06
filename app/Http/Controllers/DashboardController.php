@@ -35,7 +35,7 @@ class DashboardController extends Controller
             ->get(['tags.id',DB::raw('count(tags.id) as count')])
             ->sortByDesc('count')->first();
 
-        if ($cat == null) {
+        if ($tag == null) {
             $most_tag = [
                 'name' => "None",
                 'count' => 0,
@@ -47,7 +47,7 @@ class DashboardController extends Controller
             ];
         }
 
-        if ($tag == null) {
+        if ($cat == null) {
             $most_cat = [
                 'name' => "None",
                 'count' => 0,
