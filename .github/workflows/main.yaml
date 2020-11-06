@@ -40,5 +40,8 @@ jobs:
           php artisan migrate:fresh
 
       - name: Test Laravel Application
+        env:
+          ALGOLIA_APP_ID: ${{ secrets.ALGOLIA_APP_ID }}
+          ALGOLIA_SECRET: ${{ secrets.ALGOLIA_SECRET }}
         run: |
           php artisan test
