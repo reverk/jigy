@@ -35,6 +35,16 @@
             let element = document.querySelector("#latest-article");
             element.scrollIntoView({behavior: "smooth"});
         }
+
+        {{--Show more fillables in search--}}
+        function showAdvancedSearch() {
+            let x = document.getElementById("advanced_search");
+            if (x.classList.contains("d-none")) {
+                x.classList.remove("d-none")
+            } else {
+                x.classList.add("d-none")
+            }
+        }
     </script>
 
     <!-- Styles -->

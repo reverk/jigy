@@ -122,6 +122,14 @@ body {
     opacity: 1;
 }
 
+.radius {
+    border-radius: 75px;
+}
+
+.line {
+    border-top: 1px solid gray;
+}
+
 /*tags*/
 div label input {
     margin-right:100px;
