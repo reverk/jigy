@@ -44,4 +44,6 @@ jobs:
           ALGOLIA_APP_ID: ${{ secrets.ALGOLIA_APP_ID }}
           ALGOLIA_SECRET: ${{ secrets.ALGOLIA_SECRET }}
         run: |
+          php artisan env:set ALGOLIA_APP_ID "$ALGOLIA_APP_ID" --quiet
+          php artisan env:set ALGOLIA_SECRET "$ALGOLIA_SECRET" --quiet
           php artisan test
