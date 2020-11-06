@@ -68,8 +68,8 @@ class UsersController extends Controller
         }
 
         $user->assignRole(request('role'));
-
         $user->save();
+        $user->sendEmailVerificationNotification();
 
         request()->session()->flash('alert-success', 'User added!');
         return redirect()->route('dashboard.users');
