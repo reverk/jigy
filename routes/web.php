@@ -18,14 +18,13 @@ use App\User;
 */
 
 Route::get('/', 'ArticlesController@index')->name('index');
+Route::get('/gallery', 'GalleryController@index')->name('gallery');
 Route::get('/article/{slug}', 'ArticlesController@show')->name('article');
 Route::get('/tag/{tag}', 'TagsController@show')->name('tag');
 Route::get('/category/{category}', 'CategoryController@show')->name('category');
 Route::get('/venue/{venue}', 'VenueController@show')->name('venue');
 Route::get('/search', 'SearchController@index')->name('search');
-Route::post('/search', 'SearchController@filter');
-
-Auth::routes(['verify' => true, 'register' => true]);
+Auth::routes(['verify' => true, 'register' => config('app.register')]);
 
 // Grouped routes: Auth Backend
 Route::middleware('auth')->group(function () {

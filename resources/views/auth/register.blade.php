@@ -1,6 +1,6 @@
 <x-layouts.layout>
     <div class="container d-flex align-items-center justify-content-center"
-         style="height: 80vh">
+         style="height: 80vh; max-width: 1000px">
         <div class="border mt-5 p-4 col-md-6 d-inline">
             <div class="pb-5 text-center">
                 <h1>Register</h1>

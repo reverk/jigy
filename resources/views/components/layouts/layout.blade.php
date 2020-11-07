@@ -11,42 +11,49 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- jQuery and JS bundle w/ Popper.js -->
-
+    <!-- Laravel PWA -->
+    @laravelPWA
 
     <!-- Scripts -->
-    @if(env('APP_ENV') == 'production' || env('APP_ENV') == 'staging')
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-            crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
-            crossorigin="anonymous"></script>
-    @else
-        <script src="{{ asset('js/app.js') }}"
+    <script src="{{ asset('js/app.js') }}"
             defer></script>
-    @endif
-
+    <script src="{{asset('node_modules/flexmasonry/dist/flexmasonry.js')}}"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function (event) {
+            FlexMasonry.init('.grid', {
+                responsive: true,
+                breakpointCols: {
+                    'min-width: 768px': 4,
+                    'min-width: 425px': 2,
+                },
+            })
+        });
+    </script>
     <script>
         {{--Go to latest article--}}
         function scrollToContent() {
             let element = document.querySelector("#latest-article");
             element.scrollIntoView({behavior: "smooth"});
         }
+
+        {{--Show more fillables in search--}}
+        function showAdvancedSearch() {
+            let x = document.getElementById("advanced_search");
+            if (x.classList.contains("d-none")) {
+                x.classList.remove("d-none")
+            } else {
+                x.classList.add("d-none")
+            }
+        }
     </script>
 
     <!-- Styles -->
-    @if(env('APP_ENV') == 'production' || env('APP_ENV') == 'staging')
-        <link rel="stylesheet"
-              href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
-              integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
-              crossorigin="anonymous">
-    @else
-        <link href="{{ asset('css/app.css') }}"
-              rel="stylesheet">
-    @endif
+    <link href="{{ asset('css/app.css') }}"
+          rel="stylesheet">
     <link rel="stylesheet"
           href="{{asset('css/styles.css')}}">
+    <link rel="stylesheet"
+          href="{{asset('node_modules/flexmasonry/dist/flexmasonry.css')}}">
 
     <!-- Material Design icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -70,10 +77,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
 </head>
 <body>
+<x-flash-message :msg="$msg ?? ''"/>
 
-<x-layouts.navbar/>
+@if(!Request::routeIs('index'))
+    <x-layouts.navbar/>
+@endif
 
-<main>
+<main class="min-vh-100">
     {{ $slot }}
 </main>
 

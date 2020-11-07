@@ -1,8 +1,3 @@
-<style>
-    .radius{
-        border-radius: 100px;
-    }
-</style>
 <div class="input-group border radius">
     <div class="input-group-prepend p-2 ">
         <span class="material-icons">calendar_today</span>

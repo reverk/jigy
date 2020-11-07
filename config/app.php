@@ -2,6 +2,9 @@
 
 return [
 
+    // Allow register
+    'register' => env('ALLOW_REGISTER', false),
+
     /*
     |--------------------------------------------------------------------------
     | Application Name

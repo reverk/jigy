@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Helpers\Helper;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Scout\Searchable;
@@ -57,12 +58,17 @@ class Article extends Model
      * @var array
      */
     protected $fillable = [
-        'title', 'slug', 'category_id', 'excerpt', 'thumbnail_image', 'body'
+        'title', 'slug', 'category_id', 'excerpt', 'thumbnail_image', 'body', 'user_id', 'is_outside'
     ];
 
     public function getThumbnailImageAttribute($value)
     {
         return asset($value);
+    }
+
+    public function getIsOutsideAttribute($value)
+    {
+        return Helper::convert_isOutside($value);
     }
 
     // Relationships

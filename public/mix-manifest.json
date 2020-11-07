@@ -1,4 +1,6 @@
 {
     "/js/app.js": "/js/app.js",
-    "/css/app.css": "/css/app.css"
+    "/css/app.css": "/css/app.css",
+    "/node_modules/flexmasonry/dist/flexmasonry.css": "/node_modules/flexmasonry/dist/flexmasonry.css",
+    "/node_modules/flexmasonry/dist/flexmasonry.js": "/node_modules/flexmasonry/dist/flexmasonry.js"
 }
