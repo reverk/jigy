@@ -11,19 +11,25 @@
                 {{--        email--}}
                 <div class="form-group mt-3">
                     <label for="email">Email:</label>
-                    <input type="email" class="form-control" name="email" id="email" placeholder="Enter email">
+                    <input type="email" class="form-control @error('email') is-invalid @enderror" name="email"
+                           value="{{ old('email') }}" required autocomplete="email" name="email" id="email" placeholder="Enter email" autofocus>
                     @error('email')
-                    <div class="alert alert-danger">{{ $message }}</div>
+                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                    </span>
                     @enderror
                 </div>
 
                 {{--            password--}}
                 <div class="form-group">
                     <label for="pass">Password:</label>
-                    <input type="password" class="form-control" name="password" id="password" placeholder="Enter Password">
+                    <input type="password" class="form-control @error('password') is-invalid @enderror" name="password"
+                           required autocomplete="current-password" name="password" id="password" placeholder="Enter Password">
                     <a href="{{route('password.request')}}"><small class="form-text text-muted">Forgot Password?</small></a>
                     @error('password')
-                    <div class="alert alert-danger">{{ $message }}</div>
+                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
                     @enderror
                 </div>
                 {{--            btn--}}

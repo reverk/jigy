@@ -6,7 +6,7 @@
                 <h1>Register</h1>
             </div>
             {{--    form--}}
-            <form method="POST" action="{{ route('register') }}">
+            <form action="{{route('register')}}" method="POST" >
                 @csrf
                 {{--        username--}}
                 <div class="form-group mt-3">

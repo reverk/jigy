@@ -6,11 +6,11 @@
                 <h1>Forgot Password</h1>
             </div>
             {{--    form--}}
-            <form>
+            <form method="POST" action="{{ route('password.email') }}">
                 {{--        email--}}
                 <div class="form-group mt-3">
                     <label for="email">Please enter your email:</label>
-                    <input type="email" class="form-control" id="email" placeholder="Enter email">
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Enter email">
                 </div>
                 {{--            btn--}}
                 <div class="container mt-5">
