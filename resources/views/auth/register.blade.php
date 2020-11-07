@@ -6,25 +6,44 @@
                 <h1>Register</h1>
             </div>
             {{--    form--}}
-            <form>
+            <form method="POST" action="{{ route('register') }}">
+                @csrf
                 {{--        username--}}
                 <div class="form-group mt-3">
                     <label for="username">Username:</label>
-                    <input type="username" class="form-control" id="username" placeholder="Enter username">
+                    <input type="text" class="form-control @error('name') is-invalid @enderror" name="name"
+                           value="{{ old('name') }}" required autocomplete="name" id="name" placeholder="Enter username" autofocus>
+                    @error('name')
+                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
                 </div>
                 {{--        email--}}
                 <div class="form-group mt-3">
                     <label for="email">Email:</label>
-                    <input type="email" class="form-control" id="email" placeholder="Enter email">
+                    <input type="email" class="form-control @error('email') is-invalid @enderror" name="email"
+                           value="{{ old('email') }}" required autocomplete="email" id="email" placeholder="Enter email">
+                    @error('email')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
                 </div>
                 {{--            password--}}
                 <div class="form-group">
                     <label for="pass1">Password:</label>
-                    <input type="pass" class="form-control" id="pass" placeholder="Enter Password">
+                    <input type="text" class="form-control @error('password') is-invalid @enderror" name="password"
+                           required autocomplete="new-password" id="password" placeholder="Enter Password">
+                    @error('password')
+                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                    @enderror
                 </div>
                 <div class="form-group">
                     <label for="pass2">Confirm Password:</label>
-                    <input type="pass" class="form-control" id="pass" placeholder="Enter Password again">
+                    <input type="text" class="form-control" placeholder="Enter Password again" name="password_confirmation" required autocomplete="new-password">
                 </div>
                 {{--            btn--}}
                 <div class="container mt-5">

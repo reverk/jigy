@@ -25,7 +25,7 @@ Route::get('/venue/{venue}', 'VenueController@show')->name('venue');
 Route::get('/search', 'SearchController@index')->name('search');
 Route::post('/search', 'SearchController@filter');
 
-Auth::routes(['verify' => true, 'register' => false]);
+Auth::routes(['verify' => true, 'register' => true]);
 
 // Grouped routes: Auth Backend
 Route::middleware('auth')->group(function () {
