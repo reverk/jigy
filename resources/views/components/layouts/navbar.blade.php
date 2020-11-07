@@ -31,7 +31,7 @@
             <x-layouts.navbar-item-link routeTo="index"
                                         iconName="info"
                                         name="About"/>
-            <x-layouts.navbar-item-link routeTo="index"
+            <x-layouts.navbar-item-link routeTo="search"
                                         iconName="search"
                                         name="Search"/>
             @guest

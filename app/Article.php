@@ -5,10 +5,11 @@ namespace App;
 use App\Helpers\Helper;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Scout\Searchable;
 
 class Article extends Model
 {
-    use Sluggable;
+    use Sluggable, Searchable;
 
     /**
      * Return the sluggable configuration array for this model.
@@ -22,6 +23,33 @@ class Article extends Model
                 'source' => 'title'
             ]
         ];
+    }
+
+    /**
+     * Get the index name for the model.
+     *
+     * @return string
+     */
+    public function searchableAs()
+    {
+        return 'articles_index';
+    }
+
+    /**
+     * Get the indexable data array for the model.
+     *
+     * @return array
+     */
+    public function toSearchableArray()
+    {
+        $array = $this->toArray();
+        $array = $this->transform($array);
+
+        $array['tags_id'] = $this->tags->map(function ($data) {
+            return $data['id'];
+        })->toArray();
+
+        return $array;
     }
 
     /**

@@ -90,6 +90,12 @@ class RouteTest extends TestCase
         foreach ($urls as $url) {
             $this->get($url)->assertOk();
         }
+
+        if (config('app.register') == false) {
+            $this->get('/register')->assertNotFound();
+        } else {
+            $this->get('/register')->assertOk();
+        }
     }
 
     /**

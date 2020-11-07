@@ -1,4 +1,7 @@
 /node_modules
+/public/js/app.js
+/public/css/app.css
+/public/node_modules
 /public/hot
 /public/storage
 /public/node_modules
