@@ -3,10 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Article;
+use App\Category;
+use App\Tag;
+use Carbon\Carbon;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 
 class DashboardController extends Controller
@@ -18,8 +22,51 @@ class DashboardController extends Controller
      */
     public function index()
     {
+        $cat = Article::where('user_id', auth()->user()->id)
+            ->select('category_id')
+            ->selectRaw('COUNT(*) as count')
+            ->groupBy('category_id')
+            ->orderByDesc('count')
+            ->first();
+        $tag = Tag::join('article_tag', 'article_tag.tag_id', '=', 'tags.id')
+            ->join('articles', 'articles.id', '=', 'article_tag.article_id')
+            ->where('articles.user_id', auth()->user()->id)
+            ->groupBy('tags.id')
+            ->get(['tags.id',DB::raw('count(tags.id) as count')])
+            ->sortByDesc('count')->first();
+
+        if ($tag == null) {
+            $most_tag = [
+                'name' => "None",
+                'count' => 0,
+            ];
+        } else {
+            $most_tag = [
+                'name' => Tag::find($tag->id)->name,
+                'count' => $tag->count,
+            ];
+        }
+
+        if ($cat == null) {
+            $most_cat = [
+                'name' => "None",
+                'count' => 0,
+            ];
+        } else {
+            $most_cat = [
+                'name' => Category::find($cat->category_id)->name,
+                'count' => $cat->count,
+            ];
+        }
+
         return view('dashboard.index', [
             'articles' => Article::where('user_id', auth()->user()->id)->latest()->take(5)->get(),
+            'stats' => [
+                'articles_posted' => Article::where('user_id', auth()->user()->id)->count(),
+                'past_month' => Article::where('created_at', '>', Carbon::now()->subMonths(1))->where('user_id', auth()->user()->id)->count(),
+                'most_tag' => $most_tag,
+                'most_category' => $most_cat,
+            ],
         ]);
     }
 

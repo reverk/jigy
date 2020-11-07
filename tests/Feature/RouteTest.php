@@ -101,19 +101,17 @@ class RouteTest extends TestCase
     {
         $this->initData();
 
-        $this
-            ->post('/login', [
-                'email' => $this->superAdmin->email,
-                'password' => 'password',
-            ])
+        $this->post('/login', [
+            'email' => $this->superAdmin->email,
+            'password' => 'password',
+        ])
             ->assertStatus(302); // Expect redirect after logging in.
-
-
 
         $uris = [
             '/dashboard',
             '/dashboard/profile',
 
+            '/dashboard/articles',
             '/dashboard/articles/all',
             '/dashboard/articles/create',
             '/dashboard/articles/edit/' . $this->article->slug,
@@ -130,7 +128,7 @@ class RouteTest extends TestCase
         ];
 
         foreach ($uris as $uri) {
-             $this->get($uri)->assertOk();
+            $this->get($uri)->assertOk();
         }
     }
 }
