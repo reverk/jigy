@@ -8,13 +8,18 @@
              class="mw-100 mh-100">
     </a>
     <div class="mr-2 dropdown">
-        <img src="{{auth()->user()->avatar}}"
-             role="button"
-             type="button"
-             data-toggle="dropdown"
-             alt="Profile image"
-             width=28px
-             class="rounded-circle">
+        <button
+            role="button"
+            type="button"
+            data-toggle="dropdown"
+            class="btn">
+            <img src="{{auth()->user()->avatar}}"
+                 alt="Profile image"
+                 class="rounded-circle"
+                 width=28px
+            >
+            <span class="ml-2">{{auth()->user()->name}}</span>
+        </button>
         <div class="dropdown-menu dropdown-menu-right"
              aria-labelledby="dropdownMenuButton">
             <a class="dropdown-item"

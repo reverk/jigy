@@ -21,7 +21,7 @@
 
     <div class="collapse navbar-collapse"
          id="navbarToggler">
-        <div class="navbar-nav ml-auto">
+        <div class="navbar-nav ml-auto d-flex align-items-lg-center">
             <x-layouts.navbar-item-link routeTo="index"
                                         iconName="home"
                                         name="Home"/>
@@ -43,13 +43,18 @@
             @endguest
             @auth
                 <div class="nav-item dropdown px-2 py-2 py-md-1">
-                    <img src="{{auth()->user()->avatar}}"
-                         role="button"
-                         type="button"
-                         data-toggle="dropdown"
-                         alt="Profile image"
-                         width=28px
-                         class="rounded-circle">
+                    <button
+                        role="button"
+                        type="button"
+                        data-toggle="dropdown"
+                        class="btn">
+                        <img src="{{auth()->user()->avatar}}"
+                             alt="Profile image"
+                             class="rounded-circle"
+                             width=28px
+                        >
+                        <span class="ml-2">{{auth()->user()->name}}</span>
+                    </button>
                     <div class="dropdown-menu dropdown-menu-right"
                          aria-labelledby="dropdownMenuButton">
                         <a class="dropdown-item"
