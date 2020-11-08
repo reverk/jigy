@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Hash;
 use Tests\TestCase;
 use UserRoleSeeder;
 
-class RouteTest extends TestCase
+class BackendPagesTest extends TestCase
 {
     use RefreshDatabase;
 
@@ -46,6 +46,7 @@ class RouteTest extends TestCase
             'email' => 'user2@testing.com',
             'password' => Hash::make('password'),
         ]);
+        $this->secondUser->assignRole('writer');
 
         $this->tag = Tag::create([
             'user_id' => $this->superAdmin->id,
@@ -68,93 +69,54 @@ class RouteTest extends TestCase
     }
 
     /**
-     * Test any publicly accessible routes.
+     * Tests as a super-admin user.
      *
      * @return void
      */
-    public function testPublicRoutes()
-    {
-        $this->initData();
-
-        $urls = [
-            '/',
-            '/login',
-            '/gallery',
-            '/tag/' . $this->tag->slug,
-            '/category/' . $this->category->slug,
-            '/article/' . $this->article->slug,
-            '/venue/' . $this->article->is_outside,
-            '/password/reset',
-        ];
-
-        foreach ($urls as $url) {
-            $this->get($url)->assertOk();
-        }
-
-        if (config('app.register') == false) {
-            $this->get('/register')->assertNotFound();
-        } else {
-            $this->get('/register')->assertOk();
-        }
-    }
-
-    /**
-     * Test any authenticated routes.
-     *
-     * @return void
-     */
-    public function testBackendRoutes()
+    public function testDashboardInterfaceAsSuperAdmin()
     {
         $this->initData();
 
         $this->post('/login', [
             'email' => $this->superAdmin->email,
             'password' => 'password',
-        ])
-            ->assertStatus(302); // Expect redirect after logging in.
+        ])->assertStatus(302);
 
-        $uris = [
-            '/dashboard',
-            '/dashboard/profile',
-
-            '/dashboard/articles',
-            '/dashboard/articles/all',
-            '/dashboard/articles/create',
-            '/dashboard/articles/edit/' . $this->article->slug,
-
-            '/dashboard/taxonomy',
-            '/dashboard/tag/create',
-            '/dashboard/tag/edit/' . $this->tag->slug,
-            '/dashboard/category/create',
-            '/dashboard/category/edit/' . $this->category->slug,
-
-            '/dashboard/users',
-            '/dashboard/users/create',
-            '/dashboard/users/edit/' . $this->secondUser->id,
-        ];
-
-        foreach ($uris as $uri) {
-            $this->get($uri)->assertOk();
-        }
+        $this->get('/dashboard')
+            ->assertSee($this->superAdmin->name)
+            ->assertSee('Create Article')
+            ->assertSee('Articles')
+            ->assertSee('All Articles')
+            ->assertSee('Tags')
+            ->assertSee('Categories')
+            ->assertSee('Users')
+            ->assertSee('Settings')
+            ->assertSee('Stats');
     }
 
     /**
-     * Test login and logout flow.
+     * Tests as a regular user.
      *
      * @return void
      */
-    public function testLoginLogoutFlow()
+    public function testDashboardInterfaceAsWriter()
     {
         $this->initData();
 
         $this->post('/login', [
-            'email' => $this->superAdmin->email,
+            'email' => $this->secondUser->email,
             'password' => 'password',
-        ])
-            ->assertRedirect(); // Expect redirect after logging in.
+        ])->assertStatus(302);
 
-        $this->post('/logout')
-            ->assertRedirect()
-            ->assertLocation('/');
+        $this->get('/dashboard')
+            ->assertSee($this->secondUser->name)
+            ->assertSee('Create Article')
+            ->assertSee('Articles')
+            ->assertSee('Settings')
+            ->assertSee('Stats')
+            ->assertDontSee('All Articles')
+            ->assertDontSee('Tags')
+            ->assertDontSee('Categories')
+            ->assertDontSee('Users');
     }
 }
