@@ -24,6 +24,9 @@ Route::get('/tag/{tag}', 'TagsController@show')->name('tag');
 Route::get('/category/{category}', 'CategoryController@show')->name('category');
 Route::get('/venue/{venue}', 'VenueController@show')->name('venue');
 Route::get('/search', 'SearchController@index')->name('search');
+Route::get('/about', 'MiscController@about')->name('about');
+Route::get('/stats', 'MiscController@stats')->name('stats');
+
 Auth::routes(['verify' => true, 'register' => config('app.register')]);
 
 // Grouped routes: Auth Backend

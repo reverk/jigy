@@ -9,13 +9,13 @@
         <div class="col p-2 ml-lg-5 d-flex">
             <div class="row align-self-center">
                 <ul class="col list-unstyled mb-0 mr-lg-2 px-3">
-                    {{--                    TODO: Replace links with the apporiate links --}}
                     <li class="py-3 mb-0 h5"><a href="{{route('index')}}">Home</a></li>
                     <li class="py-3 mb-0 h5"><a href="{{route('gallery')}}">Gallery</a></li>
+                    <li class="py-3 mb-0 h5"><a href="{{route('stats')}}">Stats</a></li>
                 </ul>
                 <ul class="col list-unstyled mb-0 px-3">
-                    <li class="py-3 mb-0 h5"><a href="{{route('index')}}">Search</a></li>
-                    <li class="py-3 mb-0 h5"><a href="{{route('index')}}">About</a></li>
+                    <li class="py-3 mb-0 h5"><a href="{{route('search')}}">Search</a></li>
+                    <li class="py-3 mb-0 h5"><a href="{{route('about')}}">About</a></li>
                 </ul>
             </div>
         </div>
