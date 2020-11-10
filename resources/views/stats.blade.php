@@ -1,6 +1,6 @@
 <x-layouts.layout>
     <div class="container">
-        <x-title name="Statistics"/>
+        <x-title name="Statistics This Year"/>
     </div>
     <div class="container">
         <div class="border rounded m-1 p-3">

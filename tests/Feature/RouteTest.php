@@ -85,6 +85,8 @@ class RouteTest extends TestCase
             '/article/' . $this->article->slug,
             '/venue/' . $this->article->is_outside,
             '/password/reset',
+            '/stats',
+            '/about'
         ];
 
         foreach ($urls as $url) {

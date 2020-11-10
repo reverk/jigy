@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Article;
 use App\Category;
 use App\Tag;
+use Carbon\Carbon;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\Response;
@@ -23,7 +24,7 @@ class MiscController extends Controller
         $history = Article::selectRaw('YEAR(created_at) year, MONTH(created_at) month, MONTHNAME(created_at) month_name, COUNT(*) post_count')
             ->groupByRaw('year, MONTH(created_at)')
             ->orderByRaw('year DESC, month DESC')
-//            ->whereBetween('created_at', [Carbon::now()->startOfYear(), Carbon::now()->endOfYear()])
+            ->whereBetween('created_at', [Carbon::now()->startOfYear(), Carbon::now()->endOfYear()])
             ->get();
         $history_name = [];
         $history_count = [];
@@ -32,15 +33,41 @@ class MiscController extends Controller
             array_push($history_count, $his->post_count);
         }
 
-        $category_count = Article::select('category_id')->selectRaw('COUNT(*) AS count')->groupBy('category_id')->orderByDesc('count')->get()->pluck('count')->toArray();
-        $category_id = Article::select('category_id')->selectRaw('COUNT(*) AS count')->groupBy('category_id')->orderByDesc('count')->get()->pluck('category_id')->toArray();
+        $category_count = Article::select('category_id')
+            ->selectRaw('COUNT(*) AS count')
+            ->groupBy('category_id')
+            ->orderByDesc('count')
+            ->whereBetween('created_at', [Carbon::now()->startOfYear(), Carbon::now()->endOfYear()])
+            ->get()
+            ->pluck('count')
+            ->toArray();
+        $category_id = Article::select('category_id')
+            ->selectRaw('COUNT(*) AS count')
+            ->groupBy('category_id')
+            ->orderByDesc('count')
+            ->whereBetween('created_at', [Carbon::now()->startOfYear(), Carbon::now()->endOfYear()])
+            ->get()
+            ->pluck('category_id')
+            ->toArray();
         $category_name = [];
         foreach ($category_id as $cat) {
             array_push($category_name, Category::find($cat)->name);
         }
 
-        $tag_count = Tag::join('article_tag', 'article_tag.tag_id', '=', 'tags.id')->groupBy('tags.id')->get(['tags.id', DB::raw('count(tags.id) as tag_count')])->sortByDesc('tag_count')->pluck('tag_count')->toArray();
-        $tag_id = Tag::join('article_tag', 'article_tag.tag_id', '=', 'tags.id')->groupBy('tags.id')->get(['tags.id', DB::raw('count(tags.id) as tag_count')])->sortByDesc('tag_count')->pluck('id')->toArray();
+        $tag_count = Tag::join('article_tag', 'article_tag.tag_id', '=', 'tags.id')
+            ->groupBy('tags.id')
+            ->whereBetween('article_tag.created_at', [Carbon::now()->startOfYear(), Carbon::now()->endOfYear()])
+            ->get(['tags.id', DB::raw('count(tags.id) as tag_count')])
+            ->sortByDesc('tag_count')
+            ->pluck('tag_count')
+            ->toArray();
+        $tag_id = Tag::join('article_tag', 'article_tag.tag_id', '=', 'tags.id')
+            ->groupBy('tags.id')
+            ->whereBetween('article_tag.created_at', [Carbon::now()->startOfYear(), Carbon::now()->endOfYear()])
+            ->get(['tags.id', DB::raw('count(tags.id) as tag_count')])
+            ->sortByDesc('tag_count')
+            ->pluck('id')
+            ->toArray();
         $tag_name = [];
         foreach ($tag_id as $tag) {
             array_push($tag_name, Tag::find($tag)->name);
