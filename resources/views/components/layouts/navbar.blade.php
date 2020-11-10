@@ -28,9 +28,12 @@
             <x-layouts.navbar-item-link routeTo="gallery"
                                         iconName="collections"
                                         name="Gallery"/>
-            <x-layouts.navbar-item-link routeTo="index"
+            <x-layouts.navbar-item-link routeTo="about"
                                         iconName="info"
                                         name="About"/>
+            <x-layouts.navbar-item-link routeTo="stats"
+                                        iconName="analytics"
+                                        name="Stats"/>
             <x-layouts.navbar-item-link routeTo="search"
                                         iconName="search"
                                         name="Search"/>

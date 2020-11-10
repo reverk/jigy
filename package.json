@@ -25,6 +25,7 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
+        "chart.js": "^2.9.4",
         "flexmasonry": "^0.2.3",
         "jquery": "^3.5.1",
         "tinymce": "^4.9.11"

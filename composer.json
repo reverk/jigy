@@ -23,7 +23,8 @@
         "laravelcollective/html": "^6.2",
         "silviolleite/laravelpwa": "^2.0",
         "spatie/laravel-permission": "^3.16",
-        "unisharp/laravel-filemanager": "^2.1"
+        "unisharp/laravel-filemanager": "^2.1",
+        "ext-json": "*"
     },
     "require-dev": {
         "facade/ignition": "^2.0",
