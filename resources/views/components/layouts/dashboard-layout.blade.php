@@ -18,7 +18,7 @@
             defer></script>
     <script src="{{ asset('node_modules/jquery/dist/jquery.min.js') }}"></script>
     {{--    Might need a better solution to this --}}
-    @if(Request::routeIs('dashboard.articles.create') || Request::routeIs('dashboard.articles.edit') || Request::routeIs('dashboard.profile'))
+    @if(Request::routeIs('dashboard.articles.create') || Request::routeIs('dashboard.articles.edit') || Request::routeIs('dashboard.profile') || Request::routeIs('dashboard.users'))
         @if (Request::routeIs('dashboard.articles.create') || Request::routeIs('dashboard.articles.edit'))
             <script src="{{asset('node_modules/tinymce/tinymce.min.js')}}"></script>
             <script src="{{asset('js/tinymce_config.js')}}"></script>

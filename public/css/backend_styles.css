@@ -5,6 +5,10 @@
     border-radius: 100px;
 }
 
+.dropdown-menu {
+    min-width: 300px;
+}
+
 .dashboard-image {
     max-width: 180px;
 }

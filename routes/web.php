@@ -39,6 +39,8 @@ Route::middleware('auth')->group(function () {
     // Display
     Route::get('/dashboard/profile', 'ProfileController@index')
         ->name('dashboard.profile');
+    Route::get('/dashboard/profile/{id}', 'ProfileController@resendEmail')
+        ->name('dashboard.profile.verify');
     // Update
     Route::patch('dashboard/profile/{id}', 'ProfileController@update')
         ->name('dashboard.profile.update');
@@ -120,6 +122,9 @@ Route::middleware('auth')->group(function () {
         // Store/save
         Route::post('/dashboard/users/create', 'UsersController@store')
             ->name('dashboard.users.store');
+        // Store/save as CSV
+        Route::post('/dashboard/users/import/csv', 'UsersController@importCsv')
+            ->name('dashboard.users.store.csv');
         // Edit
         Route::get('dashboard/users/edit/{id}', 'UsersController@edit')
             ->name('dashboard.users.edit');
