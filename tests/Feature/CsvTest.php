@@ -84,8 +84,8 @@ class CsvTest extends TestCase
         $this->initData();
 
         $this->actingAs($this->superAdmin)->post('/dashboard/users/import/csv', [
-                'import_file' => UploadedFile::fake()->createWithContent('test.csv', $content)]
-        )->assertRedirect();
+                'import_file' => UploadedFile::fake()->createWithContent('test.csv', $content)
+            ])->assertRedirect();
 
         $this->get('dashboard/users')->assertSee('Import Success!')->assertSee('CSVImport1');
     }
