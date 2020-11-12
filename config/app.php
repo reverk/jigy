@@ -5,6 +5,10 @@ return [
     // Allow register
     'register' => env('ALLOW_REGISTER', false),
 
+    // Default user password
+    // Used in when importing as CSV
+    'default_password' => env('DEFAULT_PASSWORD', 'jigy_systems'),
+
     /*
     |--------------------------------------------------------------------------
     | Application Name
@@ -168,6 +172,7 @@ return [
         /*
          * Package Service Providers...
          */
+        Maatwebsite\Excel\ExcelServiceProvider::class,
 
         /*
          * Application Service Providers...

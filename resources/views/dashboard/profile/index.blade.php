@@ -39,6 +39,11 @@
                 <h3 class="font-weight-bold">Your email</h3>
                 <p class="my-2 mt-3">This is your address that will be used to login {{config('app.name', 'Laravel')}}.</p>
                 {{Form::text('email', old('email'), ['class' => 'form-control', 'placeholder' => auth()->user()->email, 'style' => 'max-width: 300px;'])}}
+                @if (auth()->user()->email_verified_at == null)
+                    <a href="{{route('dashboard.profile.verify', auth()->user()->id)}}" class="mt-2">
+                        <button type="button" class="btn btn-primary">Resend Verification Email</button>
+                    </a>
+                @endif
                 @error('email')
                 <div class="text-danger mt-2">{{ $message }}</div>
                 @enderror

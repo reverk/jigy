@@ -5,6 +5,41 @@
             <div>
                 <a href="{{route('dashboard.users.create')}}"
                    class="btn primary-gradient">Create user</a>
+                <div class="btn-group">
+                    <button type="button"
+                            class="btn btn-outline-secondary dropdown-toggle"
+                            id="dropdownMenuButton"
+                            data-toggle="dropdown"
+                            aria-haspopup="true"
+                            aria-expanded="false">
+                        Import As CSV
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right"
+                             aria-labelledby="dropdownMenuButton"
+                        >
+                            {!! Form::open([
+                                'route' => ['dashboard.users.store.csv'],
+                                'class' => 'px-4 py-3',
+                                'method' => 'post',
+                                'files' => true
+                            ]) !!}
+                            <div class="form-group">
+                                {{ Form::label('import_file', 'Insert file') }}
+                                <div class="custom-file">
+                                    {{ Form::file('import_file', ['class' => 'custom-file-input', 'id' => 'myInput']) }}
+                                    <label class="custom-file-label"
+                                           for="customFile">Choose file</label>
+                                </div>
+                                @error('thumbnail')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="d-flex justify-content-end">
+                                {{ Form::submit('Import', ['class' => 'btn primary-gradient mt-3']) }}
+                            </div>
+                            {!! Form::close() !!}
+                    </div>
+                </div>
             </div>
         </section>
 

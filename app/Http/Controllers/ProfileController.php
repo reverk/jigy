@@ -24,6 +24,20 @@ class ProfileController extends Controller
     }
 
     /**
+     * Re-sends email verification.
+     *
+     * @return Application|Factory|Response|View
+     */
+    public function resendEmail($id)
+    {
+        $user = User::findorFail($id);
+        $user->sendEmailVerificationNotification();
+
+        request()->session()->flash('alert-success', 'Email sent!');
+        return view('dashboard.profile.index');
+    }
+
+    /**
      * Update the specified resource in storage.
      *
      * @param $id

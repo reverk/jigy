@@ -2,6 +2,12 @@
 
     <x-title name="Gallery"/>
 
+    @if($articles->count() == 0)
+        <div class="text-center">
+            <x-error-post/>
+        </div>
+    @endisset
+
     <div class="container grid mt-3">
         @forelse($articles as $article)
             <div class="grid-item position-relative p-1">
@@ -16,7 +22,7 @@
                 </a>
             </div>
         @empty
-            <x-error-post/>
+
         @endforelse
     </div>
 
