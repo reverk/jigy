@@ -1,6 +1,6 @@
 <x-layouts.layout>
-    <div class="container d-flex align-items-center justify-content-center my-5">
-        <div class="p-2 col-lg-9">
+    <div class="container d-flex justify-content-center my-5">
+        <div>
             {{--            search title--}}
             <div class="mb-5 text-center">
                 <x-title name="Search"/>
@@ -8,8 +8,8 @@
             {{--seach bar--}}
             <form action="{{route('search')}}" method="GET">
                 @csrf
-                <div class="d-flex flex-row justify-content-center mb-5">
-                    <div class="input-group border border-secondary radius p-1" style="max-width: 750px">
+                <div class="d-flex flex-row">
+                    <div class="input-group border border-secondary radius p-1" style="width: 750px">
                         <input type="text" class="form-control m-2 border-0" name="search" id="search" placeholder="Look for..."
                                aria-label="Look for...">
                         <div class="input-group-append">
@@ -24,7 +24,7 @@
                 </div>
 
 {{--                Advanced search: Hidden --}}
-                <section class="d-none" id="advanced_search">
+                <section class="d-none mt-5" id="advanced_search">
                     {{--            tag title--}}
                     <div class="mb-5">
                         <x-title name="Tags"/>
@@ -69,20 +69,23 @@
                     </div>
                 </section>
             </form>
-
-            {{--show result--}}
-            @if(isset($articles))
-                <div class="mb-5">
-                    <x-title name="Results"/>
-                </div>
-                <div class="mb-5">
-                    @forelse($articles as $article)
-                        <x-related-card :article="$article"/>
-                    @empty
-                        <x-error-post/>
-                    @endforelse
-                </div>
-            @endif
         </div>
     </div>
+
+    <section class="container">
+        {{--show result--}}
+        @if(isset($articles))
+            <div class="mb-5">
+                <x-title name="Results"/>
+            </div>
+            <div class="mb-5">
+                @forelse($articles as $article)
+                    <x-related-card :article="$article"/>
+                @empty
+                    <x-error-post/>
+                @endforelse
+            </div>
+        @endif
+
+    </section>
 </x-layouts.layout>
