@@ -16,7 +16,7 @@
             </div>
         </h6>
 
-        <section class="mt-5">
+        <section class="mt-5 article-body">
             {!! $article->body !!}
         </section>
     </section>
