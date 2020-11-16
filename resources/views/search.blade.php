@@ -1,6 +1,6 @@
 <x-layouts.layout>
-    <div class="container d-flex justify-content-center my-5">
-        <div>
+    <div class="container d-flex align-items-center justify-content-center my-5">
+        <div class="p-2 col-lg-9">
             {{--            search title--}}
             <div class="mb-5 text-center">
                 <x-title name="Search"/>
@@ -8,8 +8,8 @@
             {{--seach bar--}}
             <form action="{{route('search')}}" method="GET">
                 @csrf
-                <div class="d-flex flex-row">
-                    <div class="input-group border border-secondary radius p-1" style="width: 750px">
+                <div class="d-flex flex-row  justify-content-center">
+                    <div class="input-group border border-secondary radius p-1" style="max-width: 750px">
                         <input type="text" class="form-control m-2 border-0" name="search" id="search" placeholder="Look for..."
                                aria-label="Look for...">
                         <div class="input-group-append">
