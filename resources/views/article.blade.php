@@ -12,7 +12,7 @@
             <x-tag-attributes :article="$article"
                               paddings="py-4"/>
             <div>
-                By {{$article->user->name}} at {{date('d-m-Y', strtotime($article->user->created_at))}}
+                By {{$article->user->name}} at {{date('d-m-Y', strtotime($article->created_at))}}
             </div>
         </h6>
 

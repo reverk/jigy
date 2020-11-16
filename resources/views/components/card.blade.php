@@ -15,7 +15,7 @@
         <p class="card-text">{{Str::limit($article->excerpt, 100)}}</p>
 
         <h6 class="font-weight-light h6 text-muted">
-            By {{$article->user->name}} at {{date('d-m-Y', strtotime($article->user->created_at))}}
+            By {{$article->user->name}} at {{date('d-m-Y', strtotime($article->created_at))}}
         </h6>
     </div>
 
