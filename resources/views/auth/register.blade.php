@@ -10,9 +10,9 @@
                 @csrf
                 {{--        username--}}
                 <div class="form-group mt-3">
-                    <label for="username">Username:</label>
+                    <label for="name">Name</label>
                     <input type="text" class="form-control @error('name') is-invalid @enderror" name="name"
-                           value="{{ old('name') }}" required autocomplete="name" id="name" placeholder="Enter username" autofocus>
+                           value="{{ old('name') }}" required autocomplete="name" id="name" placeholder="Enter name" autofocus>
                     @error('name')
                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -21,7 +21,7 @@
                 </div>
                 {{--        email--}}
                 <div class="form-group mt-3">
-                    <label for="email">Email:</label>
+                    <label for="email">Email</label>
                     <input type="email" class="form-control @error('email') is-invalid @enderror" name="email"
                            value="{{ old('email') }}" required autocomplete="email" id="email" placeholder="Enter email">
                     @error('email')
@@ -32,7 +32,7 @@
                 </div>
                 {{--            password--}}
                 <div class="form-group">
-                    <label for="pass1">Password:</label>
+                    <label for="password">Password</label>
                     <input type="text" class="form-control @error('password') is-invalid @enderror" name="password"
                            required autocomplete="new-password" id="password" placeholder="Enter Password">
                     @error('password')
@@ -42,11 +42,11 @@
                     @enderror
                 </div>
                 <div class="form-group">
-                    <label for="pass2">Confirm Password:</label>
+                    <label for="password_confirmation">Confirm Password</label>
                     <input type="text" class="form-control" placeholder="Enter Password again" name="password_confirmation" required autocomplete="new-password">
                 </div>
                 {{--            btn--}}
-                <div class="container mt-5">
+                <div class="mt-5">
                     <div class="d-flex flex-row-reverse">
                         <button type="submit" class="p-2 ml-2 btn btn-primary">Submit</button>
                     </div>

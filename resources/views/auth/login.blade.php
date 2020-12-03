@@ -10,34 +10,53 @@
                 @csrf
                 {{--        email--}}
                 <div class="form-group mt-3">
-                    <label for="email">Email:</label>
-                    <input type="email" class="form-control @error('email') is-invalid @enderror" name="email"
-                           value="{{ old('email') }}" required autocomplete="email" name="email" id="email" placeholder="Enter email" autofocus>
-                    @error('email')
-                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                    </span>
-                    @enderror
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control {{-- @error('email') is-invalid @enderror --}}" name="email"
+                           value="{{ old('email') }}" required autocomplete="email" id="email" placeholder="Enter email" autofocus>
+{{--                    @error('email')--}}
+{{--                    <span class="invalid-feedback" role="alert">--}}
+{{--                        <strong>{{ $message }}</strong>--}}
+{{--                    </span>--}}
+{{--                    @enderror--}}
                 </div>
 
                 {{--            password--}}
                 <div class="form-group">
-                    <label for="pass">Password:</label>
-                    <input type="password" class="form-control @error('password') is-invalid @enderror" name="password"
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control {{-- @error('password') is-invalid @enderror --}}"
                            required autocomplete="current-password" name="password" id="password" placeholder="Enter Password">
                     <a href="{{route('password.request')}}"><small class="form-text text-muted">Forgot Password?</small></a>
-                    @error('password')
-                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                    @enderror
+                    {{--                    @error('password')--}}
+                    {{--                    <span class="" role="alert">--}}
+                    {{--                        <strong>{{ $message }}</strong>--}}
+                    {{--                    </span>--}}
+                    {{--                    @enderror--}}
                 </div>
+
+                <div class="form-group">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="remember"
+                               id="remember" {{ old('remember') ? 'checked' : '' }}>
+
+                        <label class="form-check-label" for="remember">
+                            Remember Me
+                        </label>
+                    </div>
+                </div>
+
+
+                @if($errors->any())
+                    <div class="alert alert-danger">
+                        <strong>Incorrect email and/or password. Please try again.</strong>
+                    </div>
+                @endif
+
                 {{--            btn--}}
-                <div class="container mt-5">
+                <div class="mt-5">
                     <div class="d-flex flex-row-reverse">
                         <button type="submit" class="p-2 ml-2 btn btn-primary">Login</button>
                         @if(Route::has('register'))
-                            <a class="btn btn-secondary p-2" href="{{route('register')}}" role="button">Register</a>
+                            <a class="btn btn-outline-secondary p-2" href="{{route('register')}}" role="button">Register</a>
                         @endif
                     </div>
                 </div>
