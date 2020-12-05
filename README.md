@@ -1,4 +1,3 @@
-[![CodeFactor](https://www.codefactor.io/repository/github/reverk/jigy/badge?s=847bf4cb63b064746b985ebb0f3685144aa1d43c)](https://www.codefactor.io/repository/github/reverk/jigy)
 [![GitHub contributors](https://img.shields.io/github/contributors/Naereen/StrapDown.js.svg)](https://gitHub.com/reverk/jigy/graphs/contributors/)
 [![GitHub pull-requests](https://img.shields.io/github/issues-pr/Naereen/StrapDown.js.svg)](https://gitHub.com/reverk/jigy/pull/)
 [![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](https://github.com/reverk/jigy/blob/master/LICENSE)
@@ -10,7 +9,6 @@ A blog build with Laravel, featuring a filtered search
 
 ## Table of Contents
 - [JTMK i-Gallery (JiGy) 📑](#jtmk-i-gallery-jigy-)
-  * [Features to work on ✨](#features-to-work-on-)
   * [Installation](#installation)
     + [Required tools 🛠](#required-tools-)
     + [Instructions 📜](#instructions-)
@@ -20,11 +18,6 @@ A blog build with Laravel, featuring a filtered search
   * [FAQ](#faq)
   * [Collaborators 👨🏻‍💻](#collaborators-)
   * [License](#license)
-
-## Features to work on ✨
-- ✅ Build a blog that's able to do CRUD operations
-- ✅ Able to manage users from the backend
-- ⚒ Filtered search
 
 ## Installation
 ### **Required tools 🛠**
