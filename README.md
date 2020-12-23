@@ -7,6 +7,8 @@
 
 A blog build with Laravel, featuring a filtered search
 
+Build as part of our final year project
+
 ## Table of Contents
 - [JTMK i-Gallery (JiGy) 📑](#jtmk-i-gallery-jigy-)
   * [Installation](#installation)
@@ -14,7 +16,8 @@ A blog build with Laravel, featuring a filtered search
     + [Instructions 📜](#instructions-)
       - [Quick Start Guide](#quick-start-guide)
       - [Detailed installation](#detailed-installation)
-  * [Development](#development)
+  * [Hot Reloading](#hot-reloading)
+  * [CI/CD](#cicd)
   * [FAQ](#faq)
   * [Collaborators 👨🏻‍💻](#collaborators-)
   * [License](#license)
@@ -26,8 +29,8 @@ A blog build with Laravel, featuring a filtered search
 - [XAMPP](https://www.apachefriends.org/index.html) - for MySQL database, any other databases supported by laravel works too.
 - [Git](https://git-scm.com/)
 - IDE or Code Editor -- we recommend [PhpStorm](https://www.jetbrains.com/phpstorm/)
-- Email testing: [Mailtrap account](https://mailtrap.io/)
 - Search: [Algolia account](https://www.algolia.com/)
+- Email testing _(optional)_: [Mailtrap account](https://mailtrap.io/)
 
 
 ### **Instructions 📜**
@@ -48,10 +51,16 @@ composer install
 ```
 4. Install NPM dependencies & run
 ```
-npm i && npm run dev
+# Bash/Powershell
+npm i; npm run dev
 ```
 5. Make a copy of `.env.example` and rename it to `.env` and change to the following snippet:
 ```
+# Bash/Powershell
+cp .env.example .env
+```
+```
+# .env
 ...
 
 APP_URL=<YOUR_URL>
@@ -68,6 +77,7 @@ DB_PASSWORD=<YOUR_DATABSE_PASSWORD>
 ...
 
 # If you want to test if emails work, follow this config
+# Alternatively, you can copy & paste the config provided in mailtrap
 MAIL_MAILER=smtp
 MAIL_HOST=smtp.mailtrap.io
 MAIL_PORT=2525
@@ -81,7 +91,7 @@ MAIL_FROM_NAME="${APP_NAME}"
 
 FILESYSTEM_DRIVER=public
 
-# For serach function
+# For search function
 ALGOLIA_APP_ID=<YOUR_APP_ID>
 ALGOLIA_SECRET=<YOUR_ADMIN_API_KEY>
 
@@ -121,7 +131,7 @@ php artisan serve
 localhost:8000 // Or localhost:3000 if you have hot/live reloading.
 ```
 
-## Development
+## Hot Reloading
 - Sometimes, you may need to enable hot reloading to make things easier. To enable hot/live reloading:
 ```
 php artisan serve
@@ -131,6 +141,9 @@ Then open another terminal and type:
 npm run watch
 ```
 > ℹ You'll need to leave 2 terminals to run simultaneously   
+
+## CI/CD
+See [here](https://github.com/reverk/jigy/blob/master/docs/ci.md).
 
 ## FAQ
 **Q: Where can I find and apply Mailtrap details?**

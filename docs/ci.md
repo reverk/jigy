@@ -1,3 +1,12 @@
+# CI/CD
+
+Below is a code used for CI/CD throughout our development. Though it will no longer be used when it's public.
+
+You may use it on your own private repo as you wish.
+
+```
+# .github\workflows\main.yml
+
 on:
   pull_request:
     branches:
@@ -28,7 +37,7 @@ jobs:
         run: |
           composer install
 
-      - name: Install NPM dependencies
+      - name: Install NPM dependencies & build
         run: |
           npm i
           npm run prod
@@ -48,3 +57,48 @@ jobs:
           php artisan env:set ALGOLIA_SECRET "$ALGOLIA_SECRET" --quiet
           php artisan scout:sync
           php artisan test
+
+```
+
+```
+# .env.ci
+
+APP_NAME=Laravel
+APP_ENV=staging
+APP_KEY=
+APP_DEBUG=true
+APP_URL=http://localhost
+
+LOG_CHANNEL=stack
+
+DB_CONNECTION=mysql
+DB_HOST=mysql
+DB_PORT=3306
+DB_DATABASE=test
+DB_USERNAME=root
+DB_PASSWORD=
+
+BROADCAST_DRIVER=log
+CACHE_DRIVER=file
+QUEUE_CONNECTION=sync
+SESSION_DRIVER=file
+SESSION_LIFETIME=120
+
+REDIS_HOST=127.0.0.1
+REDIS_PASSWORD=null
+REDIS_PORT=6379
+
+MAIL_MAILER=smtp
+MAIL_HOST=smtp.mailtrap.io
+MAIL_PORT=2525
+MAIL_USERNAME=null
+MAIL_PASSWORD=null
+MAIL_ENCRYPTION=null
+MAIL_FROM_ADDRESS=null
+MAIL_FROM_NAME="${APP_NAME}"
+
+FILESYSTEM_DRIVER=public
+ALLOW_REGISTER=false
+ALGOLIA_APP_ID=
+ALGOLIA_SECRET=
+```
