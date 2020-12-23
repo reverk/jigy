@@ -17,7 +17,7 @@ Build as part of our final year project
       - [Quick Start Guide](#quick-start-guide)
       - [Detailed installation](#detailed-installation)
   * [Hot Reloading](#hot-reloading)
-  * [CI/CD](#ci/cd)
+  * [CI/CD](#cicd)
   * [FAQ](#faq)
   * [Collaborators 👨🏻‍💻](#collaborators-)
   * [License](#license)
